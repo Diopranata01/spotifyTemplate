@@ -9,35 +9,35 @@ export default function WeddingInvitation() {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
 
-  // useEffect(() => {
-  //   // Trigger the animation after the component mounts
-  //   setIsFirstVisible(true);
-  //   setIsOverlayVisible(true);
+  useEffect(() => {
+    // Trigger the animation after the component mounts
+    setIsFirstVisible(true);
+    setIsOverlayVisible(true);
 
-  //   // Set a timeout to hide the first text and show the second text
-  //   const timer1 = setTimeout(() => {
-  //     setIsFirstVisible(false);
-  //     setIsSecondVisible(true);
-  //   }, 3000); // Duration for the first text to be visible
+    // Set a timeout to hide the first text and show the second text
+    const timer1 = setTimeout(() => {
+      setIsFirstVisible(false);
+      setIsSecondVisible(true);
+    }, 3000); // Duration for the first text to be visible
 
-  //   // Set a timeout to hide the second text and the overlay
-  //   const timer2 = setTimeout(() => {
-  //     setIsSecondVisible(false);
-  //     setIsOverlayVisible(false);
-  //   }, 6000); // Duration for the second text to be visible
+    // Set a timeout to hide the second text and the overlay
+    const timer2 = setTimeout(() => {
+      setIsSecondVisible(false);
+      setIsOverlayVisible(false);
+    }, 6000); // Duration for the second text to be visible
 
-  //   // Cleanup the timers on unmount
-  //   return () => {
-  //     clearTimeout(timer1);
-  //     clearTimeout(timer2);
-  //   };
-  // }, []);
+    // Cleanup the timers on unmount
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, []);
 
   // Function to toggle play/pause
   const togglePlayPause = () => {
-    // setPlayStatus(() =>
-    //   Sound.status.PLAYING
-    // );
+    setPlayStatus(() =>
+      Sound.status.PLAYING
+    );
     // setPlayStatus((prevStatus) =>
     //   prevStatus === Sound.status.PLAYING
     //     ? Sound.status.PAUSED
@@ -73,7 +73,7 @@ export default function WeddingInvitation() {
       <PhotoContainer playStatus={playStatus} togglePlayPause={togglePlayPause} />
 
       {/* Overlay */}
-      {/* <motion.div
+      <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: isOverlayVisible ? 1 : 0 }}
         transition={{ duration: 0.5 }} 
@@ -114,16 +114,16 @@ export default function WeddingInvitation() {
             }`}
           >
             {playStatus === Sound.status.PLAYING ? "Pause Music" : "Play Music"}
-          </button>
+          </button> */}
         </div>
-      </motion.div> */}
+      </motion.div>
 
       {/* Sound Component */}
-      {/* <Sound
+      <Sound
         url="/music/Daniel_Caesar_Always.mp3" 
         playStatus={playStatus} 
         onFinishedPlaying={() => setPlayStatus(Sound.status.STOPPED)} 
-      /> */}
+      />
     </div>
   );
 }

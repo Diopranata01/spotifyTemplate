@@ -57,9 +57,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     }
 
     // Check play status and play if not playing
-    // if (playstatus !== "PLAYING") {
-    //   togglePlayPause(); // Start playing the audio
-    // }
+    if (playstatus !== "PLAYING") {
+      togglePlayPause(); // Start playing the audio
+    }
   };
 
   // Function to open Google Maps
@@ -368,24 +368,6 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             />
           ))}
         </div>
-
-        {/* <div className="absolute inset-0 transition-opacity duration-1000">
-          <div
-            className="absolute inset-0 z-10"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgb(91 87 69 / 74%) 0%, rgba(164, 172, 133, 0.3) 30%, rgba(164, 172, 133, 0) 50%, rgba(164, 172, 133, 0.7) 200%)",
-            }}
-          ></div>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'url("/img/final_image/main_photo_2.jpg")',
-              backgroundSize: "150%", // Adjust this value to zoom in more or less
-              backgroundPosition: "center", // Center the image
-            }}
-          />
-        </div> */}
       </div>
 
       {/* Content 2 */}
@@ -790,7 +772,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               visibilityStates[7] ? "fade-in" : "fade-out"
             }`}
           >
-            {/* <RsvpList /> */}
+            <RsvpList />
           </div>
         </div>
 
