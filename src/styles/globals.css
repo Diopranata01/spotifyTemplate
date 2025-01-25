@@ -167,13 +167,11 @@ h3 {
 /* **** */
 
 .right-container-photo-config-custom {
-  position: relative;
   background-image: url("/img/hitam-putih/hitam_putih4.jpg");
   background-attachment: fixed; /* This makes the background fixed */
   background-size: cover !important; /* Cover the entire area */
   background-position: center !important; /* Center the background */
   z-index: -1; /* Ensure it stays behind the content */
-  
 }
 
 .loader {
@@ -241,13 +239,23 @@ h3 {
   transition: opacity 0.5s ease; /* Smooth transition for opacity */
 }
 
-
 .right-container-photo-config {
   position: relative;
   overflow: hidden; /* Prevent overflow */
   height: 100vh; /* Set the height to full viewport height */
   background-size: 50%;
   background-position: 6% 50%;
+}
+
+.right-container-photo-config-cover {
+  position: relative;
+  overflow: hidden; /* Prevent overflow */
+  height: 100vh; /* Set the height to full viewport height */
+}
+.right-container-photo-config-cover-collapse {
+  transition: height 1s ease-in, opacity 1s ease-in; /* Transition for height and opacity */
+  height: 0% !important;
+  opacity: 0 !important;
 }
 
 /* Modal */

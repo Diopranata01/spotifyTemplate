@@ -48,17 +48,10 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     setIsScrollable((prev) => !prev);
 
     if (!isScrollable) {
-      // Set a flag to indicate that the scroll action is being initiated
-      const scrollInitiated = true;
-
-      // Scroll to the second container
-      scrollToSecondContainer();
 
       // Set a timeout to hide the cover page after the scroll duration
       setTimeout(() => {
-        if (scrollInitiated) {
-          setIsVisible(false); // Hide the cover page after the transition
-        }
+        setIsVisible(false);
       }, 1000); // Match this duration with the CSS transition duration
     }
 
@@ -203,8 +196,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     >
       {/* Cover Content */}
       <div
-        className={`p-8 flex-col items-center justify-between relative overflow-hidden right-container-photo-config duration-1000 ease-in scroll-item-cover 
-        ${isVisible ? "opacity-100 h-full flex" : "opacity-0 h-0 hidden"}
+        className={`flex-col items-center justify-between relative overflow-hidden right-container-photo-config-cover duration-1000 ease-in scroll-item-cover 
+        ${isVisible ? "opacity-100 h-full flex p-8" : "w-0 p-0 right-container-photo-config-cover-collapse"}
         `}
         style={{ height: coverHeight }} // Set dynamic height
       >
