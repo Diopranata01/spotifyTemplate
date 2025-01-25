@@ -31,23 +31,37 @@ const RsvpList = () => {
   }
 
   return (
-    <div>
-      <p className="text-2xl lg:text-[45px] mb-4 text-white">Harapan</p>
-      <div id="komentar-container" style={{ height: "auto" }}>
-        {rsvps.map((rsvp) => (
-          <div
-            key={rsvp.id}
-            className="komentar-item show"
-            id={`komentar-${rsvp.id}`}
-          >
-            <strong>{rsvp.name}</strong>
-            <p className="">{rsvp.message}</p>
-            <small>{new Date().toLocaleDateString()}</small>{" "}
-            {/* Replace with actual date if available */}
-          </div>
-        ))}
+    <>
+      <div className="flex flex-col w-full p-10">
+        <p className="text-2xl lg:text-[45px] mb-4 text-white"></p>
+        <div className="flex flex-col w-full h-[90vh] overflow-y-auto">
+          {rsvps.map((rsvp, index) => (
+            <div
+              key={rsvp.id}
+              className={`komentar-item show w-full flex ${
+                index % 2 === 0 ? "justify-start" : "justify-end"
+              }`}
+              id={`komentar-${rsvp.id}`}
+            >
+              <div
+                className={`p-4 m-2 bg-transparent text-[white] rounded-lg max-w-md`}
+              >
+                <p className="text-[19px]">{rsvp.name}</p>
+                <p className="text-[15px] italic">{rsvp.message}</p>
+                <p className="text-white text-[15px]">
+                  {new Intl.DateTimeFormat("en-US", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                  }).format(new Date())}
+                </p>{" "}
+                {/* Replace with actual date if available */}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -92,7 +92,7 @@ export default function WeddingInvitation() {
             transition={{ duration: 0.5 }} 
             className="absolute text-2xl text-white text-center font-italiana mb-4"
           >
-            We Invite You To Our Intimate Wedding
+            We invite you to our wedding
           </motion.h1>
 
           <motion.h1
@@ -104,7 +104,7 @@ export default function WeddingInvitation() {
             transition={{ duration: 0.5, delay: 0.5 }} 
             className="absolute text-[40px] text-white text-center"
           >
-            Rangga & Novela
+            Rangga & Novella
           </motion.h1>
 
           {/* <button

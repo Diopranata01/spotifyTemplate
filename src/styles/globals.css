@@ -144,11 +144,9 @@ h3 {
 }
 
 .komentar-item {
-  background-color: #f0f4f8; /* Light background for comments */
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .komentar-item strong {
@@ -167,6 +165,16 @@ h3 {
 }
 
 /* **** */
+
+.right-container-photo-config-custom {
+  position: relative;
+  background-image: url("/img/hitam-putih/hitam_putih4.jpg");
+  background-attachment: fixed; /* This makes the background fixed */
+  background-size: cover; /* Cover the entire area */
+  background-position: center; /* Center the background */
+  z-index: -1; /* Ensure it stays behind the content */
+  
+}
 
 .loader {
   border: 4px solid rgba(255, 255, 255, 0.3);
@@ -200,8 +208,8 @@ h3 {
 
 .right-container-photo-config {
   height: 100vh; /* Set the height to full viewport height */
-  background-size: 150% auto; /* Cover the entire container */
-  background-position: center; /* Shift the image 20% to the left */
+  background-size: 50%;
+  background-position: 6% 50%;
 }
 
 /* Left Container */
@@ -233,17 +241,12 @@ h3 {
   transition: opacity 0.5s ease; /* Smooth transition for opacity */
 }
 
-/* Right Container */
-/* .main-photo-1 {
-  background-image: url('/img/adat/main_photo_1.jpg');
+.scroll-item-cover {
+  scroll-snap-align: center; /* Center the item in the viewport */
+  align-items: center; /* Center content */
+  transition: opacity 0.5s ease; /* Smooth transition for opacity */
 }
 
-.main-photo-2 {
-  background-image: url('/img/adat/main_photo_2.jpg');
-  height: 100vh; 
-  background-size: 260% auto; 
-  background-position: 48% center;
-} */
 
 .right-container-photo-config {
   position: relative;

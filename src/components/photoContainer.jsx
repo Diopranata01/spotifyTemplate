@@ -8,6 +8,7 @@ import RsvpList from "./RsvpList";
 
 const PhotoContainer = ({ playstatus, togglePlayPause }) => {
   const [isScrollable, setIsScrollable] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [visibilityStates, setVisibilityStates] = useState([]);
   const [coverHeight, setCoverHeight] = useState("100vh");
   const [copySuccess, setCopySuccess] = useState("");
@@ -47,13 +48,39 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     "/img/adat/main_photo_12.jpg",
     "/img/adat/main_photo_13.jpg",
     "/img/adat/main_photo_14.jpg",
+    "/img/gallery/gallery_(1).jpg",
+    "/img/gallery/gallery_(2).jpg",
+    "/img/gallery/gallery_(3).jpg",
+    "/img/gallery/gallery_(4).jpg", 
+    "/img/gallery/gallery_(5).jpg",
+    "/img/gallery/gallery_(6).jpg",
+    "/img/gallery/gallery_(7).jpg",
+    "/img/gallery/gallery_(8).jpg",
+    "/img/gallery/gallery_(9).jpg",
+    "/img/gallery/gallery_(10).jpg",
+    "/img/gallery/gallery_(11).jpg",
+    "/img/gallery/gallery_(12).jpg",
+    "/img/gallery/gallery_(13).jpg",
+    "/img/gallery/gallery_(14).jpg",
+    "/img/gallery/gallery_(15).jpg",
   ];
 
   const toggleScrollable = () => {
     setIsScrollable((prev) => !prev);
 
     if (!isScrollable) {
-      setTimeout(scrollToSecondContainer, 1000); // Delay the scroll
+      // Set a flag to indicate that the scroll action is being initiated
+      const scrollInitiated = true;
+
+      // Scroll to the second container
+      scrollToSecondContainer();
+
+      // Set a timeout to hide the cover page after the scroll duration
+      setTimeout(() => {
+        if (scrollInitiated) {
+          setIsVisible(false); // Hide the cover page after the transition
+        }
+      }, 1000); // Match this duration with the CSS transition duration
     }
 
     // Check play status and play if not playing
@@ -80,7 +107,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
   const navigateToLinkInstagram2 = () => {
     window.open(
-      "https://www.instagram.com/ranggadipranaa?igsh=dm00bXM0emg3YTc=",
+      "https://www.instagram.com/novellaasri?igsh=MXZqYjFnODUwZmY2Zg==",
       "_blank"
     );
   };
@@ -89,7 +116,6 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     const secondContainer = document.querySelector(
       ".scroll-item:nth-of-type(2)"
     );
-    console.log("Second Container:", secondContainer); // Log the second container
     if (secondContainer) {
       secondContainer.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -198,7 +224,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     >
       {/* Cover Content */}
       <div
-        className={`p-8 flex flex-col items-center justify-between relative right-container-photo-config scroll-item`}
+        className={`p-8 flex-col items-center justify-between relative overflow-hidden right-container-photo-config duration-1000 ease-in scroll-item-cover 
+        ${isVisible ? "opacity-100 h-full flex" : "opacity-0 h-0 hidden"}
+        `}
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -314,7 +342,6 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           }`}
         >
           <div className="flex w-full gap-8 justify-center items-center">
-            {/*  */}
             <div className="flex flex-col pb-4">
               <p className="text-[18px] h-2 mb-[4px] ms-2">15</p>{" "}
               {/* Reduced margin-bottom */}
@@ -344,7 +371,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <CelebrationCountdown />
         </div>
 
-        {/* Fading Photos */}
+        {/* Fading Video */}
         <div className="absolute inset-0 transition-opacity duration-1000">
           {/* Black overlay for fading effect */}
           <div
@@ -354,19 +381,16 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 "linear-gradient(to bottom, rgb(91 87 69 / 74%) 0%, rgba(164, 172, 133, 0.3) 30%, rgba(164, 172, 133, 0) 50%, rgba(164, 172, 133, 0.7) 200%)",
             }}
           ></div>
-          {photos.map((photo, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-                index === currentPhotoIndex ? "opacity-100" : "opacity-0"
-              }`}
-              style={{
-                backgroundImage: `url(${photo})`,
-                backgroundSize: `${index === 0 ? "150%" : ""}`, // Adjust this value to zoom in more or less
-                backgroundPosition: `${index === 0 ? "55%" : ""}`, // Move the image slightly to the left
-              }}
-            />
-          ))}
+          {/* Background video */}
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+          >
+            <source src="/video/reels.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
 
@@ -450,7 +474,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <div className="flex flex-col w-full">
             <p
-              className={`text-[17px] mb-[-4px] md:text-base lg:text-[20px] text-justify tracking-wider mr-lg-[6.8rem]`}
+              className={`text-[17px] mb-[-4px] lg:mb-3 md:text-base lg:text-[20px] text-justify tracking-wider mr-lg-[6.8rem]`}
             >
               Hendhy Kunarjanto
             </p>
@@ -587,10 +611,16 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           }`}
         >
           <div className="flex flex-col items-center gap-4 w-full text-center px-4">
-            <div className="flex flex-col gap-7 lg:gap-20">
-              <h1 className="text-[40px] md:text-base lg:text-[45px] tracking-wider mt-2 mt-md-5">
-                Dress Code
-              </h1>
+            <div className="flex flex-col gap-7 lg:gap-20 items-center">
+              <div className="flex flex-col items-center gap-5 w-[290px]">
+                <h1 className="text-[40px] md:text-base lg:text-[45px] tracking-wider mt-2 mt-md-5">
+                  Dress Code
+                </h1>
+                <p>
+                  Kami mengundang para tamu untuk berkenan mengenakan
+                  warna-warna berikut pada hari istimewa kami.
+                </p>
+              </div>
               <DressCodeColorGuide />
             </div>
           </div>
@@ -611,7 +641,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 6 */}
       <div
-        className="p-10 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
+        className="p-0 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -624,7 +654,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               visibilityStates[5] ? "fade-in" : "fade-out"
             }`}
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.7)", // Semi-transparent background
+              backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
             }}
           >
             <div className="flex flex-col text-[#414833] items-center gap-2 lg:gap-14 text-center px-4">
@@ -652,7 +682,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     <p className="text-[16px] lg:text-[20px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[16px] lg:text-[20px]">10:30 - 12:00</p>
+                    <p className="text-[16px] lg:text-[20px]">
+                      10:00 - 12:00 WITA
+                    </p>
                   </div>
                 </div>
 
@@ -693,7 +725,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     <p className="text-[16px] lg:text-[20px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[16px] lg:text-[20px]">15:00 - 18:00</p>
+                    <p className="text-[16px] lg:text-[20px]">
+                      19:00 - 21:00 WITA
+                    </p>
                   </div>
                 </div>
                 {/*  */}
@@ -727,7 +761,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 7 */}
       <div
-        className="p-10 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
+        className="p-10 flex flex-col items-center justify-between relative right-container-photo-config right-container-photo-config-custom scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -743,23 +777,11 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             <RsvpForn />
           </div>
         </div>
-
-        {/* Fading Photos */}
-        <div className="absolute inset-0 transition-opacity duration-1000">
-          {/* Black overlay for fading effect */}
-          <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'url("/img/adat/main_photo_13.jpg")',
-            }}
-          />
-        </div>
       </div>
 
-      {/* Content 9 */}
+      {/* Content 8 */}
       <div
-        className="p-10 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
+        className=" flex flex-col items-center justify-between relative right-container-photo-config right-container-photo-config-custom scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -768,24 +790,15 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-end text-black text-start ${
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start ${
               visibilityStates[7] ? "fade-in" : "fade-out"
             }`}
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
+            }}
           >
             <RsvpList />
           </div>
-        </div>
-
-        {/* Fading Photos */}
-        <div className="absolute inset-0 transition-opacity duration-1000">
-          {/* Black overlay for fading effect */}
-          <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'url("/img/adat/main_photo_13.jpg")',
-            }}
-          />
         </div>
       </div>
 
@@ -961,7 +974,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
           <div className="flex flex-col lg:mb-[-150px]">
             <h1 className={`text-[40px] md:text-5xl lg:text-[45px]`}>
-              Terimakasih
+              Terima Kasih
             </h1>
             <div className="flex w-full flex-col gap-4 mt-2 justify-center">
               <div className="flex gap-2 mr-2">
@@ -977,7 +990,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                   <h1
                     className={`text-[30px] md:text-base lg:text-[30px] text-justify tracking-wider mr-lg-[6.8rem]`}
                   >
-                    Rangga Diprana & Novella
+                    Rangga & Novella
                   </h1>
                 </div>
               </div>
@@ -992,7 +1005,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/img/adat/main_photo_7.jpg")',
+              backgroundImage: 'url("/img/hitam-putih/hitam_putih4.jpg")',
             }}
           />
         </div>

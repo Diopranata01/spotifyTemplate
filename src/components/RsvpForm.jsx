@@ -99,7 +99,7 @@ const RsvpForn = () => {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded text-black"
+            className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"
             placeholder="Masukkan nama Anda"
           />
         </div>
@@ -115,7 +115,7 @@ const RsvpForn = () => {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded text-black"
+            className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"
             placeholder="Masukkan email Anda"
           />
         </div>
@@ -133,7 +133,7 @@ const RsvpForn = () => {
             required
             value={attendance}
             onChange={(e) => setAttendance(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded text-black"
+            className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"
           >
             <option value="">Pilih opsi</option>
             <option value="pemberkatan">Pemberkatan</option>
@@ -152,7 +152,7 @@ const RsvpForn = () => {
             rows="4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded text-black"
+            className="w-full p-2 border border-gray-300 rounded text-black bg-transparent"
             placeholder="Masukkan doa dan ucapan Anda"
           />
         </div>
