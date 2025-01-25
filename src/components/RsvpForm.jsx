@@ -63,7 +63,7 @@ const RsvpForn = () => {
 
   return (
     <>
-      <p className="text-2xl lg:text-[45px] mb-4">RSVP Form</p>
+      <p className="text-2xl lg:text-[45px] mb-2">RSVP Form</p>
       <p className="mb-4 lg:text-[18px]">
         Diharapkan kepada para tamu undangan untuk mengisi form kehadiran
         dibawah ini

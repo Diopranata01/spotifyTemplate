@@ -30,7 +30,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     "/img/gallery/gallery_(1).jpg",
     "/img/gallery/gallery_(2).jpg",
     "/img/gallery/gallery_(3).jpg",
-    "/img/gallery/gallery_(4).jpg", 
+    "/img/gallery/gallery_(4).jpg",
     "/img/gallery/gallery_(5).jpg",
     "/img/gallery/gallery_(6).jpg",
     "/img/gallery/gallery_(7).jpg",
@@ -322,24 +322,20 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         >
           <div className="flex w-full gap-8 justify-center items-center">
             <div className="flex flex-col pb-4">
-              <p className="text-[18px] h-2 mb-[4px] ms-2">15</p>{" "}
-              {/* Reduced margin-bottom */}
+              <p className="text-[18px] h-2 mb-[4px] ms-2">15</p>
               <p className="font-medium inline-block transform rotate-[-220deg] scale-[2.7] me-[15px]">
                 \
               </p>
-              <p className="text-[18px] h-2 mt-[-17px] ms-[-10px]">02</p>{" "}
-              {/* Added margin-top to control spacing */}
+              <p className="text-[18px] h-2 mt-[-17px] ms-[-10px]">02</p>
             </div>
-            <div className="w-1 h-1 bg-white rounded-full"></div>{" "}
-            {/* Rounded black circle */}
+            <div className="w-1 h-1 bg-white rounded-full"></div>
             <img
               src="/assets/logo_name_minimalis_3.svg"
-              alt=""
+              alt="Logo"
               height={60}
               width={60}
             />
-            <div className="w-1 h-1 bg-white rounded-full"></div>{" "}
-            {/* Rounded black circle */}
+            <div className="w-1 h-1 bg-white rounded-full"></div>
             <div className="flex flex-col">
               <p className="text-[18px] h-4">20</p>
               <p className="text-[18px] h-4 mb-2">25</p>
@@ -350,9 +346,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <CelebrationCountdown />
         </div>
 
-        {/* Fading Video */}
+        {/* Fading Video Background */}
         <div className="absolute inset-0 transition-opacity duration-1000">
-          {/* Black overlay for fading effect */}
+          {/* Overlay for fading effect */}
           <div
             className="absolute inset-0 z-10"
             style={{
@@ -360,12 +356,13 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 "linear-gradient(to bottom, rgb(91 87 69 / 74%) 0%, rgba(164, 172, 133, 0.3) 30%, rgba(164, 172, 133, 0) 50%, rgba(164, 172, 133, 0.7) 200%)",
             }}
           ></div>
-          {/* Background video */}
+          {/* Video Background */}
           <video
             className="absolute inset-0 w-full h-full object-cover"
             autoPlay
             loop
             muted
+            playsInline
           >
             <source src="/video/reels.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -749,7 +746,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-end text-white text-start ${
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-end text-white text-start ${
               visibilityStates[6] ? "fade-in" : "fade-out"
             }`}
           >

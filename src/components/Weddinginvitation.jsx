@@ -38,11 +38,6 @@ export default function WeddingInvitation() {
     setPlayStatus(() =>
       Sound.status.PLAYING
     );
-    // setPlayStatus((prevStatus) =>
-    //   prevStatus === Sound.status.PLAYING
-    //     ? Sound.status.PAUSED
-    //     : Sound.status.PLAYING
-    // );
   };
 
   return (
