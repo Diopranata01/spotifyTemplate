@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Import motion from framer-motion
 import Sound from "react-sound"; // Import Sound from react-sound
 import PhotoContainer from "./photoContainer";
+import Image from "next/image";
 
 export default function WeddingInvitation() {
   const [isFirstVisible, setIsFirstVisible] = useState(false);
@@ -52,7 +53,7 @@ export default function WeddingInvitation() {
             {/* Initial Design */}
             <div className="flex items-center justify-center">
               <div className="mt-4">
-                <img
+                <Image
                   src="/assets/logo_name_minimalis_2.svg"
                   alt=""
                   height={150}

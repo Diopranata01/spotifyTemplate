@@ -5,6 +5,7 @@ import ImageGallery from "./imageGallery";
 import { useRouter } from "next/router";
 import RsvpForn from "./RsvpForm";
 import RsvpList from "./RsvpList";
+import Image from "next/image";
 
 const PhotoContainer = ({ playstatus, togglePlayPause }) => {
   const [isScrollable, setIsScrollable] = useState(false);
@@ -123,7 +124,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
   // Effect to manage Intersection Observer for multiple content sections
   useEffect(() => {
-    const observers = contentRefs.current.map((ref, index) => {
+    const refs = contentRefs.current; // Copy the refs to a variable
+  
+    const observers = refs.map((ref, index) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
           setVisibilityStates((prev) => {
@@ -134,18 +137,18 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         },
         { threshold: 0.1 }
       );
-
+  
       if (ref) {
         observer.observe(ref);
       }
-
+  
       return observer;
     });
-
+  
     return () => {
       observers.forEach((observer, index) => {
-        if (contentRefs.current[index]) {
-          observer.unobserve(contentRefs.current[index]);
+        if (refs[index]) {
+          observer.unobserve(refs[index]);
         }
       });
     };
@@ -322,7 +325,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               <p className="text-[18px] h-2 mt-[-17px] ms-[-10px]">02</p>
             </div>
             <div className="w-1 h-1 bg-white rounded-full"></div>
-            <img
+            <Image
               src="/assets/logo_name_minimalis_3.svg"
               alt="Logo"
               height={60}
@@ -932,7 +935,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         >
           <div className="flex items-center justify-center lg:mt-[20px]">
             <div className="mt-4">
-              <img
+              <Image
                 src="/assets/logo_name_minimalis_3.svg"
                 alt=""
                 height={150}
