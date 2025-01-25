@@ -35,9 +35,9 @@ export default function WeddingInvitation() {
 
   // Function to toggle play/pause
   const togglePlayPause = () => {
-    setPlayStatus(() =>
-      Sound.status.PLAYING
-    );
+    // setPlayStatus(() =>
+    //   Sound.status.PLAYING
+    // );
   };
 
   return (
@@ -68,7 +68,7 @@ export default function WeddingInvitation() {
       <PhotoContainer playStatus={playStatus} togglePlayPause={togglePlayPause} />
 
       {/* Overlay */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: isOverlayVisible ? 1 : 0 }}
         transition={{ duration: 0.5 }} 
@@ -109,16 +109,16 @@ export default function WeddingInvitation() {
             }`}
           >
             {playStatus === Sound.status.PLAYING ? "Pause Music" : "Play Music"}
-          </button> */}
+          </button>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* Sound Component */}
-      <Sound
+      {/* <Sound
         url="/music/Daniel_Caesar_Always.mp3" 
         playStatus={playStatus} 
         onFinishedPlaying={() => setPlayStatus(Sound.status.STOPPED)} 
-      />
+      /> */}
     </div>
   );
 }
