@@ -167,7 +167,7 @@ h3 {
 /* **** */
 
 .right-container-photo-config-custom {
-  background-image: url("/img/hitam-putih/hitam_putih4.jpg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fhitam_putih%2Fhitam_putih4.jpg?alt=media&token=de62edd6-26a8-41fd-9489-a8300e6224b0");
   background-attachment: fixed; /* This makes the background fixed */
   background-size: cover !important; /* Cover the entire area */
   background-position: center !important; /* Center the background */
@@ -210,7 +210,7 @@ h3 {
 }
 
 .main-photo {
-  background-image: url("/img/adat/main_photo.jpg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo.jpg?alt=media&token=cafcdd4a-f74c-4385-8e97-963baf405f89");
   background-size: 120% auto; /* Cover the entire container */
   background-position: 90% 22%; /* Shift the image 20% to the left */
   height: 100vh; /* Set the height to full viewport height */

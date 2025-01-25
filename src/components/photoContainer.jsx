@@ -298,7 +298,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/img/final_image/main_photo_1.jpg")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_1.jpg?alt=media&token=0cc3199f-c2d6-4904-b6f5-06638a6e24b8")',
             }}
           />
         </div>
@@ -723,7 +723,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/img/final_image/main_photo_7.jpg")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_7.jpg?alt=media&token=98669217-2420-43c1-86ad-993efc3729b5")',
               backgroundPosition: `42%`, // Adjusted vertical position to move the image down
               transform: "scale(1.4) translate(-57px, 40px)", // Move the image down by 20px
             }}
@@ -858,7 +858,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/img/adat/main_photo_13.jpg")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo_13.jpg?alt=media&token=92fc7ae5-054d-4fc3-a9f9-cdbff49a4dcf")',
             }}
           />
         </div>
@@ -913,7 +913,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/img/final_image/main_photo_8.jpg")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo_8.jpg?alt=media&token=e45736f1-51db-4a48-b9fd-0f753264c501")',
               backgroundPosition: `42%`, // Adjusted vertical position to move the image down
               transform: "scale(1.4) translate(18px, 40px)", // Move the image down by 20px
             }}
@@ -977,7 +977,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("/img/hitam-putih/hitam_putih4.jpg")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fhitam_putih%2Fhitam_putih4.jpg?alt=media&token=de62edd6-26a8-41fd-9489-a8300e6224b0")',
             }}
           />
         </div>
