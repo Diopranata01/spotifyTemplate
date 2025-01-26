@@ -32,7 +32,7 @@ const RsvpList = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full p-10">
+      <div className="flex flex-col w-full h-[90vh] p-10">
         <p className="text-2xl lg:text-[45px] mb-4 text-white"></p>
         <div className="flex flex-col w-full h-[90vh] overflow-y-auto">
           {rsvps.map((rsvp, index) => (
@@ -44,18 +44,21 @@ const RsvpList = () => {
               id={`komentar-${rsvp.id}`}
             >
               <div
-                className={`p-4 m-2 bg-transparent text-[white] rounded-lg max-w-md`}
+                className={`p-4 py-2 m-2 bg-transparent text-[white] rounded-lg max-w-md ${
+                  index % 2 === 0 ? "text-start" : "text-end w-[250px]"
+                }`}
               >
                 <p className="text-[19px]">{rsvp.name}</p>
-                <p className="text-[15px] italic">{rsvp.message}</p>
-                <p className="text-white text-[15px]">
+                <p className="text-[15px] italic truncate-message">
+                  {rsvp.message}
+                </p>
+                <p>
                   {new Intl.DateTimeFormat("en-US", {
                     day: "2-digit",
                     month: "short",
                     year: "numeric",
                   }).format(new Date())}
                 </p>{" "}
-                {/* Replace with actual date if available */}
               </div>
             </div>
           ))}

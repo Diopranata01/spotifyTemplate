@@ -54,10 +54,10 @@
 
 @font-face {
   font-family: "Luxurious Script";
-  src: url("../../public/fonts/LuxuriousScript-Regular.ttf")
-    format("truetype");
+  src: url("../../public/fonts/LuxuriousScript-Regular.ttf") format("truetype"),
+       url("../../public/fonts/luxuriousscript-regular-webfont.woff2") format("woff2"),
+       url("../../public/fonts/luxuriousscript-regular-webfont.woff") format("woff");
   font-weight: normal; /* Adjust as needed */
-  font-style: italic; /* Change to italic for the italic version */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -72,13 +72,13 @@ body {
   background: var(--background);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   overflow: hidden; /* Prevent scrolling on the body */
   scroll-behavior: smooth;
 }
-
 
 .cover-container {
   height: 100%; /* Ensure the container takes full height */
@@ -120,12 +120,21 @@ h3 {
   transition: opacity 2s ease-in;
 }
 
+.truncate-message {
+  display: -webkit-box; /* Use flexbox for the text container */
+  -webkit-box-orient: vertical; /* Set the box orientation to vertical */
+  -webkit-line-clamp: 1; /* Limit to 1 line */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+}
+
 /* Main Container */
 /* Config */
 
 /* Animation Arrow */
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -168,16 +177,30 @@ h3 {
 
 .right-container-photo-config-custom {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fhitam_putih%2Fhitam_putih4.jpg?alt=media&token=de62edd6-26a8-41fd-9489-a8300e6224b0");
-  background-attachment: fixed; /* This makes the background fixed */
-  background-size: cover !important; /* Cover the entire area */
-  background-position: center !important; /* Center the background */
-  z-index: -1; /* Ensure it stays behind the content */
+  background-attachment: fixed; /* Make the background stay fixed */
+  background-size: cover; /* Ensure the image covers the container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Avoid repeating the image */
+}
+
+@media (min-width: 1030px) {
+  .right-container-photo-config-custom {
+    background-size: contain;
+    background-position: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .right-container-photo-config-custom {
+    background-size: contain;
+    background-position: 103%;
+  }
 }
 
 .loader {
   border: 4px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top: 2px solid #CCBFA3;
+  border-top: 2px solid #ccbfa3;
   width: 20px;
   height: 20px;
   animation: spin 1s linear infinite;

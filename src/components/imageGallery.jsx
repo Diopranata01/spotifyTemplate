@@ -29,11 +29,11 @@ const ImageGallery = ({ photosGallery }) => {
   return (
     <div>
       {/* Image Squares */}
-      <div className="w-full flex flex-wrap justify-center gap-1 mt-2">
+      <div className="w-full flex flex-wrap justify-center gap-1 mt-2 overflow-y-auto ">
         {photosGallery.map((photo, index) => (
           <div key={index} className="w-1/4 md:w-1/3 lg:w-1/4">
             <div
-              className="bg-gray-200 h-28 w-full relative overflow-hidden rounded-none cursor-pointer transition-transform transform hover:scale-105"
+              className="bg-gray-200 h-28 w-full relative rounded-none cursor-pointer transition-transform transform hover:scale-105"
               onClick={() => openModal(index)} // Open modal on click
             >
               <Image

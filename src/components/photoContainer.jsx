@@ -192,7 +192,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
   return (
     <div
-      className={`w-full z-20 h-screen lg:w-5/12 xl:w-1/3 right-container hide-scrollbar right-0 bottom-0 ${
+      className={`w-full z-20 h-screen lg:w-5/12 xl:w-1/3 right-container hide-scrollbar right-0 bottom-0 right-container-photo-config-custom ${
         isScrollable ? "scroll-container fixed" : "overflow-hidden fixed"
       }`}
       style={{ height: coverHeight }} // Set dynamic height
@@ -733,7 +733,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 7 */}
       <div
-        className="p-10 flex flex-col items-center justify-between relative right-container-photo-config right-container-photo-config-custom scroll-item"
+        className="p-10 flex flex-col items-center justify-between relative scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -753,7 +753,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 8 */}
       <div
-        className=" flex flex-col items-center justify-between relative right-container-photo-config right-container-photo-config-custom scroll-item"
+        className=" flex flex-col items-center justify-between relative scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -789,11 +789,11 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               visibilityStates[8] ? "fade-in" : "fade-out"
             }`}
           >
-            <h1 className={`text-2xl md:text-5xl lg:text-[45px]`}>
+            <h1 className={`text-[40px] md:text-5xl lg:text-[45px]`}>
               Hadiah Pernikahan
             </h1>
             <p
-              className={`text-[13px] md:text-base lg:text-[15px] text-start tracking-wider mt-2 lg:mb-4 mr-lg-[6.8rem]`}
+              className={`text-[13px] md:text-base lg:text-[15px] text-start tracking-wider lg:mb-4 mr-lg-[6.8rem]`}
             >
               Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
               tanda cinta kepada kedua mempelai, Anda dapat memberikan melalui
@@ -858,7 +858,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo_13.jpg?alt=media&token=92fc7ae5-054d-4fc3-a9f9-cdbff49a4dcf")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fslide_photo_5.jpg?alt=media&token=357b3621-2e62-4ee5-ba68-cd8898125095")',
             }}
           />
         </div>
@@ -882,8 +882,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               backgroundColor: "rgba(255, 255, 255)",
             }}
           >
-            <div className="flex flex-col text-[#414833] items-center gap-2 text-center px-4">
-              <div className="w-full flex flex-col">
+            <div className="flex flex-col h-full text-[#414833] items-center gap-2 text-center px-4">
+              <div className="w-full h-full flex flex-col">
                 <div className="flex flex-col lg:gap-10 lg:mb-10">
                   <p
                     className={`text-[15px] font-semibold md:text-base lg:text-[43px] tracking-wider mr-lg-[6.8rem]`}
@@ -896,7 +896,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     Rangga & Novella
                   </h1>
                 </div>
-                <div className="flex flex-col overflow-y-auto max-h-[400px] lg:max-h-[600px] hide-scrollbar">
+                <div className="hide-scrollbar overflow-y-auto h-full">
                   {" "}
                   {/* Set a max height for scrolling */}
                   <ImageGallery photosGallery={photosGallery} />
@@ -929,7 +929,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[10] = el)}
-          className={`absolute z-20 right-0 w-full h-full flex flex-col gap-4 gap-md-4 ps-lg-16 px-6 pb-16 lg:pb-24 items-center justify-evenly text-white text-center ${
+          className={`absolute z-20 right-0 w-full h-full flex flex-col gap-4 gap-md-4 ps-lg-16 px-6 pb-16 lg:pb-24 items-center justify-between lg:justify-evenly text-white text-center ${
             visibilityStates[10] ? "fade-in" : "fade-out"
           }`}
         >
@@ -977,7 +977,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fhitam_putih%2Fhitam_putih4.jpg?alt=media&token=de62edd6-26a8-41fd-9489-a8300e6224b0")',
+              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo.jpg?alt=media&token=cafcdd4a-f74c-4385-8e97-963baf405f89")',
+              backgroundPosition: `92%`, // Adjusted vertical position to move the image down
             }}
           />
         </div>

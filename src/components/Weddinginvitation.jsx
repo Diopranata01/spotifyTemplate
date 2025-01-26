@@ -103,18 +103,18 @@ export default function WeddingInvitation() {
             Rangga & Novella
           </motion.h1>
 
-          {/* <button
+          <button
             onClick={togglePlayPause}
             className={`mt-28 px-4 py-2 bg-white text-black rounded hover:bg-gray-300 transition ${
               playStatus === Sound.status.PLAYING ? "opacity-0" : "opacity-100"
             }`}
           >
             {playStatus === Sound.status.PLAYING ? "Pause Music" : "Play Music"}
-          </button> */}
+          </button>
         </div>
       </motion.div>
 
-      {/* Sound Component */}
+      Sound Component
       <Sound
         url="/music/Daniel_Caesar_Always.mp3" 
         playStatus={playStatus} 

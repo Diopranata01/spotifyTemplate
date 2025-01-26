@@ -152,7 +152,7 @@ const RsvpForn = () => {
             rows="4"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded text-black bg-transparent"
+            className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"
             placeholder="Masukkan doa dan ucapan Anda"
           />
         </div>
