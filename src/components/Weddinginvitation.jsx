@@ -36,9 +36,7 @@ export default function WeddingInvitation() {
 
   // Function to toggle play/pause
   const togglePlayPause = () => {
-    setPlayStatus(() =>
-      Sound.status.PLAYING
-    );
+    setPlayStatus(Sound.status.PLAYING);
   };
 
   return (
@@ -66,38 +64,40 @@ export default function WeddingInvitation() {
       </div>
 
       {/* 1/3 Container - Main Content*/}
-      <PhotoContainer playStatus={playStatus} togglePlayPause={togglePlayPause} />
+      <PhotoContainer
+        playStatus={playStatus}
+        togglePlayPause={togglePlayPause}
+      />
 
       {/* Overlay */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: isOverlayVisible ? 1 : 0 }}
-        transition={{ duration: 0.5 }} 
+        transition={{ duration: 0.5 }}
         className={`absolute inset-0 bg-black ${
           isOverlayVisible ? "z-30" : "z-1"
-        } flex items-center justify-center`} 
+        } flex items-center justify-center`}
       >
         <div className="relative flex flex-col w-full items-center justify-center">
-          
           <motion.h1
-            initial={{ opacity: 0, y: -50 }} 
+            initial={{ opacity: 0, y: -50 }}
             animate={{
               opacity: isFirstVisible ? 1 : 0,
               y: isFirstVisible ? 0 : -50,
-            }} 
-            transition={{ duration: 0.5 }} 
+            }}
+            transition={{ duration: 0.5 }}
             className="absolute text-2xl text-white text-center font-italiana mb-4"
           >
             We invite you to our wedding
           </motion.h1>
 
           <motion.h1
-            initial={{ opacity: 0, y: 50 }} 
+            initial={{ opacity: 0, y: 50 }}
             animate={{
               opacity: isSecondVisible ? 1 : 0,
               y: isSecondVisible ? 0 : 50,
             }} // Animate to visible
-            transition={{ duration: 0.5, delay: 0.5 }} 
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="absolute text-[40px] text-white text-center"
           >
             Rangga & Novella
@@ -114,11 +114,16 @@ export default function WeddingInvitation() {
         </div>
       </motion.div>
 
-      Sound Component
+      {/* Sound Component */}
       <Sound
-        url="/music/Robin_Thicke_The_Sweetest_Love.mp3" 
-        playStatus={playStatus} 
-        onFinishedPlaying={() => setPlayStatus(Sound.status.PLAYING )} 
+        url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
+        playStatus={playStatus}
+        onFinishedPlaying={() => {
+          setPlayStatus(Sound.status.STOPPED); // Stop the current playback
+          setTimeout(() => {
+            setPlayStatus(Sound.status.PLAYING); // Start playing again after a short delay
+          }, 100); // Optional delay to ensure smooth looping
+        }}
       />
     </div>
   );

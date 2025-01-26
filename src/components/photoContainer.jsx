@@ -360,7 +360,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             muted
             playsInline
           >
-            <source src="/video/reels.mp4" type="video/mp4" />
+            <source src="/video/reels_1.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -622,7 +622,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-center text-white text-center ${
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-center justify-center text-white text-center ${
               visibilityStates[5] ? "fade-in" : "fade-out"
             }`}
             style={{
@@ -633,19 +633,19 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               <div className="w-full flex flex-col lg:gap-5">
                 <div className="flex flex-col">
                   <h1
-                    className={`text-[43px] md:text-base lg:text-[43px] tracking-wider me-2 mt-2 mt-md-5`}
+                    className={`text-[43px] md:text-base lg:text-[43px] tracking-wider mt-2 mt-md-5`}
                   >
                     Pemberkatan
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2">
                   <p
-                    className={`text-[18px] font-semibold md:text-base lg:text-[20px] tracking-wider mr-lg-[6.8rem]`}
+                    className={`text-[18px] font-semibold md:text-base lg:text-[20px] tracking-wider`}
                   >
                     St. Francis Xavier <br /> Catholic Church <br />
                   </p>
                   <p
-                    className={`text-[14px] md:text-base lg:text-[17px] tracking-wider mr-lg-[6.8rem]`}
+                    className={`text-[14px] md:text-base lg:text-[17px] tracking-wider`}
                   >
                     Jl. Kartika Plaza No.107, Kuta, Kec. Kuta, Kabupaten Badung
                     Bali
@@ -674,7 +674,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 {/*  */}
                 <div className="flex flex-col">
                   <h1
-                    className={`text-[43px] md:text-base lg:text-[43px] tracking-wider me-2 mt-2 mt-md-5`}
+                    className={`text-[43px] md:text-base lg:text-[43px] tracking-wider mt-2 mt-md-5`}
                   >
                     Resepsi
                   </h1>
