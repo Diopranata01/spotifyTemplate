@@ -198,7 +198,7 @@ h3 {
 }
 
 .loader {
-  border: 4px solid rgba(255, 255, 255, 0.3);
+  border: 4px solid #ccbfa32f;
   border-radius: 50%;
   border-top: 2px solid #ccbfa3;
   width: 20px;

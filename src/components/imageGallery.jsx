@@ -5,10 +5,17 @@ import Image from "next/image";
 const ImageGallery = ({ photosGallery }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const openModal = (index) => {
     setCurrentIndex(index);
     setIsModalOpen(true);
+    setIsLoading(true); // Set loading to true when opening modal
+
+    // Simulate loading for 3 seconds
+    setTimeout(() => {
+      setIsLoading(false); // Set loading to false after 3 seconds
+    }, 3000);
   };
 
   const closeModal = () => {
@@ -17,6 +24,12 @@ const ImageGallery = ({ photosGallery }) => {
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % photosGallery.length);
+    // setIsLoading(true); // Set loading to true when changing image
+
+    // Simulate loading for 3 seconds
+    // setTimeout(() => {
+    //   setIsLoading(false); // Set loading to false after 3 seconds
+    // }, 3000);
   };
 
   const prevImage = () => {
@@ -24,6 +37,12 @@ const ImageGallery = ({ photosGallery }) => {
       (prevIndex) =>
         (prevIndex - 1 + photosGallery.length) % photosGallery.length
     );
+    // setIsLoading(true); // Set loading to true when changing image
+
+    // Simulate loading for 3 seconds
+    // setTimeout(() => {
+    //   setIsLoading(false); // Set loading to false after 3 seconds
+    // }, 3000);
   };
 
   return (
@@ -63,15 +82,17 @@ const ImageGallery = ({ photosGallery }) => {
           }`}
         >
           <button
-            className="absolute right-2 text-gray-500 hover:text-gray-800 text-[25px]"
+            className="absolute right-5 text-gray-500 hover:text-gray-800 text-[45px]"
             onClick={closeModal}
           >
             &times; {/* Close button */}
           </button>
-          {photosGallery.length > 0 && (
-            <div className="flex h-[70vh] rounded-t-lg justify-center items-center overflow-auto hide-scrollbar">
-              {" "}
-              {/* Added overflow-auto */}
+          <div className="flex h-[70vh] w-[90vw] md:w-auto rounded-t-lg justify-center items-center overflow-auto hide-scrollbar">
+            {isLoading ? (
+              <div className="absolute flex items-center justify-center w-full h-full">
+                <div className="loader"></div> {/* Spinner */}
+              </div>
+            ) : (
               <Image
                 src={photosGallery[currentIndex]}
                 alt="Selected"
@@ -79,8 +100,8 @@ const ImageGallery = ({ photosGallery }) => {
                 width={600}
                 height={600}
               />
-            </div>
-          )}
+            )}
+          </div>
           <div className="flex justify-evenly my-4">
             <button
               className="text-gray-500 hover:text-gray-800"
@@ -103,7 +124,7 @@ const ImageGallery = ({ photosGallery }) => {
             <h1
               className={`text-[30px] md:text-base lg:text-[40px] tracking-wider mb-3`}
             >
-              Rangga & Novela
+              Rangga & Novella
             </h1>
             <p className="text-gray-600">15 Februari 2025</p>
           </div>

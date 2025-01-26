@@ -116,9 +116,9 @@ export default function WeddingInvitation() {
 
       Sound Component
       <Sound
-        url="/music/Daniel_Caesar_Always.mp3" 
+        url="/music/Robin_Thicke_The_Sweetest_Love.mp3" 
         playStatus={playStatus} 
-        onFinishedPlaying={() => setPlayStatus(Sound.status.STOPPED)} 
+        onFinishedPlaying={() => setPlayStatus(Sound.status.PLAYING )} 
       />
     </div>
   );

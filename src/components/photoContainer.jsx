@@ -564,7 +564,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             style={{
               backgroundImage: 'url("/img/final_image/main_photo_5.jpg")',
               backgroundPosition: `42% 20%`, // Adjusted vertical position to move the image down
-              transform: "scale(1.2) translate(10px, -60px)", // Move the image down by 20px
+              transform: "scale(1.2) translate(10px, -50px)", // Move the image down by 20px
             }}
           />
         </div>
@@ -733,7 +733,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 7 */}
       <div
-        className="p-10 flex flex-col items-center justify-between relative scroll-item"
+        className="p-10 pb-1 md:pb-5 lg:pb-10 flex flex-col items-center justify-between relative scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -793,7 +793,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               Hadiah Pernikahan
             </h1>
             <p
-              className={`text-[13px] md:text-base lg:text-[15px] text-start tracking-wider lg:mb-4 mr-lg-[6.8rem]`}
+              className={`text-[15px] md:text-base lg:text-[15px] text-start tracking-wider lg:mb-4 mr-lg-[6.8rem]`}
             >
               Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
               tanda cinta kepada kedua mempelai, Anda dapat memberikan melalui
@@ -802,13 +802,13 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             <div className="w-full flex gap-3 flex-col justify-center items-center text-[12px]">
               <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
                 <div>
-                  <p className="lg:text-[16px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[18px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     BLU by BCA DIGITAL
                   </p>
-                  <p className="lg:text-[18px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[18px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     001210713747
                   </p>
-                  <p className="lg:text-[17px] lg:mb-[5px] tracking-widest">
+                  <p className="text-[18px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
                     Novella Asri
                   </p>
                 </div>
@@ -817,19 +817,19 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                   className="flex items-center justify-center w-8 h-8 rounded-full bg-[#434834] text-white hover:bg-[#CCBFA3] transition"
                   aria-label="Copy account number"
                 >
-                  <i className="fas fa-copy"></i>{" "}
+                  <i className="fas fa-copy text-[15px]"></i>{" "}
                   {/* Font Awesome paper icon */}
                 </button>
               </div>
               <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
                 <div>
-                  <p className="lg:text-[16px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[18px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     BCA
                   </p>
-                  <p className="lg:text-[18px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[18px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     7725423781
                   </p>
-                  <p className="lg:text-[17px] lg:mb-[5px] tracking-widest">
+                  <p className="text-[18px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
                     Rangga Diprana
                   </p>
                 </div>
@@ -838,7 +838,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                   className="flex items-center justify-center w-8 h-8 rounded-full bg-[#434834] text-white hover:bg-[#CCBFA3] transition"
                   aria-label="Copy account number"
                 >
-                  <i className="fas fa-copy"></i>{" "}
+                  <i className="fas fa-copy text-[15px]"></i>{" "}
                   {/* Font Awesome paper icon */}
                 </button>
               </div>
