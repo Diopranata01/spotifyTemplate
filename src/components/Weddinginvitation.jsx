@@ -114,12 +114,12 @@ export default function WeddingInvitation() {
         </div>
       </motion.div>
 
-      Sound Component
-      <Sound
+      {/* Sound Component
+      {/* <Sound
         url="/music/Daniel_Caesar_Always.mp3" 
         playStatus={playStatus} 
         onFinishedPlaying={() => setPlayStatus(Sound.status.STOPPED)} 
-      />
+      /> */}
     </div>
   );
 }
