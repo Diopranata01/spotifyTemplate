@@ -10,22 +10,8 @@
 }
 
 @font-face {
-  font-family: "Candlefish";
-  src: url("../../public/fonts/Candlefish.ttf") format("truetype");
-  font-weight: normal; /* Adjust as needed */
-  font-style: normal; /* Adjust as needed */
-}
-
-@font-face {
-  font-family: "Ovo";
-  src: url("../../public/fonts/Ovo-Regular.ttf") format("truetype");
-  font-weight: normal; /* Adjust as needed */
-  font-style: normal; /* Adjust as needed */
-}
-
-@font-face {
-  font-family: "Legan";
-  src: url("../../public/fonts/Legan.ttf") format("truetype");
+  font-family: "Lora";
+  src: url("../../public/fonts/Lora-VariableFont_wght.ttf") format("truetype");
   font-weight: normal; /* Adjust as needed */
   font-style: normal; /* Adjust as needed */
 }
@@ -90,7 +76,7 @@ h5,
 h6,
 p {
   /* font-family: "Luxurious Script"; */
-  font-family: "Italiana";
+  font-family: "Lora";
 }
 
 h1 {
@@ -262,6 +248,18 @@ h3 {
   transition: opacity 0.5s ease; /* Smooth transition for opacity */
 }
 
+.scroll-item-list {
+  max-height: 100vh !important; /* Optional: Limit the height to the viewport */
+}
+
+.relative {
+  position: relative; /* Ensure the container is positioned relative */
+}
+
+.absolute {
+  position: absolute; /* Ensure the child is positioned absolutely */
+}
+
 .right-container-photo-config {
   position: relative;
   overflow: hidden; /* Prevent overflow */
@@ -276,7 +274,7 @@ h3 {
   height: 100vh; /* Set the height to full viewport height */
 }
 .right-container-photo-config-cover-collapse {
-  transition: height 1s ease-in, opacity 1s ease-in; /* Transition for height and opacity */
+  transition: opacity 4s ease-in; /* Transition for height and opacity */
   height: 0% !important;
   opacity: 0 !important;
 }

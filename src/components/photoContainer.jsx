@@ -10,6 +10,7 @@ import Image from "next/image";
 const PhotoContainer = ({ playstatus, togglePlayPause }) => {
   const [isScrollable, setIsScrollable] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isOpenedList, setIsOpenedList] = useState(false);
   const [visibilityStates, setVisibilityStates] = useState([]);
   const [coverHeight, setCoverHeight] = useState("100vh");
   const [copySuccess, setCopySuccess] = useState("");
@@ -49,7 +50,6 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
     setIsScrollable((prev) => !prev);
 
     if (!isScrollable) {
-
       // Set a timeout to hide the cover page after the scroll duration
       setTimeout(() => {
         setIsVisible(false);
@@ -125,7 +125,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
   // Effect to manage Intersection Observer for multiple content sections
   useEffect(() => {
     const refs = contentRefs.current; // Copy the refs to a variable
-  
+
     const observers = refs.map((ref, index) => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -137,14 +137,14 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         },
         { threshold: 0.1 }
       );
-  
+
       if (ref) {
         observer.observe(ref);
       }
-  
+
       return observer;
     });
-  
+
     return () => {
       observers.forEach((observer, index) => {
         if (refs[index]) {
@@ -200,7 +200,11 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
       {/* Cover Content */}
       <div
         className={`flex-col items-center justify-between relative overflow-hidden right-container-photo-config-cover duration-1000 ease-in scroll-item-cover 
-        ${isVisible ? "opacity-100 h-full flex p-8" : "w-0 p-0 right-container-photo-config-cover-collapse"}
+        ${
+          isVisible
+            ? "opacity-100 h-full flex p-8"
+            : "w-0 p-0 right-container-photo-config-cover-collapse"
+        }
         `}
         style={{ height: coverHeight }} // Set dynamic height
       >
@@ -298,7 +302,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_1.jpg?alt=media&token=0cc3199f-c2d6-4904-b6f5-06638a6e24b8")',
+              backgroundImage:
+                'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_1.jpg?alt=media&token=0cc3199f-c2d6-4904-b6f5-06638a6e24b8")',
             }}
           />
         </div>
@@ -380,7 +385,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         >
           <div className="flex w-full justify-center gap-2">
             <h1 className="text-[35px] md:text-5xl lg:text-4xl">Matius</h1>
-            <h4 className="text-[35px] md:text-5xl lg:text-4xl">19 : 6</h4>
+            <h4 className="text-[35px] md:text-5xl lg:text-4xl font-italiana">
+              19 : 6
+            </h4>
           </div>
           <p className="text-[16px] px-5 py-3 md:text-base lg:text-base tracking-wider">
             &quot;Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu,
@@ -428,7 +435,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <div className="w-full flex items-center mt-[-6px] lg:mt-3">
             <h4
-              className={`w-2/3 text-[17px] md:text-base lg:text-[23px] tracking-wider me-0 mt-md-5`}
+              className={`w-2/3 text-[16px] md:text-base lg:text-[23px] tracking-wider me-0 mt-md-5`}
             >
               Putra dari Pasangan
             </h4>
@@ -460,7 +467,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <button
             onClick={navigateToLinkInstagram1}
-            className="text-[10px] lg:text-[13px] mt-1 px-4 py-[2px] rounded-3xl font-italiana bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
+            className="text-[12px] lg:text-[13px] mt-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
           >
             @ranggadipranaa
           </button>
@@ -511,7 +518,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <div className="w-full flex items-center mt-[-6px] lg:mt-3">
             <h4
-              className={`w-2/3 text-[17px] md:text-base lg:text-[23px] tracking-wider me-0 mt-md-5`}
+              className={`w-2/3 text-[16px] md:text-base lg:text-[23px] tracking-wider me-0 mt-md-5`}
             >
               Putri dari Pasangan
             </h4>
@@ -543,7 +550,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <button
             onClick={navigateToLinkInstagram2}
-            className="text-[10px] lg:text-[13px] mt-1 px-4 py-[2px] rounded-3xl font-italiana bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
+            className="text-[13px] lg:text-[13px] mt-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
           >
             @novellaasri
           </button>
@@ -663,7 +670,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 <div className="flex w-full mt-2 justify-center">
                   <button
                     onClick={navigateToLink1}
-                    className="text-[14px] w-[120px] px-4 py-[0px] rounded-3xl font-italiana bg-[#414833] text-[#E9E1D2] hover:bg-gray-600 hover:text-white transition"
+                    className="text-[14px] px-4 py-[0px] pb-[1px] rounded-3xl bg-[#414833] text-[#E9E1D2] hover:bg-gray-600 hover:text-white transition"
                   >
                     Google Maps
                   </button>
@@ -706,7 +713,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 <div className="flex w-full mt-2 justify-center">
                   <button
                     onClick={navigateToLink2}
-                    className="text-[14px] w-[120px] px-4 py-[0px] rounded-3xl font-italiana bg-[#414833] text-[#E9E1D2] hover:bg-gray-600 hover:text-white transition"
+                    className="text-[14px] px-4 py-[0px] pb-[1px] rounded-3xl bg-[#414833] text-[#E9E1D2] hover:bg-gray-600 hover:text-white transition"
                   >
                     Google Maps
                   </button>
@@ -723,7 +730,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_7.jpg?alt=media&token=98669217-2420-43c1-86ad-993efc3729b5")',
+              backgroundImage:
+                'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_7.jpg?alt=media&token=98669217-2420-43c1-86ad-993efc3729b5")',
               backgroundPosition: `42%`, // Adjusted vertical position to move the image down
               transform: "scale(1.4) translate(-57px, 40px)", // Move the image down by 20px
             }}
@@ -733,7 +741,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 7 */}
       <div
-        className="p-10 pb-1 md:pb-5 lg:pb-10 flex flex-col items-center justify-between relative scroll-item"
+        className="pb-1 md:pb-5 lg:pb-10 flex flex-col items-center justify-between relative scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -745,6 +753,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-end text-white text-start ${
               visibilityStates[6] ? "fade-in" : "fade-out"
             }`}
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
+            }}
           >
             <RsvpForn />
           </div>
@@ -753,25 +764,38 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 8 */}
       <div
-        className=" flex flex-col items-center justify-between relative scroll-item"
-        style={{ height: coverHeight }} // Set dynamic height
+        className={`flex flex-col items-center justify-start relative scroll-item scroll-item-list ${
+          isOpenedList ? "overflow-y-scroll" : "overflow-hidden"
+        }`}
       >
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[7] = el)}
-          className={`relative w-full h-full`} // Make sure the container is relative
+          className={`relative w-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start ${
-              visibilityStates[7] ? "fade-in" : "fade-out"
-            }`}
+            className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start fade-in`}
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
             }}
           >
-            <RsvpList />
+            <RsvpList setIsOpenedList={setIsOpenedList} />
           </div>
         </div>
+
+        {!isOpenedList && (
+          <div className="h-full flex flex-col justify-end mb-5">
+            {/* Load More Button */}
+            <div className="relative z-30 w-full flex justify-center mt-4">
+              <button
+                onClick={() => setIsOpenedList((prev) => !prev)} // Adjust this to your desired functionality
+                className="px-4 py-2 rounded-3xl font-italiana bg-white text-black hover:bg-gray-600 hover:text-white transition"
+              >
+                Load More
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Content 9 */}
@@ -802,13 +826,13 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             <div className="w-full flex gap-3 flex-col justify-center items-center text-[12px]">
               <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
                 <div>
-                  <p className="text-[18px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[16px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     BLU by BCA DIGITAL
                   </p>
-                  <p className="text-[18px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[16px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     001210713747
                   </p>
-                  <p className="text-[18px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
+                  <p className="text-[16px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
                     Novella Asri
                   </p>
                 </div>
@@ -823,13 +847,13 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               </div>
               <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
                 <div>
-                  <p className="text-[18px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[16px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     BCA
                   </p>
-                  <p className="text-[18px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                  <p className="text-[16px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
                     7725423781
                   </p>
-                  <p className="text-[18px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
+                  <p className="text-[16px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
                     Rangga Diprana
                   </p>
                 </div>
@@ -858,7 +882,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fslide_photo_5.jpg?alt=media&token=357b3621-2e62-4ee5-ba68-cd8898125095")',
+              backgroundImage:
+                'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fslide_photo_5.jpg?alt=media&token=357b3621-2e62-4ee5-ba68-cd8898125095")',
             }}
           />
         </div>
@@ -913,7 +938,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo_8.jpg?alt=media&token=e45736f1-51db-4a48-b9fd-0f753264c501")',
+              backgroundImage:
+                'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo_8.jpg?alt=media&token=e45736f1-51db-4a48-b9fd-0f753264c501")',
               backgroundPosition: `42%`, // Adjusted vertical position to move the image down
               transform: "scale(1.4) translate(18px, 40px)", // Move the image down by 20px
             }}
@@ -977,7 +1003,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo.jpg?alt=media&token=cafcdd4a-f74c-4385-8e97-963baf405f89")',
+              backgroundImage:
+                'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo.jpg?alt=media&token=cafcdd4a-f74c-4385-8e97-963baf405f89")',
               backgroundPosition: `92%`, // Adjusted vertical position to move the image down
             }}
           />

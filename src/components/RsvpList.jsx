@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase"; // Adjust the import path as necessary
 import { collection, getDocs } from "firebase/firestore";
 
-const RsvpList = () => {
+const RsvpList = ({setIsOverflow}) => {
   const [rsvps, setRsvps] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
 
@@ -31,40 +31,40 @@ const RsvpList = () => {
   }
 
   return (
-    <>
-      <div className="flex flex-col w-full h-[95vh] p-10">
-        <p className="text-2xl lg:text-[45px] mb-4 text-white"></p>
-        <div className="flex flex-col w-full overflow-y-auto">
-          {rsvps.map((rsvp, index) => (
+    <div className="flex flex-col w-full p-10 pt-6">
+      <p className="text-2xl lg:text-[45px] mb-4 text-white">RSVP List</p>
+      <div className="flex flex-col w-full">
+        {rsvps.map((rsvp, index) => (
+          <div
+            key={rsvp.id}
+            className={`komentar-item show w-full flex ${
+              index % 2 === 0 ? "justify-start" : "justify-end"
+            }`}
+            id={`komentar-${rsvp.id}`}
+          >
             <div
-              key={rsvp.id}
-              className={`komentar-item show w-full flex ${
-                index % 2 === 0 ? "justify-start" : "justify-end"
+              className={`p-4 py-2 m-2 bg-transparent text-[white] rounded-lg max-w-md ${
+                index % 2 === 0
+                  ? "text-start w-[250px] ps-0 ms-0"
+                  : "text-end w-[250px] pe-0 me-0"
               }`}
-              id={`komentar-${rsvp.id}`}
             >
-              <div
-                className={`p-4 py-2 m-2 bg-transparent text-[white] rounded-lg max-w-md ${
-                  index % 2 === 0 ? "text-start w-[250px] ps-0 ms-0" : "text-end w-[250px] pe-0 me-0"
-                }`}
-              >
-                <p className="text-[20px]">{rsvp.name}</p>
-                <p className="text-[17px] italic">
-                  {rsvp.message}
-                </p>
-                <p>
-                  {new Intl.DateTimeFormat("en-US", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  }).format(new Date())}
-                </p>{" "}
-              </div>
+              <p className="text-[20px]">{rsvp.formName}</p>
+              <p className="text-[17px] italic">{rsvp.message}</p>
+              <p>
+                {rsvp.submissionDate
+                  ? new Intl.DateTimeFormat("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    }).format(new Date(rsvp.submissionDate))
+                  : "Date not available"}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
