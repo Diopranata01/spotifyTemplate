@@ -754,10 +754,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-screen flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in`}
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
-            }}
+            className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in ${
+              isOpenedList ? "" : "h-full"
+            }`}
           >
             <RsvpForm />
           </div>
@@ -780,9 +779,6 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             className={`absolute z-20 right-0 top-0 w-full ${
               isOpenedList ? "" : "h-screen"
             } flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start fade-in`}
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
-            }}
           >
             <RsvpList isOpenedList={isOpenedList} />
           </div>
