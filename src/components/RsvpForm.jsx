@@ -36,6 +36,7 @@ const RsvpForm = () => {
     try {
       // Get the current date and time
       const currentDate = new Date().toISOString(); // Format the date as ISO string
+      toUpperCaseEachWord(formName);
 
       // Add a new document with a generated ID
       await addDoc(collection(db, "rsvp"), {
@@ -65,10 +66,17 @@ const RsvpForm = () => {
     }
   };
 
+  const toUpperCaseEachWord = (str) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+  
   // Effect to set formName if name exists in the query
   useEffect(() => {
     if (name) {
-      setFormName(name);
+      setFormName(toUpperCaseEachWord(name));
     }
   }, [name]);
 
@@ -105,7 +113,7 @@ const RsvpForm = () => {
             <strong className="font-bold">Sukses!</strong>
             <span className="block sm:inline">
               {" "}
-              Data kehadiran sudah terkirim. Terimakasih
+              Terimakasih, ucapan dan doa sudah terkirim !
             </span>
           </div>
         )}
