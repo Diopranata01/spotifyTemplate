@@ -32,7 +32,7 @@ const RsvpList = ({isOpenedList}) => {
 
   return (
     <div className="flex flex-col w-full h-full p-10 pt-6">
-      <p className="text-2xl lg:text-[45px] my-4 mb-9 ps-1 text-white">RSVP List</p>
+      <p className="text-2xl lg:text-[40px] my-4 mb-9 ps-1 text-white">Ucapan & Doa</p>
       <div className={`flex flex-col w-full ${
         isOpenedList ? '' : 'h-[67vh] mb-24 overflow-hidden'
       }`}>

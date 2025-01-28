@@ -90,12 +90,12 @@ const RsvpForm = () => {
           canAttend === "yes" ? "pb-2" : "pb-10"
         }`}
       >
-        <p className="text-2xl lg:text-[45px] mb-2">RSVP Form</p>
+        <p className="text-2xl lg:text-[40px] mb-2 lg:mb-5">RSVP Form</p>
         <p className="mb-4 text-[16px] lg:text-[18px] text">
           Diharapkan kepada para tamu undangan untuk mengisi form kehadiran
           dibawah ini
         </p>
-        <p className="mb-3 lg:text-[17px]">*undangan berlaku untuk 2 orang*</p>
+        <p className="mb-3 lg:text-[17px] lg:mb-5">*undangan berlaku untuk 2 orang*</p>
 
         {success && (
           <div

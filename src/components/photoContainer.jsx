@@ -227,9 +227,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             We invite you to our wedding
           </h5>
           <div className="flex w-100 gap-2 mt-2">
-            <h1 className="text-[50px] md:text-5xl lg:text-[55px]">Rangga</h1>
-            <h1 className="text-[50px] md:text-5xl lg:text-[55px]">&</h1>
-            <h1 className="text-[50px] md:text-5xl lg:text-[55px]">Novella</h1>
+            <h1 className="text-[50px] md:text-5xl lg:text-[48px]">Rangga</h1>
+            <h1 className="text-[50px] md:text-5xl lg:text-[48px]">&</h1>
+            <h1 className="text-[50px] md:text-5xl lg:text-[48px]">Novella</h1>
           </div>
           {/* <p className="text-sm md:text-base lg:text-base mt-3 tracking-normal">
             Saturday, 15th December, 2025
@@ -371,12 +371,12 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[1] = el)}
-          className={`relative z-20 top-8 lg:top-16 flex flex-col gap-0 gap-md-4 items-center justify-start text-[#424536] text-center ${
+          className={`relative z-20 top-8 lg:top-16 flex flex-col gap-0 lg:gap-3 items-center justify-start text-[#424536] text-center ${
             visibilityStates[1] ? "fade-in" : "fade-out"
           }`}
         >
           <div className="flex w-full justify-center gap-5">
-            <h1 className="text-[40px] md:text-5xl lg:text-4xl">Matius</h1>
+            <h1 className="text-[40px] md:text-5xl lg:text-[48px]">Matius</h1>
             <h4 className="text-[35px] md:text-5xl lg:text-4xl font-italiana">
               19 : 6
             </h4>
@@ -425,9 +425,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           </h1>
 
           {/*  */}
-          <div className="w-full h-[20px] flex items-center mt-[-6px] lg:mt-3">
+          <div className="w-full h-[20px] flex items-center mt-[-6px] lg:mt-2">
             <h4
-              className={`w-2/3 text-[15px] md:text-base lg:text-[23px] tracking-normal me-0 mt-md-5`}
+              className={`w-2/3 text-[15px] md:text-base lg:text-[20px] tracking-normal me-0`}
             >
               Putra dari Pasangan
             </h4>
@@ -443,9 +443,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           </div>
 
           {/*  */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full lg:mb-2 lg:mt-2">
             <p
-              className={`text-[15px] mb-[-4px] lg:mb-3 md:text-base lg:text-[20px] text-justify tracking-normal mr-lg-[6.8rem]`}
+              className={`text-[15px] mb-[-4px] md:text-base lg:text-[20px] text-justify tracking-normal mr-lg-[6.8rem]`}
             >
               Hendhy Kunarjanto
             </p>
@@ -510,7 +510,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <div className="w-full flex h-[18px] items-center mt-[-6px] lg:mt-3">
             <h4
-              className={`w-2/3 text-[15px] md:text-base lg:text-[23px] tracking-normal me-0 mt-md-5`}
+              className={`w-2/3 text-[15px] md:text-base lg:text-[20px] tracking-normal me-0 mt-md-5`}
             >
               Putri dari Pasangan
             </h4>
@@ -526,9 +526,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           </div>
 
           {/*  */}
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full lg:mb-2 lg:mt-2">
             <p
-              className={`text-[15px] mb-[-4px] lg:mb-1 md:text-base lg:text-[18px] text-justify tracking-normal mr-lg-[6.8rem]`}
+              className={`text-[15px] mb-[-4px] md:text-base lg:text-[18px] text-justify tracking-normal mr-lg-[6.8rem]`}
             >
               Robinsar Sihombing, SE.
             </p>
@@ -584,7 +584,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           <div className="flex flex-col items-center gap-4 w-full text-center px-4">
             <div className="flex flex-col gap-10 lg:gap-20 items-center">
               <div className="flex flex-col items-center gap-5 w-[290px]">
-                <h1 className="text-[50px] h-[60px] md:text-base lg:text-[45px] tracking-normal mt-2 mt-md-5">
+                <h1 className="text-[50px] h-[60px] md:text-base lg:text-[48px] tracking-normal mt-2 mt-md-5">
                   Dress Code
                 </h1>
                 <p>
@@ -631,9 +631,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             <div className="flex flex-col text-[#414833] items-center gap-7 lg:gap-14 text-center px-9">
               {/*  */}
               <div className="w-full flex flex-col lg:gap-5">
-                <div className="flex flex-col">
+                <div className="flex flex-col items-center lg:mb-[-3px]">
                   <h1
-                    className={`text-[50px] h-[54px] md:text-base lg:text-[43px] tracking-normal mt-[-20px] mt-md-5`}
+                    className={`text-[50px] h-[54px] md:text-base lg:text-[48px] lg:h-[28px] tracking-normal mt-[-20px] mt-md-5`}
                   >
                     Pemberkatan
                   </h1>
@@ -642,7 +642,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     alt=""
                     height={10}
                     width={400}
-                    className="h-[25px] rotate-[4deg]"
+                    className="h-[25px] lg:w-[160px] rotate-[4deg]"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -657,10 +657,10 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     Jl. Kartika Plaza No.107, Badung, Bali
                   </p>
                   <div className="flex flex-col">
-                    <p className="text-[14px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[17px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[14px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[17px]">
                       10:00 - 12:00 WITA
                     </p>
                   </div>
@@ -678,9 +678,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
               <div className="w-full flex flex-col lg:gap-5">
                 {/*  */}
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center lg:mb-[1px]">
                   <h1
-                    className={`text-[50px] h-[52px] md:text-base lg:text-[43px] tracking-normal mt-2 mt-md-5`}
+                    className={`text-[50px] h-[52px] md:text-base lg:text-[48px] lg:h-[23px] tracking-normal mt-2`}
                   >
                     Resepsi
                   </h1>
@@ -689,7 +689,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     alt=""
                     height={20}
                     width={130}
-                    className="h-[20px] rotate-[-4deg]"
+                    className="h-[20px] lg:w-[140px] rotate-[-4deg]"
                   />
                 </div>
                 {/*  */}
@@ -705,10 +705,10 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     Jl. Gn Catur IV, No.8 Denpasar, Bali <br />
                   </p>
                   <div className="flex flex-col">
-                    <p className="text-[14px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[17px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[14px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[17px]">
                       19:00 - 21:00 WITA
                     </p>
                   </div>
@@ -754,7 +754,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in`}
+            className={`absolute z-20 right-0 top-0 w-full h-screen flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in`}
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
             }}
@@ -819,7 +819,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             }`}
           >
             <div className="w-full flex flex-col gap-5">
-              <h1 className={`text-[50px] h-[55px] md:text-5xl lg:text-[45px]`}>
+              <h1 className={`text-[50px] h-[55px] md:text-5xl lg:text-[48px]`}>
                 Hadiah Pernikahan
               </h1>
               <p
@@ -921,7 +921,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               <div className="w-full h-full flex flex-col">
                 <div className="flex flex-col lg:gap-10 lg:mb-10">
                   <p
-                    className={`text-[15px] font-semibold md:text-base lg:text-[43px] tracking-normal mr-lg-[6.8rem]`}
+                    className={`text-[15px] md:text-base lg:text-[40px] tracking-normal mr-lg-[6.8rem]`}
                   >
                     Gallery Photos
                   </p>
