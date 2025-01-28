@@ -1,5 +1,5 @@
 // pages/invitation/[name].js
-import WeddingInvitation2 from "@/components/Weddinginvitation2";
+import WeddingInvitation2 from "@/components/WeddingInvitation2";
 import fs from "fs";
 import path from "path";
 
