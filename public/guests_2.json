@@ -1,5 +1,332 @@
 [
-    { "name": "Angga" },
-    { "name": "Jane" },
-    { "name": "Alice Johnson" }
-  ]
+  {
+    "name": "Nandut"
+  },
+  {
+    "name": "Herlina"
+  },
+  {
+    "name": "Ika"
+  },
+  {
+    "name": "Juli"
+  },
+  {
+    "name": "Gagah"
+  },
+  {
+    "name": "Arnold"
+  },
+  {
+    "name": "Garin & April"
+  },
+  {
+    "name": "Budi"
+  },
+  {
+    "name": "Kenang & Neisha"
+  },
+  {
+    "name": "Komang Aditya & Pasangan"
+  },
+  {
+    "name": "Bhaskara & Yulma"
+  },
+  {
+    "name": "April (Garin's Couple)"
+  },
+  {
+    "name": "Cendy Karma Group"
+  },
+  {
+    "name": "Elma"
+  },
+  {
+    "name": "Gek Mirah"
+  },
+  {
+    "name": "Okta & Surya"
+  },
+  {
+    "name": "Farel & Istri"
+  },
+  {
+    "name": "Daniel & Istri"
+  },
+  {
+    "name": "Angel & Suami"
+  },
+  {
+    "name": "Nyolap & Pasangan"
+  },
+  {
+    "name": "Bunda Niar"
+  },
+  {
+    "name": "Adnan & Ngurah"
+  },
+  {
+    "name": "Nikita Starbucks"
+  },
+  {
+    "name": "Yogie & Pasangan"
+  },
+  {
+    "name": "Tony Karma Group & Istri"
+  },
+  {
+    "name": "Adi Karma Group & Purry"
+  },
+  {
+    "name": "Eka Karma Group & Istri"
+  },
+  {
+    "name": "Tita Karma Group & Pasangan"
+  },
+  {
+    "name": "Ikhyar Karma Group & Pasangan"
+  },
+  {
+    "name": "Beby Karma Group & Istri"
+  },
+  {
+    "name": "Richard Karma Group & Istri"
+  },
+  {
+    "name": "Santika Karma Group"
+  },
+  {
+    "name": "Mas Tinus & Mba Benna"
+  },
+  {
+    "name": "Mba Lenny Karma Group & Pasangan"
+  },
+  {
+    "name": "Citra Karma Group"
+  },
+  {
+    "name": "Gusde Karma Group & Pasangan"
+  },
+  {
+    "name": "Dedik Sunaka & Pasangan"
+  },
+  {
+    "name": "Mang Arik Sunaka & Pasangan"
+  },
+  {
+    "name": "Ngurah Sunaka & Pasangan"
+  },
+  {
+    "name": "Kak Anika & Suami"
+  },
+  {
+    "name": "Kak Agus & Istri"
+  },
+  {
+    "name": "Gracesia & Pasangan"
+  },
+  {
+    "name": "Dewi & Raka"
+  },
+  {
+    "name": "Jayeng"
+  },
+  {
+    "name": "Rama Maydita"
+  },
+  {
+    "name": "Tugus & Pasangan"
+  },
+  {
+    "name": "De Widi & Pasangan"
+  },
+  {
+    "name": "Agung Dret & Srik"
+  },
+  {
+    "name": "Galuh & Pasangan"
+  },
+  {
+    "name": "Gabeng & Pasangan"
+  },
+  {
+    "name": "Cynthia & Pasangan"
+  },
+  {
+    "name": "Kak Win Macurex"
+  },
+  {
+    "name": "Ivan Macurex"
+  },
+  {
+    "name": "Intan Macurex"
+  },
+  {
+    "name": "Zayyad Macurex"
+  },
+  {
+    "name": "Albert Macurex"
+  },
+  {
+    "name": "Deden Macurex"
+  },
+  {
+    "name": "Vani Macurex"
+  },
+  {
+    "name": "Inok & Sinyo"
+  },
+  {
+    "name": "Gegek & Gian"
+  },
+  {
+    "name": "Anggi & Prami"
+  },
+  {
+    "name": "Peter & Filia"
+  },
+  {
+    "name": "Gupong & Suami"
+  },
+  {
+    "name": "Matthew"
+  },
+  {
+    "name": "Siska"
+  },
+  {
+    "name": "Ana & Ani"
+  },
+  {
+    "name": "Ngurah Kepaon"
+  },
+  {
+    "name": "Gekmas Kepaon"
+  },
+  {
+    "name": "Dea Kepaon"
+  },
+  {
+    "name": "Astri Wulan & Suami"
+  },
+  {
+    "name": "Adel & Cakra"
+  },
+  {
+    "name": "Rene & Pasangan"
+  },
+  {
+    "name": "Verina & Pasangan"
+  },
+  {
+    "name": "Dewi Arra & Arik"
+  },
+  {
+    "name": "Wirya & Gek Tri"
+  },
+  {
+    "name": "Sure & Pasangan"
+  },
+  {
+    "name": "Wawan & Pasangan"
+  },
+  {
+    "name": "Andi & Pasangan"
+  },
+  {
+    "name": "Candra & Suami"
+  },
+  {
+    "name": "Dira"
+  },
+  {
+    "name": "Anggi Ajeng"
+  },
+  {
+    "name": "Sarah & Suami"
+  },
+  {
+    "name": "Wullan Dewi & Suami"
+  },
+  {
+    "name": "Diah Laksmi & Pasangan"
+  },
+  {
+    "name": "Judwika & Pasangan"
+  },
+  {
+    "name": "Wisnu & Istri"
+  },
+  {
+    "name": "Raka Pandu & Istri"
+  },
+  {
+    "name": "Rangga & Pasangan"
+  },
+  {
+    "name": "Nanda & Pasangan"
+  },
+  {
+    "name": "Hiroshi & Wiwid"
+  },
+  {
+    "name": "Delia & Pasangan"
+  },
+  {
+    "name": "Mba Nelly & Mas Billy"
+  },
+  {
+    "name": "Ci Mei & Suami"
+  },
+  {
+    "name": "Ci Step & Suami"
+  },
+  {
+    "name": "Arik & Pasangan"
+  },
+  {
+    "name": "Hogan"
+  },
+  {
+    "name": "Hogan"
+  },
+  {
+    "name": "Ahda"
+  },
+  {
+    "name": "Mijek"
+  },
+  {
+    "name": "Fuad"
+  },
+  {
+    "name": "Okky"
+  },
+  {
+    "name": "Bram"
+  },
+  {
+    "name": "Arnes & Pasangan"
+  },
+  {
+    "name": "Judo"
+  },
+  {
+    "name": "Ucup"
+  },
+  {
+    "name": "Ijul"
+  },
+  {
+    "name": "Abah"
+  },
+  {
+    "name": "Raka"
+  },
+  {
+    "name": "Delta"
+  },
+  {
+    "name": "Haris & Pasangan"
+  }
+]

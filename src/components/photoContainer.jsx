@@ -108,6 +108,14 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
       });
   };
 
+  // Function to convert each word to uppercase
+  const toUpperCaseEachWord = (str) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
   // Effect to manage body scroll
   useEffect(() => {
     document.body.style.overflow = isScrollable ? "hidden" : "auto"; // Toggle body scroll
@@ -258,7 +266,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
                     <p
                       className={`text-lg md:text-base lg:text-[25px] text-center tracking-normal mb-2 lg:mb-5 mr-lg-[6.8rem]`}
                     >
-                      {name}
+                      {name ? toUpperCaseEachWord(name) : ''}
                     </p>
                   </div>
                 </div>
