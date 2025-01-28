@@ -36,7 +36,7 @@ export default function WeddingInvitation() {
 
   // Function to toggle play/pause
   const togglePlayPause = () => {
-    // setPlayStatus(Sound.status.PLAYING);
+    setPlayStatus(Sound.status.PLAYING);
   };
 
   return (
@@ -70,7 +70,7 @@ export default function WeddingInvitation() {
       />
 
       {/* Overlay */}
-      {/* <motion.div
+      <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: isOverlayVisible ? 1 : 0 }}
         transition={{ duration: 0.5 }}
@@ -110,12 +110,12 @@ export default function WeddingInvitation() {
             }`}
           >
             {playStatus === Sound.status.PLAYING ? "Pause Music" : "Play Music"}
-          </button>
+          </button> */}
         </div>
-      </motion.div> */}
+      </motion.div>
 
       {/* Sound Component */}
-      {/* <Sound
+      <Sound
         url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
         playStatus={playStatus}
         onFinishedPlaying={() => {
@@ -124,7 +124,7 @@ export default function WeddingInvitation() {
             setPlayStatus(Sound.status.PLAYING); // Start playing again after a short delay
           }, 100); // Optional delay to ensure smooth looping
         }}
-      /> */}
+      />
     </div>
   );
 }
