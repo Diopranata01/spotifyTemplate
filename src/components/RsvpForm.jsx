@@ -9,11 +9,13 @@ const RsvpForm = () => {
   const [formName, setFormName] = useState("");
   const [attendance, setAttendance] = useState("");
   const [submissionDate, setSubmissionDate] = useState("");
+  const [hasBeenSended, setHasBeenSended] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(""); // Error message state
   const [success, setSuccess] = useState(false); // Success message state
   const [canAttend, setCanAttend] = useState(""); // New state for attendance confirmation
+  const [guestCount, setGuestCount] = useState(1); // State for number of guests
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,12 +25,13 @@ const RsvpForm = () => {
     setSuccess(false);
 
     // Validate inputs
-    if (!formName || !attendance) {
+    if (!formName || !canAttend) {
       setError("Please fill in all required fields.");
       return;
     }
 
     setLoading(true); // Start loading
+    setHasBeenSended(true);
 
     try {
       // Get the current date and time
@@ -38,14 +41,17 @@ const RsvpForm = () => {
       await addDoc(collection(db, "rsvp"), {
         formName,
         attendance,
+        guestCount, // Include the number of guests
         message,
         submissionDate: currentDate, // Include the submission date
       });
 
       // Clear the form
       setFormName("");
+      setCanAttend("");
       setAttendance("");
       setMessage("");
+      setGuestCount(1); // Reset guest count
 
       // Set the submission date to display later
       setSubmissionDate(currentDate);
@@ -79,9 +85,13 @@ const RsvpForm = () => {
 
   return (
     <>
-      <div className={`flex flex-col w-full px-10 ${ canAttend === "yes" ? "pb-2" : "pb-10"}`}>
+      <div
+        className={`flex flex-col w-full px-10 ${
+          canAttend === "yes" ? "pb-2" : "pb-10"
+        }`}
+      >
         <p className="text-2xl lg:text-[45px] mb-2">RSVP Form</p>
-        <p className="mb-4 lg:text-[18px]">
+        <p className="mb-4 text-[16px] lg:text-[18px] text">
           Diharapkan kepada para tamu undangan untuk mengisi form kehadiran
           dibawah ini
         </p>
@@ -89,7 +99,7 @@ const RsvpForm = () => {
 
         {success && (
           <div
-            className="bg-transparent border border-[#EAE3D3] text-[#CABEA6] px-4 py-3 rounded relative mb-4"
+            className="bg-[#a8a8a871] border border-[#e0ca96] text-[#e0ca96] px-4 py-3 rounded relative mb-4"
             role="alert"
           >
             <strong className="font-bold">Sukses!</strong>
@@ -124,79 +134,99 @@ const RsvpForm = () => {
           <div className="mb-4">
             <label
               className="block text-sm font-medium mb-2"
-              htmlFor="canAttend"
+              htmlFor="attendance"
             >
-              Kehadiran
+              Konfirmasi Kehadiran:
             </label>
             <select
-              id="canAttend"
-              name="canAttend"
+              id="attendance"
+              name="attendance"
               required
-              value={canAttend}
-              onChange={(e) => setCanAttend(e.target.value)}
+              value={attendance}
+              onChange={(e) => {
+                setAttendance(e.target.value);
+
+                if (e.target.value === "no" || e.target.value === "") {
+                  setCanAttend("no");
+                  setGuestCount(0); // Reset guest count if not attending
+                } else {
+                  setCanAttend("yes");
+                }
+              }}
               className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"
             >
               <option className="text-black" value="">
                 Pilih opsi
               </option>
-              <option className="text-black" value="yes">
-                Ya, saya akan hadir
+              <option className="text-black" value="pemberkatan">
+                Pemberkatan
+              </option>
+              <option className="text-black" value="resepsi">
+                Resepsi
+              </option>
+              <option className="text-black" value="keduanya">
+                Keduanya
               </option>
               <option className="text-black" value="no">
-                Tidak, saya tidak bisa hadir
+                Berhalangan Hadir
               </option>
             </select>
           </div>
-
-          {/* {canAttend === "no" && (
-            <p className="text-red-500 mb-4">
-              Terima kasih telah memberi tahu kami. Kami akan merindukan
-              kehadiran Anda.
-            </p>
-          )} */}
 
           {canAttend === "yes" && (
             <>
               <div className="mb-4">
                 <label
                   className="block text-sm font-medium mb-2"
-                  htmlFor="attendance"
+                  htmlFor="guestCount"
                 >
-                  Konfirmasi Kehadiran:
+                  Jumlah Tamu yang Hadir:
                 </label>
-                <select
-                  id="attendance"
-                  name="attendance"
-                  required
-                  value={attendance}
-                  onChange={(e) => setAttendance(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"
-                >
-                  <option className="text-black" value="">
-                    Pilih opsi
-                  </option>
-                  <option className="text-black" value="pemberkatan">
-                    Pemberkatan
-                  </option>
-                  <option className="text-black" value="resepsi">
-                    Resepsi
-                  </option>
-                  <option className="text-black" value="keduanya">
-                    Keduanya
-                  </option>
-                </select>
+                <div className="flex items-center">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setGuestCount((prev) => Math.max(1, prev - 1))
+                    } // Decrease count, minimum 1
+                    className="px-4 py-2 border border-gray-300 rounded-l text-white bg-transparent hover:bg-gray-600 hover:text-white transition"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="guestCount"
+                    name="guestCount"
+                    min="1"
+                    max="2"
+                    value={guestCount}
+                    readOnly // Make the input read-only
+                    className="w-16 text-center bg-transparent text-white"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (guestCount >= 2) {
+                        return; // Prevent increasing count beyond 2
+                      }
+                      setGuestCount((prev) => prev + 1);
+                    }} // Increase count
+                    className="px-4 py-2 border border-gray-300 rounded-r text-white bg-transparent hover:bg-gray-600 hover:text-white transition"
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </>
           )}
 
-          <div className="mb-4">
+          <div className="mb-4 margin-form">
             <label className="block text-sm font-medium mb-2" htmlFor="message">
               Doa & Ucapan:
             </label>
             <textarea
               id="message"
               name="message"
-              rows="4"
+              rows="3"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded text-white bg-transparent"

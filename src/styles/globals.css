@@ -41,8 +41,10 @@
 @font-face {
   font-family: "Luxurious Script";
   src: url("../../public/fonts/LuxuriousScript-Regular.ttf") format("truetype"),
-       url("../../public/fonts/luxuriousscript-regular-webfont.woff2") format("woff2"),
-       url("../../public/fonts/luxuriousscript-regular-webfont.woff") format("woff");
+    url("../../public/fonts/luxuriousscript-regular-webfont.woff2")
+      format("woff2"),
+    url("../../public/fonts/luxuriousscript-regular-webfont.woff")
+      format("woff");
   font-weight: normal; /* Adjust as needed */
 }
 
@@ -92,6 +94,10 @@ h3 {
   font-family: "Noto Script";
 }
 
+.font-lora {
+  font-family: "Lora";
+}
+
 .font-italiana {
   font-family: "Italiana";
 }
@@ -132,6 +138,11 @@ h3 {
   animation: bounce 1s infinite;
 }
 
+.video-config {
+  width: inherit;
+  position: fixed;
+}
+
 /* Rsvp Config Style */
 #komentar-container {
   max-height: 400px; /* Set a max height for scrolling */
@@ -140,8 +151,6 @@ h3 {
 
 .komentar-item {
   border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
 }
 
 .komentar-item strong {
@@ -162,7 +171,7 @@ h3 {
 /* **** */
 
 .right-container-photo-config-custom {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fhitam_putih%2Fhitam_putih4.jpg?alt=media&token=de62edd6-26a8-41fd-9489-a8300e6224b0");
+  background-image: url("/public/video/reels_1.webm");
   background-attachment: fixed; /* Make the background stay fixed */
   background-size: cover; /* Ensure the image covers the container */
   background-position: center; /* Center the image */
@@ -173,6 +182,22 @@ h3 {
   .right-container-photo-config-custom {
     background-size: contain;
     background-position: 100%;
+  }
+}
+
+@media (max-width: 376px) {
+  .margin-form{
+    margin-bottom: 3px;
+  }
+}
+
+@media (max-width: 1030px) {
+  /* Video */
+  .video-config {
+    width: 100%;
+    inset: 0;
+    margin: auto;
+    position: fixed;
   }
 }
 

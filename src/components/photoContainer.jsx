@@ -3,7 +3,7 @@ import CelebrationCountdown from "./celebrationCountdown";
 import DressCodeColorGuide from "./dresscodeColorGuide";
 import ImageGallery from "./imageGallery";
 import { useRouter } from "next/router";
-import RsvpForn from "./RsvpForm";
+import RsvpForm from "./RsvpForm";
 import RsvpList from "./RsvpList";
 import Image from "next/image";
 
@@ -192,11 +192,24 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
   return (
     <div
-      className={`w-full z-20 h-screen lg:w-5/12 xl:w-1/3 right-container hide-scrollbar right-0 bottom-0 right-container-photo-config-custom ${
+      className={`w-full z-20 h-screen lg:w-5/12 xl:w-1/3 hide-scrollbar right-0 bottom-0 ${
         isScrollable ? "scroll-container fixed" : "overflow-hidden fixed"
       }`}
       style={{ height: coverHeight }} // Set dynamic height
     >
+      {/* Video Background */}
+      <video
+        className="fixed h-full object-cover right-0 -z-10 video-config"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/video/reels_2.mp4" type="video/mp4" />
+        {/* <source src="/video/reels_1.webm" type="video/webm" /> */}
+        Your browser does not support the video tag.
+      </video>
+      
       {/* Cover Content */}
       <div
         className={`flex-col items-center justify-between relative overflow-hidden right-container-photo-config-cover duration-1000 ease-in scroll-item-cover 
@@ -210,7 +223,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
       >
         {/* Title Container */}
         <div className="relative z-20 flex flex-col mt-16 lg:mt-24 items-center justify-center text-white text-center">
-          <h5 className="text-lg md:text-base lg:text-[20px] tracking-wider">
+          <h5 className="text-lg md:text-base lg:text-[20px] tracking-normal">
             We invite you to our wedding
           </h5>
           <div className="flex w-100 gap-2 mt-2">
@@ -218,7 +231,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             <h1 className="text-[50px] md:text-5xl lg:text-[55px]">&</h1>
             <h1 className="text-[50px] md:text-5xl lg:text-[55px]">Novella</h1>
           </div>
-          {/* <p className="text-sm md:text-base lg:text-base mt-3 tracking-wider">
+          {/* <p className="text-sm md:text-base lg:text-base mt-3 tracking-normal">
             Saturday, 15th December, 2025
           </p> */}
         </div>
@@ -243,7 +256,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 <div className="flex flex-col w-full mt-3 lg:mt-5">
                   <div className="w-full gap-2">
                     <p
-                      className={`text-lg md:text-base lg:text-[25px] text-center tracking-wider mb-2 lg:mb-5 mr-lg-[6.8rem]`}
+                      className={`text-lg md:text-base lg:text-[25px] text-center tracking-normal mb-2 lg:mb-5 mr-lg-[6.8rem]`}
                     >
                       {name}
                     </p>
@@ -255,7 +268,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 </div>
               </div>
               <p
-                className={`text-[14px] md:text-base lg:text-[13px] text-center tracking-wider mt-3 mr-lg-[6.8rem]`}
+                className={`text-[14px] md:text-base lg:text-[13px] text-center tracking-normal mt-3 mr-lg-[6.8rem]`}
               >
                 Tanpa mengurangi rasa hormat, kami mengundang Bapak/ Ibu/
                 Saudara/i hadir di
@@ -311,7 +324,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 1 */}
       <div
-        className={`p-8 flex flex-col items-center justify-between relative right-container-photo-config scroll-item`}
+        className={`p-9 flex flex-col items-center justify-between relative scroll-item`}
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -323,11 +336,13 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         >
           <div className="flex w-full gap-8 justify-center items-center">
             <div className="flex flex-col pb-4">
-              <p className="text-[18px] h-2 mb-[4px] ms-2">15</p>
-              <p className="font-medium inline-block transform rotate-[-220deg] scale-[2.7] me-[15px]">
+              <p className="font-italiana text-[18px] h-2 mb-[4px] ms-2">15</p>
+              <p className="font-italiana font-medium inline-block transform rotate-[-220deg] scale-[2.7] me-[6px] w-[18px]">
                 \
               </p>
-              <p className="text-[18px] h-2 mt-[-17px] ms-[-10px]">02</p>
+              <p className="font-italiana text-[18px] h-2 mt-[-17px] ms-[-10px]">
+                02
+              </p>
             </div>
             <div className="w-1 h-1 bg-white rounded-full"></div>
             <Image
@@ -338,42 +353,19 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             />
             <div className="w-1 h-1 bg-white rounded-full"></div>
             <div className="flex flex-col">
-              <p className="text-[18px] h-4">20</p>
-              <p className="text-[18px] h-4 mb-2">25</p>
+              <p className="font-italiana text-[18px] h-4">20</p>
+              <p className="font-italiana text-[18px] h-4 mb-2">25</p>
             </div>
           </div>
 
           {/* Countdown Component */}
           <CelebrationCountdown />
         </div>
-
-        {/* Fading Video Background */}
-        <div className="absolute inset-0 transition-opacity duration-1000">
-          {/* Overlay for fading effect */}
-          <div
-            className="absolute inset-0 z-10"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgb(91 87 69 / 74%) 0%, rgba(164, 172, 133, 0.3) 30%, rgba(164, 172, 133, 0) 50%, rgba(164, 172, 133, 0.7) 200%)",
-            }}
-          ></div>
-          {/* Video Background */}
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="/video/reels_1.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
       </div>
 
       {/* Content 2 */}
       <div
-        className={`p-8 flex flex-col items-center justify-between relative right-container-photo-config scroll-item`}
+        className={`p-9 flex flex-col items-center justify-between relative right-container-photo-config scroll-item`}
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -383,13 +375,13 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
             visibilityStates[1] ? "fade-in" : "fade-out"
           }`}
         >
-          <div className="flex w-full justify-center gap-2">
-            <h1 className="text-[35px] md:text-5xl lg:text-4xl">Matius</h1>
+          <div className="flex w-full justify-center gap-5">
+            <h1 className="text-[40px] md:text-5xl lg:text-4xl">Matius</h1>
             <h4 className="text-[35px] md:text-5xl lg:text-4xl font-italiana">
               19 : 6
             </h4>
           </div>
-          <p className="text-[16px] px-5 py-3 md:text-base lg:text-base tracking-wider">
+          <p className="text-[16px] px-5 py-3 md:text-base lg:text-base tracking-normal">
             &quot;Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu,
             apa yang telah dipersatukan Allah, tidak boleh diceraikan
             manusia.&quot;
@@ -412,30 +404,30 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 3 */}
       <div
-        className="p-8 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
+        className="p-9 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[2] = el)}
-          className={`absolute z-20 bottom-9 right-0 w-full h-full flex flex-col gap-3 gap-md-4 ps-lg-16 px-6 lg:px-10 items-start justify-end text-white text-start ${
+          className={`absolute z-20 bottom-9 right-0 w-full h-full flex flex-col gap-3 gap-md-4 ps-lg-16 px-9 lg:px-10 items-start justify-end text-white text-start ${
             visibilityStates[2] ? "fade-in" : "fade-out"
           }`}
         >
           {/*  */}
           <h1
-            className={`text-[45px] md:text-5xl lg:text-[48px] mb-[-40px] lg:mb-[-10px]`}
+            className={`text-[37px] md:text-5xl lg:text-[48px] mb-[-30px] lg:mb-[-10px]`}
           >
             Rangga Diprana
           </h1>
-          <h1 className={`text-[45px] md:text-5xl lg:text-[48px]`}>
+          <h1 className={`text-[37px] md:text-5xl lg:text-[48px]`}>
             Kalihanuraga Hadiyanto
           </h1>
 
           {/*  */}
-          <div className="w-full flex items-center mt-[-6px] lg:mt-3">
+          <div className="w-full h-[20px] flex items-center mt-[-6px] lg:mt-3">
             <h4
-              className={`w-2/3 text-[16px] md:text-base lg:text-[23px] tracking-wider me-0 mt-md-5`}
+              className={`w-2/3 text-[15px] md:text-base lg:text-[23px] tracking-normal me-0 mt-md-5`}
             >
               Putra dari Pasangan
             </h4>
@@ -453,12 +445,12 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <div className="flex flex-col w-full">
             <p
-              className={`text-[17px] mb-[-4px] lg:mb-3 md:text-base lg:text-[20px] text-justify tracking-wider mr-lg-[6.8rem]`}
+              className={`text-[15px] mb-[-4px] lg:mb-3 md:text-base lg:text-[20px] text-justify tracking-normal mr-lg-[6.8rem]`}
             >
               Hendhy Kunarjanto
             </p>
             <p
-              className={`text-[17px] md:text-base lg:text-[20px] text-justify tracking-wider mr-lg-[6.8rem]`}
+              className={`text-[15px] md:text-base lg:text-[20px] text-justify tracking-normal mr-lg-[6.8rem]`}
             >
               Kadek Ira Prana Dewi, SE.
             </p>
@@ -467,7 +459,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <button
             onClick={navigateToLinkInstagram1}
-            className="text-[12px] lg:text-[13px] mt-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
+            className="text-[12px] lg:text-[13px] font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
           >
             @ranggadipranaa
           </button>
@@ -495,30 +487,30 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 4 */}
       <div
-        className="p-8 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
+        className="p-9 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[3] = el)}
-          className={`absolute z-20 bottom-9 right-0 w-full h-full flex flex-col gap-3 gap-md-4 ps-lg-16 px-6 lg:px-10 items-start justify-end text-white text-start ${
+          className={`absolute z-20 bottom-9 right-0 w-full h-full flex flex-col gap-3 gap-md-4 ps-lg-16 px-9 lg:px-10 items-start justify-end text-white text-start ${
             visibilityStates[3] ? "fade-in" : "fade-out"
           }`}
         >
           {/*  */}
           <h1
-            className={`text-[43px] md:text-5xl lg:text-[48px] mb-[-40px] lg:mb-[-10px]`}
+            className={`text-[37px] md:text-5xl lg:text-[48px] mb-[-30px] lg:mb-[-10px]`}
           >
             Novella Asri
           </h1>
-          <h1 className={`text-[43px] md:text-5xl lg:text-[48px]`}>
+          <h1 className={`text-[37px] md:text-5xl lg:text-[48px]`}>
             Magdalena Sihombing, S. Ab
           </h1>
 
           {/*  */}
-          <div className="w-full flex items-center mt-[-6px] lg:mt-3">
+          <div className="w-full flex h-[18px] items-center mt-[-6px] lg:mt-3">
             <h4
-              className={`w-2/3 text-[16px] md:text-base lg:text-[23px] tracking-wider me-0 mt-md-5`}
+              className={`w-2/3 text-[15px] md:text-base lg:text-[23px] tracking-normal me-0 mt-md-5`}
             >
               Putri dari Pasangan
             </h4>
@@ -536,12 +528,12 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <div className="flex flex-col w-full">
             <p
-              className={`text-[17px] mb-[-4px] lg:mb-1 md:text-base lg:text-[18px] text-justify tracking-wider mr-lg-[6.8rem]`}
+              className={`text-[15px] mb-[-4px] lg:mb-1 md:text-base lg:text-[18px] text-justify tracking-normal mr-lg-[6.8rem]`}
             >
               Robinsar Sihombing, SE.
             </p>
             <p
-              className={`text-[17px] md:text-base lg:text-[18px] text-justify tracking-wider mr-lg-[6.8rem]`}
+              className={`text-[15px] md:text-base lg:text-[18px] text-justify tracking-normal mr-lg-[6.8rem]`}
             >
               Sarmauli S. Sidauruk
             </p>
@@ -550,7 +542,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           {/*  */}
           <button
             onClick={navigateToLinkInstagram2}
-            className="text-[13px] lg:text-[13px] mt-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
+            className="text-[13px] lg:text-[13px] font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
           >
             @novellaasri
           </button>
@@ -590,9 +582,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           }`}
         >
           <div className="flex flex-col items-center gap-4 w-full text-center px-4">
-            <div className="flex flex-col gap-7 lg:gap-20 items-center">
+            <div className="flex flex-col gap-10 lg:gap-20 items-center">
               <div className="flex flex-col items-center gap-5 w-[290px]">
-                <h1 className="text-[40px] md:text-base lg:text-[45px] tracking-wider mt-2 mt-md-5">
+                <h1 className="text-[50px] h-[60px] md:text-base lg:text-[45px] tracking-normal mt-2 mt-md-5">
                   Dress Code
                 </h1>
                 <p>
@@ -636,32 +628,32 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
             }}
           >
-            <div className="flex flex-col text-[#414833] items-center gap-2 lg:gap-14 text-center px-4">
+            <div className="flex flex-col text-[#414833] items-center gap-7 lg:gap-14 text-center px-9">
+              {/*  */}
               <div className="w-full flex flex-col lg:gap-5">
                 <div className="flex flex-col">
                   <h1
-                    className={`text-[43px] md:text-base lg:text-[43px] tracking-wider mt-2 mt-md-5`}
+                    className={`text-[50px] h-[70px] md:text-base lg:text-[43px] tracking-normal mt-[-20px] mt-md-5`}
                   >
                     Pemberkatan
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2">
                   <p
-                    className={`text-[18px] font-semibold md:text-base lg:text-[20px] tracking-wider`}
+                    className={`text-[18px] font-medium md:text-base lg:text-[20px] tracking-normal`}
                   >
                     St. Francis Xavier <br /> Catholic Church <br />
                   </p>
                   <p
-                    className={`text-[14px] md:text-base lg:text-[17px] tracking-wider`}
+                    className={`text-[14px] md:text-base lg:text-[17px] tracking-normal`}
                   >
-                    Jl. Kartika Plaza No.107, Kuta, Kec. Kuta, Kabupaten Badung
-                    Bali
+                    Jl. Kartika Plaza No.107, Badung, Bali
                   </p>
                   <div className="flex flex-col">
-                    <p className="text-[16px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[20px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[16px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[20px]">
                       10:00 - 12:00 WITA
                     </p>
                   </div>
@@ -681,7 +673,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 {/*  */}
                 <div className="flex flex-col">
                   <h1
-                    className={`text-[43px] md:text-base lg:text-[43px] tracking-wider mt-2 mt-md-5`}
+                    className={`text-[50px] h-[70px] md:text-base lg:text-[43px] tracking-normal mt-2 mt-md-5`}
                   >
                     Resepsi
                   </h1>
@@ -689,22 +681,20 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                 {/*  */}
                 <div className="flex flex-col gap-2">
                   <p
-                    className={`text-[18px] font-semibold md:text-base lg:text-[20px] tracking-wider mr-lg-[6.8rem]`}
+                    className={`text-[18px] font-medium md:text-base lg:text-[20px] tracking-normal mr-lg-[6.8rem]`}
                   >
                     Riverside <br /> Convention Center <br />
                   </p>
                   <p
-                    className={`text-[14px] md:text-base lg:text-[17px] tracking-wider mr-lg-[6.8rem]`}
+                    className={`text-[14px] md:text-base lg:text-[17px] tracking-normal mr-lg-[6.8rem]`}
                   >
-                    Jl. Gn Catur IV, No.8, <br />
-                    Padangsambian Kaja, Kec. Denpasar <br />
-                    Barat, Denpasar, Bali
+                    Jl. Gn Catur IV, No.8 Denpasar, Bali <br />
                   </p>
                   <div className="flex flex-col">
-                    <p className="text-[16px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[20px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[16px] lg:text-[20px]">
+                    <p className="text-[14px] lg:text-[20px]">
                       19:00 - 21:00 WITA
                     </p>
                   </div>
@@ -733,7 +723,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               backgroundImage:
                 'url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Ffinal_image%2Fmain_photo_7.jpg?alt=media&token=98669217-2420-43c1-86ad-993efc3729b5")',
               backgroundPosition: `42%`, // Adjusted vertical position to move the image down
-              transform: "scale(1.4) translate(-57px, 40px)", // Move the image down by 20px
+              transform: "scale(1.4) translate(-50px, 40px)", // Move the image down by 20px
             }}
           />
         </div>
@@ -741,7 +731,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 7 */}
       <div
-        className="pb-1 md:pb-5 lg:pb-10 flex flex-col items-center justify-between relative scroll-item"
+        className="md:pb-5 lg:pb-10 flex flex-col items-center justify-between relative scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
@@ -750,14 +740,12 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-end text-white text-start ${
-              visibilityStates[6] ? "fade-in" : "fade-out"
-            }`}
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in`}
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
             }}
           >
-            <RsvpForn />
+            <RsvpForm />
           </div>
         </div>
       </div>
@@ -767,6 +755,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         className={`flex flex-col items-center justify-start relative scroll-item scroll-item-list ${
           isOpenedList ? "overflow-y-scroll" : "overflow-hidden"
         }`}
+        style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
         <div
@@ -774,12 +763,12 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start fade-in`}
+            className={`absolute z-20 right-0 top-0 w-full h-screen flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start fade-in`}
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
             }}
           >
-            <RsvpList setIsOpenedList={setIsOpenedList} />
+            <RsvpList isOpenedList={isOpenedList} />
           </div>
         </div>
 
@@ -809,65 +798,70 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 items-start justify-end text-white text-start ${
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-5 ps-lg-16 px-0 items-start justify-between text-white text-start ${
               visibilityStates[8] ? "fade-in" : "fade-out"
             }`}
           >
-            <h1 className={`text-[40px] md:text-5xl lg:text-[45px]`}>
-              Hadiah Pernikahan
-            </h1>
-            <p
-              className={`text-[15px] md:text-base lg:text-[15px] text-start tracking-wider lg:mb-4 mr-lg-[6.8rem]`}
-            >
-              Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
-              tanda cinta kepada kedua mempelai, Anda dapat memberikan melalui
-              nomor rekening berikut
-            </p>
-            <div className="w-full flex gap-3 flex-col justify-center items-center text-[12px]">
-              <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
-                <div>
-                  <p className="text-[16px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
-                    BLU by BCA DIGITAL
-                  </p>
-                  <p className="text-[16px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
-                    001210713747
-                  </p>
-                  <p className="text-[16px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
-                    Novella Asri
-                  </p>
+            <div className="w-full flex flex-col gap-5">
+              <h1 className={`text-[50px] h-[55px] md:text-5xl lg:text-[45px]`}>
+                Hadiah Pernikahan
+              </h1>
+              <p
+                className={`text-[15px] md:text-base lg:text-[15px] text-start tracking-normal font-light leading-snug lg:mb-4 mr-lg-[6.8rem]`}
+              >
+                Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
+                tanda cinta kepada kedua mempelai, Anda dapat memberikan melalui
+                nomor rekening berikut
+              </p>
+            </div>
+
+            <div className="w-full flex">
+              <div className="w-full flex gap-5 flex-col justify-center items-center text-[12px]">
+                <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
+                  <div>
+                    <p className="text-[15px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                      BLU by BCA DIGITAL
+                    </p>
+                    <p className="text-[15px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                      001210713747
+                    </p>
+                    <p className="text-[15px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
+                      Novella Asri
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard("001210713747")}
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-[#434834] text-white hover:bg-[#CCBFA3] transition"
+                    aria-label="Copy account number"
+                  >
+                    <i className="fas fa-copy text-[15px]"></i>{" "}
+                    {/* Font Awesome paper icon */}
+                  </button>
                 </div>
-                <button
-                  onClick={() => copyToClipboard("001210713747")}
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#434834] text-white hover:bg-[#CCBFA3] transition"
-                  aria-label="Copy account number"
-                >
-                  <i className="fas fa-copy text-[15px]"></i>{" "}
-                  {/* Font Awesome paper icon */}
-                </button>
-              </div>
-              <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
-                <div>
-                  <p className="text-[16px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
-                    BCA
-                  </p>
-                  <p className="text-[16px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
-                    7725423781
-                  </p>
-                  <p className="text-[16px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
-                    Rangga Diprana
-                  </p>
+                <div className="w-full border border-x-0 border-t-0 flex justify-between items-center">
+                  <div>
+                    <p className="text-[15px] lg:text-[16px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                      BCA
+                    </p>
+                    <p className="text-[15px] lg:text-[18px] mb-[-4px] lg:mb-[-5px] tracking-widest">
+                      7725423781
+                    </p>
+                    <p className="text-[15px] lg:text-[17px] mb-[4px] lg:mb-[5px] tracking-widest">
+                      Rangga Diprana
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard("7725423781")}
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-[#434834] text-white hover:bg-[#CCBFA3] transition"
+                    aria-label="Copy account number"
+                  >
+                    <i className="fas fa-copy text-[15px]"></i>{" "}
+                    {/* Font Awesome paper icon */}
+                  </button>
                 </div>
-                <button
-                  onClick={() => copyToClipboard("7725423781")}
-                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#434834] text-white hover:bg-[#CCBFA3] transition"
-                  aria-label="Copy account number"
-                >
-                  <i className="fas fa-copy text-[15px]"></i>{" "}
-                  {/* Font Awesome paper icon */}
-                </button>
+                {/* {copySuccess && <p className="text-green-500">{copySuccess}</p>}{" "} */}
+                {/* Success message */}
               </div>
-              {/* {copySuccess && <p className="text-green-500">{copySuccess}</p>}{" "} */}
-              {/* Success message */}
             </div>
 
             {/* {copySuccess && <p className="text-green-500">{copySuccess}</p>}{" "} */}
@@ -900,7 +894,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 pt-9 items-center justify-start text-white text-start ${
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 px-0 pt-9 pb-5 items-center justify-start text-white text-start ${
               visibilityStates[9] ? "fade-in" : "fade-out"
             }`}
             style={{
@@ -911,12 +905,12 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               <div className="w-full h-full flex flex-col">
                 <div className="flex flex-col lg:gap-10 lg:mb-10">
                   <p
-                    className={`text-[15px] font-semibold md:text-base lg:text-[43px] tracking-wider mr-lg-[6.8rem]`}
+                    className={`text-[15px] font-semibold md:text-base lg:text-[43px] tracking-normal mr-lg-[6.8rem]`}
                   >
                     Gallery Photos
                   </p>
                   <h1
-                    className={`text-[45px] md:text-base lg:text-[40px] tracking-wider`}
+                    className={`text-[45px] md:text-base lg:text-[40px] tracking-normal mb-1`}
                   >
                     Rangga & Novella
                   </h1>
@@ -949,35 +943,35 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 11 */}
       <div
-        className="p-8 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
+        className="p-9 flex flex-col items-center justify-between relative right-container-photo-config scroll-item"
         style={{ height: coverHeight }} // Set dynamic height
       >
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[10] = el)}
-          className={`absolute z-20 right-0 w-full h-full flex flex-col gap-4 gap-md-4 ps-lg-16 px-6 pb-16 lg:pb-24 items-center justify-between lg:justify-evenly text-white text-center ${
+          className={`absolute z-20 right-0 w-full h-full flex flex-col gap-4 gap-md-4 ps-lg-16 px-9 pb-16 lg:pb-24 items-center justify-between lg:justify-evenly text-white text-center ${
             visibilityStates[10] ? "fade-in" : "fade-out"
           }`}
         >
-          <div className="flex items-center justify-center lg:mt-[20px]">
-            <div className="mt-4">
+          <div className="flex items-center justify-center mt-10 lg:mt-[20px]">
+            <div className="mt-4 ms-3">
               <Image
                 src="/assets/logo_name_minimalis_3.svg"
                 alt=""
-                height={150}
-                width={150}
+                height={80}
+                width={80}
               />
             </div>
           </div>
 
           <div className="flex flex-col lg:mb-[-150px]">
-            <h1 className={`text-[40px] md:text-5xl lg:text-[45px]`}>
+            <h1 className={`text-[50px] md:text-5xl lg:text-[45px]`}>
               Terima Kasih
             </h1>
             <div className="flex w-full flex-col gap-4 mt-2 justify-center">
               <div className="flex gap-2 mr-2">
                 <p
-                  className={`text-[14px] md:text-base lg:text-[18px] text-center tracking-wider mr-lg-[6.8rem]`}
+                  className={`text-[14px] md:text-base lg:text-[18px] text-center tracking-normal mr-lg-[6.8rem]`}
                 >
                   Doa dan kehadiran Bapak/Ibu/Saudara/i akan menjadi berkat yang
                   berarti bagi kami dalam memulai kehidupan baru ini.
@@ -986,7 +980,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               <div className="flex w-full justify-center">
                 <div className="flex gap-2 mr-2">
                   <h1
-                    className={`text-[30px] md:text-base lg:text-[30px] text-justify tracking-wider mr-lg-[6.8rem]`}
+                    className={`text-[30px] md:text-base lg:text-[30px] text-justify tracking-normal mr-lg-[6.8rem]`}
                   >
                     Rangga & Novella
                   </h1>
