@@ -157,7 +157,13 @@ export default function Home() {
                         Loading...
                       </td>
                     </tr>
-                  ) : (
+                  ) : guests.length === 0 ? (
+                    <tr>
+                      <td colSpan="2" className="py-3 px-6 text-center">
+                        No Data Invitation Sesion 1
+                      </td>
+                    </tr>
+                  )  : (
                     guests.map((guest) => (
                       <tr
                         key={guest.id}

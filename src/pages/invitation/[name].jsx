@@ -19,7 +19,6 @@ export default function Invitation({ guest, isInvited }) {
   );
 }
 
-
 export async function getStaticPaths() {
   const guestCollection = collection(db, "guest_list");
   const guestQuery = query(guestCollection, orderBy("name", "asc"));
