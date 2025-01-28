@@ -215,11 +215,11 @@ export default function Home() {
           value={newGuestName}
           onChange={(e) => setNewGuestName(e.target.value)}
           placeholder="Enter guest name"
-          className="border border-gray-300 rounded p-1 w-[220px]"
+          className="border text-black border-gray-300 rounded p-1 w-[220px]"
         />
         <button
           onClick={handleAddGuest}
-          className="p-2 py-1 rounded-lg text-black bg-gray-300 hover:bg-gray-600 relative gap-4"
+          className="p-2 py-1 rounded-lg text-black bg-gray-300 hover:bg-gray-600 hover:text-white relative gap-4"
         >
           Add Guest
         </button>

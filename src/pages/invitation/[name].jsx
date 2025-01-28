@@ -1,7 +1,7 @@
 // pages/invitation/[name].js
 import WeddingInvitation from "@/components/WeddingInvitation";
-import fs from "fs";
-import path from "path";
+import { db } from "../../../lib/firebase";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 export default function Invitation({ guest, isInvited }) {
   return (
@@ -19,14 +19,15 @@ export default function Invitation({ guest, isInvited }) {
   );
 }
 
+
 export async function getStaticPaths() {
-  const filePath = path.join(process.cwd(), "public", "guests.json");
-  const jsonData = fs.readFileSync(filePath);
-  const guests = JSON.parse(jsonData);
+  const guestCollection = collection(db, "guest_list");
+  const guestQuery = query(guestCollection, orderBy("name", "asc"));
+  const guestSnapshot = await getDocs(guestQuery);
 
   // Create paths for each guest
-  const paths = guests.map((guest) => ({
-    params: { name: guest.name.toLowerCase() }, // Use lowercase for URL consistency
+  const paths = guestSnapshot.docs.map((doc) => ({
+    params: { name: doc.data().name.toLowerCase() }, // Use lowercase for URL consistency
   }));
 
   return {
@@ -36,11 +37,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const filePath = path.join(process.cwd(), "public", "guests.json");
-  const jsonData = fs.readFileSync(filePath);
-  const guests = JSON.parse(jsonData);
+  const guestCollection = collection(db, "guest_list");
+  const guestQuery = query(guestCollection);
+  const guestSnapshot = await getDocs(guestQuery);
 
   // Check if the guest is invited
+  const guests = guestSnapshot.docs.map((doc) => doc.data());
   const guest = guests.find((g) => g.name.toLowerCase() === params.name);
   const isInvited = !!guest;
 
