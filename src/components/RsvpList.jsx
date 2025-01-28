@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase"; // Adjust the import path as necessary
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const RsvpList = ({ isOpenedList }) => {
   const [rsvps, setRsvps] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
-
+  
   useEffect(() => {
     const fetchRsvps = async () => {
+      setLoading(true); // Start loading
       try {
         const rsvpCollection = collection(db, "rsvp");
-        const rsvpSnapshot = await getDocs(rsvpCollection);
+        const rsvpQuery = query(rsvpCollection, orderBy("submissionDate", "desc")); // Order by submissionDate descending
+        const rsvpSnapshot = await getDocs(rsvpQuery);
         const rsvpList = rsvpSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -22,9 +24,27 @@ const RsvpList = ({ isOpenedList }) => {
         setLoading(false); // Stop loading
       }
     };
-
+  
     fetchRsvps();
   }, []);
+
+  const getTimeAgo = (date) => {
+    const now = new Date();
+    const submissionDate = new Date(date);
+    const diffInMs = now - submissionDate; // Difference in milliseconds
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60)); // Convert to minutes
+    const diffInHours = Math.floor(diffInMinutes / 60); // Convert to hours
+
+    const minutes = diffInMinutes % 60; // Remaining minutes after hours
+
+    if (diffInHours < 1) {
+      return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
+    } else if (diffInHours === 1) {
+      return minutes === 0 ? "1 hour ago" : `1 hour and ${minutes} minutes ago`;
+    } else {
+      return `${diffInHours} hours and ${minutes} minutes ago`;
+    }
+  };
 
   if (loading) {
     return <p>Loading...</p>; // Loading message
@@ -51,8 +71,8 @@ const RsvpList = ({ isOpenedList }) => {
             <div
               className={`p-4 py-2 m-2 bg-transparent text-[white] rounded-lg max-w-md ${
                 index % 2 === 0
-                  ? "text-start w-[250px] ps-1 ms-0"
-                  : "text-end w-[250px] pe-1 me-0"
+                  ? "text-start w-[290px] ps-1 ms-0"
+                  : "text-end w-[290px] pe-1 me-0"
               }`}
             >
               <p className="text-[20px]">{rsvp.formName}</p>
@@ -63,6 +83,9 @@ const RsvpList = ({ isOpenedList }) => {
                       day: "2-digit",
                       month: "short",
                       year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false, // Use 24-hour format
                     }).format(new Date(rsvp.submissionDate))
                   : "Date not available"}
               </p>

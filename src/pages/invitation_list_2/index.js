@@ -2,18 +2,30 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import * as XLSX from "xlsx";
 import { db } from "../../../lib/firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 export default function Home() {
   const [guests, setGuests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [file, setFile] = useState(null);
+  const [editGuestId, setEditGuestId] = useState(null);
+  const [editName, setEditName] = useState("");
+  const [newGuestName, setNewGuestName] = useState("");
 
   // Fetch guest data from Firestore
   const fetchGuests = async () => {
     setLoading(true); // Set loading to true when fetching starts
-    const collectionRef = collection(db, "guest_list");
-    const snapshot = await getDocs(collectionRef);
+    const collectionRef = collection(db, "guest_list_2");
+    const collectionQuerry = query(collectionRef, orderBy("name", "asc"));
+    const snapshot = await getDocs(collectionQuerry);
     const guestList = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -41,7 +53,7 @@ export default function Home() {
       const jsonData = XLSX.utils.sheet_to_json(firstSheet);
 
       try {
-        const collectionRef = collection(db, "guest_list");
+        const collectionRef = collection(db, "guest_list_2");
         setLoading(true); // Set loading to true when fetching starts
         for (const item of jsonData) {
           // Check if the 'name' field is present and not empty
@@ -61,6 +73,65 @@ export default function Home() {
     reader.readAsArrayBuffer(file);
   };
 
+  const handleEditClick = (guest) => {
+    setEditGuestId(guest.id);
+    setEditName(guest.name);
+  };
+
+  const handleSave = async (guestId) => {
+    if (!editName.trim()) {
+      alert("Name cannot be empty");
+      return;
+    }
+
+    // Confirmation dialog
+    const isConfirmed = window.confirm(
+      "Are you sure you want to save the changes?"
+    );
+    if (!isConfirmed) {
+      return; // Exit if the user cancels
+    }
+
+    try {
+      const guestDoc = doc(db, "guest_list_2", guestId);
+      await updateDoc(guestDoc, { name: editName });
+      setEditGuestId(null); // Exit edit mode
+      // Optionally, you can refetch guests or update the state directly
+      setGuests((prevGuests) =>
+        prevGuests.map((guest) =>
+          guest.id === guestId ? { ...guest, name: editName } : guest
+        )
+      );
+      setEditName("");
+
+      fetchGuests(); // Refresh the guest list after upload
+      alert("Changes saved successfully!");
+    } catch (error) {
+      console.error("Error updating guest: ", error);
+    }
+  };
+
+  const handleAddGuest = async () => {
+    if (!newGuestName.trim()) {
+      alert("Guest name cannot be empty");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "guest_list_2"), {
+        name: newGuestName,
+      });
+      setGuests((prevGuests) => [
+        ...prevGuests,
+        { id: newGuestName, name: newGuestName }, // Update the state with the new guest
+      ]);
+      alert("Guest added successfully!");
+      fetchGuests(); // Refresh the guest list after upload
+      setNewGuestName(""); // Clear the input field
+    } catch (error) {
+      console.error("Error adding guest: ", error);
+    }
+  };
   return (
     <div className="mx-auto w-screen h-screen p-4 flex flex-col items-center gap-5 bg-white">
       <p className="text-3xl font-bold my-4 text-black">
@@ -93,12 +164,36 @@ export default function Home() {
                         className="border-b border-gray-300 hover:bg-gray-100"
                       >
                         <td className="py-3 px-6 font-semibold">
-                          {guest.name}
+                          {editGuestId === guest.id ? (
+                            <input
+                              type="text"
+                              value={editName}
+                              onChange={(e) => setEditName(e.target.value)}
+                              className="border border-gray-300 rounded p-1"
+                            />
+                          ) : (
+                            guest.name
+                          )}
                         </td>
-                        <td className="py-3 px-6">
+                        <td className="py-3 px-6 flex gap-4">
+                          {editGuestId === guest.id ? (
+                            <button
+                              onClick={() => handleSave(guest.id)}
+                              className="text-green-500 hover:underline"
+                            >
+                              Save
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => handleEditClick(guest)}
+                              className="text-blue-500 hover:underline"
+                            >
+                              Edit
+                            </button>
+                          )}
                           <Link
                             href={`/invitation2/${guest.name.toLowerCase()}`}
-                            className="text-blue-500 hover:underline"
+                            className="text-blue-500 hover:underline ml-2"
                           >
                             View Invitation
                           </Link>
@@ -113,6 +208,23 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="flex justify-between w-[380px]">
+        {/* <p className="text-3xl font-bold my-4 text-black">Add a New Guest</p> */}
+        <input
+          type="text"
+          value={newGuestName}
+          onChange={(e) => setNewGuestName(e.target.value)}
+          placeholder="Enter guest name"
+          className="border border-gray-300 rounded p-1 w-[220px]"
+        />
+        <button
+          onClick={handleAddGuest}
+          className="p-2 py-1 rounded-lg text-black bg-gray-300 hover:bg-gray-600 relative gap-4"
+        >
+          Add Guest
+        </button>
+      </div>
+
       <div className="border-black rounded-lg bg-gray-400 p-2 flex justify-between items-center">
         <input
           className="text-black"
@@ -125,8 +237,7 @@ export default function Home() {
           onClick={handleUpload}
           disabled={loading}
         >
-          {loading && file ? (
-                <span className="loader "></span>) : ("Upload")}
+          {loading && file ? <span className="loader "></span> : "Upload"}
         </button>
       </div>
     </div>
