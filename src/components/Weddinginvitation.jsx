@@ -34,6 +34,7 @@ export default function WeddingInvitation() {
     };
   }, []);
 
+
   // Function to toggle play/pause
   const togglePlayPause = () => {
     setPlayStatus(Sound.status.PLAYING);
