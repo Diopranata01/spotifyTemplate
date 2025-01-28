@@ -4,7 +4,7 @@ import Sound from "react-sound"; // Import Sound from react-sound
 import PhotoContainer from "./photoContainer";
 import Image from "next/image";
 
-export default function WeddingInvitation() {
+export default function WeddingInvitation2() {
   const [isFirstVisible, setIsFirstVisible] = useState(false);
   const [isSecondVisible, setIsSecondVisible] = useState(false);
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
@@ -67,6 +67,7 @@ export default function WeddingInvitation() {
       <PhotoContainer
         playStatus={playStatus}
         togglePlayPause={togglePlayPause}
+        invitation={'2'}
       />
 
       {/* Overlay */}

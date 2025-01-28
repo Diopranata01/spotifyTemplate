@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase"; // Adjust the import path as necessary
 import { collection, getDocs } from "firebase/firestore";
 
-const RsvpList = ({isOpenedList}) => {
+const RsvpList = ({ isOpenedList }) => {
   const [rsvps, setRsvps] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
 
@@ -31,11 +31,15 @@ const RsvpList = ({isOpenedList}) => {
   }
 
   return (
-    <div className="flex flex-col w-full h-full p-10 pt-6">
-      <p className="text-2xl lg:text-[40px] my-4 mb-9 ps-1 text-white">Ucapan & Doa</p>
-      <div className={`flex flex-col w-full ${
-        isOpenedList ? '' : 'h-[67vh] mb-24 overflow-hidden'
-      }`}>
+    <div className="flex flex-col w-full p-10 pt-6">
+      <p className="text-2xl lg:text-[40px] my-4 mb-9 ps-1 text-white">
+        Ucapan & Doa
+      </p>
+      <div
+        className={`flex flex-col w-full ${
+          isOpenedList ? "" : "h-[67vh] mb-24 overflow-hidden"
+        }`}
+      >
         {rsvps.map((rsvp, index) => (
           <div
             key={rsvp.id}

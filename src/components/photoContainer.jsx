@@ -7,7 +7,7 @@ import RsvpForm from "./RsvpForm";
 import RsvpList from "./RsvpList";
 import Image from "next/image";
 
-const PhotoContainer = ({ playstatus, togglePlayPause }) => {
+const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
   const [isScrollable, setIsScrollable] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isOpenedList, setIsOpenedList] = useState(false);
@@ -708,9 +708,15 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
                     <p className="text-[14px] lg:text-[17px]">
                       Sabtu, 15 Februari 2025
                     </p>
-                    <p className="text-[14px] lg:text-[17px]">
-                      19:00 - 21:00 WITA
-                    </p>
+                    {invitation === "2" ? (
+                      <p className="text-[14px] lg:text-[17px]">
+                        19:00 - 21:00 WITA
+                      </p>
+                    ) : (
+                      <p className="text-[14px] lg:text-[17px]">
+                        14:00 - 17:00 WITA
+                      </p>
+                    )}
                   </div>
                 </div>
                 {/*  */}
@@ -754,9 +760,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in ${
-              isOpenedList ? "" : "h-full"
-            }`}
+            className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-0 ps-lg-16 px-0 items-start justify-center text-white text-start fade-in h-full`}
           >
             <RsvpForm />
           </div>
@@ -765,7 +769,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
       {/* Content 8 */}
       <div
-        className={`flex flex-col items-center justify-start relative scroll-item scroll-item-list ${
+        className={`flex flex-col items-center justify-start relative scroll-item scroll-item-list hide-scrollbar ${
           isOpenedList ? "overflow-y-scroll" : "overflow-hidden"
         }`}
         style={{ height: coverHeight }} // Set dynamic height

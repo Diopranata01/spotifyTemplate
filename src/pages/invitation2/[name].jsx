@@ -1,13 +1,13 @@
 // pages/invitation/[name].js
-import WeddingInvitation from "@/components/WeddingInvitation";
+import WeddingInvitation2 from "@/components/Weddinginvitation2";
 import fs from "fs";
 import path from "path";
 
-export default function Invitation({ guest, isInvited }) {
+export default function Invitation2({ guest, isInvited }) {
   return (
     <div>
       {isInvited ? (
-        <WeddingInvitation />
+        <WeddingInvitation2 />
       ) : (
         <>
           <div className="flex h-screen items-center justify-center">
@@ -20,7 +20,7 @@ export default function Invitation({ guest, isInvited }) {
 }
 
 export async function getStaticPaths() {
-  const filePath = path.join(process.cwd(), "public", "guests.json");
+  const filePath = path.join(process.cwd(), "public", "guests_2.json");
   const jsonData = fs.readFileSync(filePath);
   const guests = JSON.parse(jsonData);
 
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const filePath = path.join(process.cwd(), "public", "guests.json");
+  const filePath = path.join(process.cwd(), "public", "guests_2.json");
   const jsonData = fs.readFileSync(filePath);
   const guests = JSON.parse(jsonData);
 
