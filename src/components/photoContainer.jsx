@@ -209,7 +209,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
         {/* <source src="/video/reels_1.webm" type="video/webm" /> */}
         Your browser does not support the video tag.
       </video>
-      
+
       {/* Cover Content */}
       <div
         className={`flex-col items-center justify-between relative overflow-hidden right-container-photo-config-cover duration-1000 ease-in scroll-item-cover 
@@ -633,10 +633,17 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
               <div className="w-full flex flex-col lg:gap-5">
                 <div className="flex flex-col">
                   <h1
-                    className={`text-[50px] h-[70px] md:text-base lg:text-[43px] tracking-normal mt-[-20px] mt-md-5`}
+                    className={`text-[50px] h-[54px] md:text-base lg:text-[43px] tracking-normal mt-[-20px] mt-md-5`}
                   >
                     Pemberkatan
                   </h1>
+                  <Image
+                    src="/assets/line_1.svg"
+                    alt=""
+                    height={10}
+                    width={400}
+                    className="h-[25px] rotate-[4deg]"
+                  />
                 </div>
                 <div className="flex flex-col gap-2">
                   <p
@@ -671,12 +678,19 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
 
               <div className="w-full flex flex-col lg:gap-5">
                 {/*  */}
-                <div className="flex flex-col">
+                <div className="flex flex-col items-center">
                   <h1
-                    className={`text-[50px] h-[70px] md:text-base lg:text-[43px] tracking-normal mt-2 mt-md-5`}
+                    className={`text-[50px] h-[52px] md:text-base lg:text-[43px] tracking-normal mt-2 mt-md-5`}
                   >
                     Resepsi
                   </h1>
+                  <Image
+                    src="/assets/line_2.svg"
+                    alt=""
+                    height={20}
+                    width={130}
+                    className="h-[20px] rotate-[-4deg]"
+                  />
                 </div>
                 {/*  */}
                 <div className="flex flex-col gap-2">
@@ -763,7 +777,9 @@ const PhotoContainer = ({ playstatus, togglePlayPause }) => {
           className={`relative w-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-screen flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start fade-in`}
+            className={`absolute z-20 right-0 top-0 w-full ${
+              isOpenedList ? "" : "h-screen"
+            } flex flex-col gap-4 ps-lg-16 px-0 items-start justify-start text-black text-start fade-in`}
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent background
             }}

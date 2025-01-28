@@ -34,7 +34,7 @@ const RsvpList = ({isOpenedList}) => {
     <div className="flex flex-col w-full h-full p-10 pt-6">
       <p className="text-2xl lg:text-[45px] my-4 mb-9 ps-1 text-white">RSVP List</p>
       <div className={`flex flex-col w-full ${
-        isOpenedList ? '  overflow-y-auto' : 'h-[67vh] mb-24 overflow-hidden'
+        isOpenedList ? '' : 'h-[67vh] mb-24 overflow-hidden'
       }`}>
         {rsvps.map((rsvp, index) => (
           <div
