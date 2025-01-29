@@ -10,6 +10,7 @@ import {
   orderBy,
   doc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 export default function Home() {
@@ -55,18 +56,30 @@ export default function Home() {
       try {
         const collectionRef = collection(db, "guest_list_2");
         setLoading(true); // Set loading to true when fetching starts
+
+        // Step 1: Clear existing data
+        const existingDocs = await getDocs(collectionRef);
+        const deletePromises = existingDocs.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+
+        // Step 2: Add new data
         for (const item of jsonData) {
           // Check if the 'name' field is present and not empty
-          if (item.Name && item.Name.trim() !== "") {
+          if (item.Nama && item.Nama.trim() !== "") {
             await addDoc(collectionRef, {
-              name: item.Name,
+              name: item.Nama, // Make sure to use the correct field from your data
             });
           }
         }
+
         alert("Data uploaded successfully!");
         fetchGuests(); // Refresh the guest list after upload
       } catch (error) {
         console.error("Error uploading data: ", error);
+      } finally {
+        setLoading(false); // Set loading to false when fetching ends
       }
     };
 
@@ -163,7 +176,7 @@ export default function Home() {
                         No Data Invitation Sesion 1
                       </td>
                     </tr>
-                  )  : (
+                  ) : (
                     guests.map((guest) => (
                       <tr
                         key={guest.id}
