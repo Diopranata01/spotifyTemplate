@@ -41,7 +41,6 @@ export default function Home() {
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
-
   const handleUpload = async () => {
     if (!file) return;
 
@@ -55,24 +54,35 @@ export default function Home() {
       try {
         const collectionRef = collection(db, "guest_list");
         setLoading(true); // Set loading to true when fetching starts
+
+        // Step 1: Clear existing data
+        const existingDocs = await getDocs(collectionRef);
+        const deletePromises = existingDocs.docs.map((doc) =>
+          deleteDoc(doc.ref)
+        );
+        await Promise.all(deletePromises);
+
+        // Step 2: Add new data
         for (const item of jsonData) {
           // Check if the 'name' field is present and not empty
-          if (item.Name && item.Name.trim() !== "") {
+          if (item.Nama && item.Nama.trim() !== "") {
             await addDoc(collectionRef, {
-              name: item.Name,
+              name: item.Nama, // Make sure to use the correct field from your data
             });
           }
         }
+
         alert("Data uploaded successfully!");
         fetchGuests(); // Refresh the guest list after upload
       } catch (error) {
         console.error("Error uploading data: ", error);
+      } finally {
+        setLoading(false); // Set loading to false when fetching ends
       }
     };
 
     reader.readAsArrayBuffer(file);
   };
-
   const handleEditClick = (guest) => {
     setEditGuestId(guest.id);
     setEditName(guest.name);
