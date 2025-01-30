@@ -42,7 +42,12 @@ export async function getStaticProps({ params }) {
 
   // Check if the guest is invited
   const guests = guestSnapshot.docs.map((doc) => doc.data());
-  const guest = guests.find((g) => g.name.toLowerCase() === params.name);
+
+  // Normalize the params name
+  const normalizedParamName = params.name.trim().toLowerCase();
+
+  // Find the guest with normalized names
+  const guest = guests.find((g) => g.name.trim().toLowerCase() === normalizedParamName);
   const isInvited = !!guest;
 
   return {
