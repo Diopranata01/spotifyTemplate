@@ -216,7 +216,6 @@ h3 {
   height: 20px;
   animation: spin 1s linear infinite;
   display: inline-block;
-  margin-right: 5px;
 }
 
 @keyframes spin {
