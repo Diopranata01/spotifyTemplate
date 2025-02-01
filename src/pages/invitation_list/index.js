@@ -10,6 +10,7 @@ import {
   orderBy,
   doc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 export default function Home() {
@@ -62,6 +63,7 @@ export default function Home() {
         );
         await Promise.all(deletePromises);
 
+        // console.log(deletePromises);
         // Step 2: Add new data
         for (const item of jsonData) {
           // Check if the 'name' field is present and not empty
