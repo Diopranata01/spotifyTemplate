@@ -63,21 +63,25 @@ export default function Home() {
         );
         await Promise.all(deletePromises);
 
-        // console.log(deletePromises);
         // Step 2: Add new data
-        for (const item of jsonData) {
+        const addPromises = jsonData.map(async (item) => {
           // Check if the 'name' field is present and not empty
-          if (item.Nama && item.Nama.trim() !== "") {
+          const trimmedName = item.Nama ? item.Nama.trim() : ""; // Trim whitespace
+          if (trimmedName !== "") {
             await addDoc(collectionRef, {
-              name: item.Nama, // Make sure to use the correct field from your data
+              name: trimmedName, // Store the trimmed name
             });
           }
-        }
+        });
+
+        // Wait for all add operations to complete
+        await Promise.all(addPromises);
 
         alert("Data uploaded successfully!");
         fetchGuests(); // Refresh the guest list after upload
       } catch (error) {
         console.error("Error uploading data: ", error);
+        alert("Error uploading data. Please check the console for details.");
       } finally {
         setLoading(false); // Set loading to false when fetching ends
       }
@@ -85,6 +89,7 @@ export default function Home() {
 
     reader.readAsArrayBuffer(file);
   };
+
   const handleEditClick = (guest) => {
     setEditGuestId(guest.id);
     setEditName(guest.name);
@@ -144,6 +149,7 @@ export default function Home() {
       console.error("Error adding guest: ", error);
     }
   };
+
   return (
     <div className="mx-auto w-screen h-screen p-4 flex flex-col items-center gap-5 bg-white">
       <p className="text-3xl font-bold my-4 text-black">
