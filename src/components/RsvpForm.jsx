@@ -38,6 +38,16 @@ const RsvpForm = () => {
       const currentDate = new Date().toISOString(); // Format the date as ISO string
       toUpperCaseEachWord(formName);
 
+      // Get the current pathname
+      const { pathname } = router; // Get the current pathname
+
+      let receptionPath = '';
+      if (pathname.includes('/invitation2/')) {
+        receptionPath = '/invitation2/';
+      } else if (pathname.includes('/invitation/')) {
+        receptionPath = '/invitation1/';
+      }
+      
       // Add a new document with a generated ID
       await addDoc(collection(db, "rsvp"), {
         formName,
@@ -45,6 +55,7 @@ const RsvpForm = () => {
         guestCount, // Include the number of guests
         message,
         submissionDate: currentDate, // Include the submission date
+        receptionPath, // Include the reception path
       });
 
       // Clear the form
