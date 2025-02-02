@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false, // Return 404 for any paths not returned by getStaticPaths
+    fallback: "blocking", // Allow for dynamic paths
   };
 }
 
@@ -45,9 +45,13 @@ export async function getStaticProps({ params }) {
 
   // Normalize the params name
   const normalizedParamName = params.name.trim().toLowerCase();
+  // console.log("Looking for guest:", normalizedParamName); // Debugging log
 
   // Find the guest with normalized names
-  const guest = guests.find((g) => g.name.trim().toLowerCase() === normalizedParamName);
+  const guest = guests.find(
+    (g) => g.name.trim().toLowerCase() === normalizedParamName
+  );
+  // console.log("Found guest:", guest); // Debugging log
   const isInvited = !!guest;
 
   return {
