@@ -796,9 +796,8 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
           </div>
         </div>
 
-        {!isOpenedList && (
+        {/* {!isOpenedList && (
           <div className="h-full flex flex-col justify-end mb-5">
-            {/* Load More Button */}
             <div className="relative z-30 w-full flex justify-center mt-4">
               <button
                 onClick={() => setIsOpenedList((prev) => !prev)} // Adjust this to your desired functionality
@@ -808,7 +807,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </div>
 
       {/* Content 9 */}

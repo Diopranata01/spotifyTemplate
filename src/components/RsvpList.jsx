@@ -51,7 +51,7 @@ const RsvpList = ({ isOpenedList }) => {
   }
 
   return (
-    <div className="flex flex-col w-full p-10 pt-6">
+    <div className="flex flex-col w-full p-10 pt-6 gap-4">
       <p className="text-2xl lg:text-[40px] my-4 mb-9 ps-1 text-white">
         Ucapan & Doa
       </p>
