@@ -56,15 +56,15 @@ const RsvpList = ({ isOpenedList }) => {
         Ucapan & Doa
       </p>
       <div
-        className={`flex flex-col w-full ${
-          isOpenedList ? "" : "h-[67vh] mb-24 overflow-hidden"
+        className={`flex flex-col w-full border border-white rounded-md h-[67vh] hide-scrollbar mb-24 ${
+          isOpenedList ? "overflow-y-auto" : "overflow-hidden"
         }`}
       >
         {rsvps.map((rsvp, index) => (
           <div
             key={rsvp.id}
             className={`komentar-item show w-full flex p-3 ${
-              index % 2 === 0 ? "justify-start ps-0" : "justify-end pe-0"
+              index % 2 === 0 ? "justify-start ps-2" : "justify-end pe-2"
             }`}
             id={`komentar-${rsvp.id}`}
           >

@@ -62,6 +62,24 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
     }
   };
 
+  const handleNextPageClick = () => {
+    // Find the index of the current section (which is visible)
+    const currentIndex = visibilityStates.findIndex((isVisible) => isVisible);
+
+    // Check if there is a next section
+    if (currentIndex !== -1 && currentIndex + 1 < visibilityStates.length) {
+      // Scroll to the next section (currentIndex + 1)
+      const nextSectionIndex = currentIndex + 1;
+      const nextSectionRef = contentRefs.current[nextSectionIndex];
+
+      if (nextSectionRef) {
+        nextSectionRef.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      console.log("No more sections to navigate to.");
+    }
+  };
+
   // Function to open Google Maps
   const navigateToLink1 = () => {
     window.open("https://maps.app.goo.gl/kB5ShMszJ8nuDxQw5", "_blank");
@@ -266,7 +284,7 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
                     <p
                       className={`text-lg md:text-base lg:text-[25px] text-center tracking-normal mb-2 lg:mb-5 mr-lg-[6.8rem]`}
                     >
-                      {name ? toUpperCaseEachWord(name) : ''}
+                      {name ? toUpperCaseEachWord(name) : ""}
                     </p>
                   </div>
                 </div>
@@ -796,18 +814,29 @@ const PhotoContainer = ({ playstatus, togglePlayPause, invitation }) => {
           </div>
         </div>
 
-        {/* {!isOpenedList && (
-          <div className="h-full flex flex-col justify-end mb-5">
+        {!isOpenedList ? (
+          <div className="h-full flex flex-col justify-end mb-8">
             <div className="relative z-30 w-full flex justify-center mt-4">
               <button
                 onClick={() => setIsOpenedList((prev) => !prev)} // Adjust this to your desired functionality
                 className="px-4 py-2 rounded-3xl font-italiana bg-white text-black hover:bg-gray-600 hover:text-white transition"
               >
-                Load More
+                Load More Wish & Prayer
               </button>
             </div>
           </div>
-        )} */}
+        ) : (
+          <div className="h-full flex flex-col justify-end mb-8">
+            <div className="relative z-30 w-full flex justify-center mt-4">
+              <button
+                onClick={handleNextPageClick} // Adjust this to your desired functionality
+                className="px-4 py-2 rounded-3xl font-italiana bg-white text-black hover:bg-gray-600 hover:text-white transition"
+              >
+                Next Page
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Content 9 */}
