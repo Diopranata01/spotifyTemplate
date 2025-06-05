@@ -5,56 +5,55 @@ import { useRouter } from "next/router";
 
 const RsvpForm2 = () => {
   const router = useRouter();
-  const { name } = router.query; // Assuming your dynamic route is [slug]
+  const { name } = router.query;
   const [formName, setFormName] = useState("");
   const [attendance, setAttendance] = useState("");
   const [submissionDate, setSubmissionDate] = useState("");
-  const [hasBeenSended, setHasBeenSended] = useState(false);
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error message state
-  const [success, setSuccess] = useState(false); // Success message state
-  const [canAttend, setCanAttend] = useState(""); // New state for attendance confirmation
-  const [guestCount, setGuestCount] = useState(1); // State for number of guests
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [canAttend, setCanAttend] = useState("");
+  const [guestCount, setGuestCount] = useState(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Reset error and success messages
     setError("");
     setSuccess(false);
 
-    // Validate inputs
-    if (!formName || !canAttend) {
+    if (
+      !formName ||
+      !canAttend ||
+      !message ||
+      !attendance ||
+      attendance === ""
+    ) {
       setError("Please fill in all required fields.");
       return;
     }
 
-    setLoading(true); // Start loading
-    setHasBeenSended(true);
+    setLoading(true);
 
     try {
       // Get the current date and time
-      const currentDate = new Date().toISOString(); // Format the date as ISO string
-
-      // Get the current pathname
-      const { pathname } = router; // Get the current pathname
+      const currentDate = new Date().toISOString();
 
       let receptionPath = "";
-      if (pathname.includes("/invitation2/")) {
-        receptionPath = "/invitation2/";
-      } else if (pathname.includes("/invitation/")) {
-        receptionPath = "/invitation1/";
-      }
+      // if (pathname.includes("/invitation2/")) {
+      //   receptionPath = "/invitation2/";
+      // } else if (pathname.includes("/invitation/")) {
+      //   receptionPath = "/invitation1/";
+      // }
 
       // Add a new document with a generated ID
-      await addDoc(collection(db, "rsvp"), {
-        formName,
+      await addDoc(collection(db, "rsvp_2"), {
         attendance,
-        guestCount, // Include the number of guests
+        formName,
+        guestCount,
         message,
-        submissionDate: currentDate, // Include the submission date
-        receptionPath, // Include the reception path
+        receptionPath,
+        submissionDate: currentDate,
       });
 
       // Clear the form
@@ -62,17 +61,16 @@ const RsvpForm2 = () => {
       setCanAttend("");
       setAttendance("");
       setMessage("");
-      setGuestCount(1); // Reset guest count
+      setGuestCount(1);
 
-      // Set the submission date to display later
       setSubmissionDate(currentDate);
 
-      setSuccess(true); // Set success message
+      setSuccess(true);
     } catch (error) {
       console.error("Error adding document: ", error);
       setError("Error submitting RSVP. Please try again.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -83,7 +81,6 @@ const RsvpForm2 = () => {
       .join(" ");
   };
 
-  // Effect to set formName if name exists in the query
   useEffect(() => {
     if (name) {
       setFormName(toUpperCaseEachWord(name));
@@ -111,11 +108,11 @@ const RsvpForm2 = () => {
         <h1 className="text-2xl md:text-[32px] lg:text-[32px] mb-2 md:mb-5 lg:mb-5">
           RSVP Form
         </h1>
-        <p className="mb-4 text-sm sm:text-base md:text-xl lg:text-[18px] text">
+        <p className="mb-4 text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] text">
           Diharapkan kepada para tamu undangan untuk mengisi form kehadiran
           dibawah ini
         </p>
-        <p className="mb-3 text-sm sm:text-base md:text-xl lg:text-[18px] lg:mb-5">
+        <p className="mb-3 text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] lg:mb-5">
           *undangan berlaku untuk 2 orang*
         </p>
 
@@ -139,7 +136,7 @@ const RsvpForm2 = () => {
         <form onSubmit={handleSubmit} className="w-full max-w-lg">
           <div className="mb-4">
             <p
-              className="block text-sm sm:text-base md:text-xl lg:text-[18px] mb-2"
+              className="block text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-2"
               htmlFor="name"
             >
               Nama Anda:
@@ -151,7 +148,7 @@ const RsvpForm2 = () => {
               required
               value={formName}
               onChange={(e) => setFormName(e.target.value)}
-              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[18px]"
+              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px]"
               style={{ backgroundColor: "rgba(58, 58, 48, 0.69)" }}
               placeholder="Masukkan nama Anda"
             />
@@ -177,9 +174,10 @@ const RsvpForm2 = () => {
                   setGuestCount(0); // Reset guest count if not attending
                 } else {
                   setCanAttend("yes");
+                  setGuestCount(1);
                 }
               }}
-              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[18px]"
+              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px]"
               style={{ backgroundColor: "rgba(58, 58, 48, 0.69)" }}
             >
               <option value="">Pilih opsi</option>
@@ -194,7 +192,7 @@ const RsvpForm2 = () => {
             <>
               <div className="mb-4">
                 <p
-                  className="block text-sm sm:text-base md:text-xl lg:text-[18px] mb-2"
+                  className="block text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-2"
                   htmlFor="guestCount"
                 >
                   Jumlah Tamu yang Hadir:
@@ -240,7 +238,7 @@ const RsvpForm2 = () => {
 
           <div className="mb-4 margin-form">
             <p
-              className="block text-sm sm:text-base md:text-xl lg:text-[18px] mb-2"
+              className="block text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-2"
               htmlFor="message"
             >
               Doa & Ucapan:
@@ -252,7 +250,7 @@ const RsvpForm2 = () => {
               required
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[18px]"
+              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px]"
               style={{ backgroundColor: "rgba(58, 58, 48, 0.69)" }}
               placeholder="Masukkan doa dan ucapan Anda"
             />
@@ -262,7 +260,7 @@ const RsvpForm2 = () => {
             type="submit"
             className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
           >
-            <p className="tracking-[1.5px] text-sm sm:text-base md:text-xl lg:text-[16px]">
+            <p className="tracking-[1.5px] text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg">
               {loading ? (
                 <>
                   <span className="loader"></span> {/* Spinner */}

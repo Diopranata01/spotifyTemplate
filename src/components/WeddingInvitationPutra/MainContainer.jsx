@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import DressCodeColorGuide from "../dresscodeColorGuide";
 import ImageGallery from "../imageGallery";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -8,6 +7,8 @@ import RsvpForm2 from "../RsvpForm2";
 import RsvpList2 from "../RsvpList2";
 import DressCodeColorGuide2 from "../dresscodeColorGuide2";
 import BankAccountCard from "../bankAccountCard";
+import { db } from "../../../lib/firebase";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const MainContainer = ({
   playstatus,
@@ -23,7 +24,10 @@ const MainContainer = ({
   const lastScrollY = useRef(0); // Track last scroll position
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const router = useRouter();
+  const [rsvps, setRsvps] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
   const { name } = router.query; // Assuming your dynamic route is [slug]
+  
 
   const photos = [
     "/img/final_image/slide_photo_1.jpg",
@@ -50,6 +54,26 @@ const MainContainer = ({
     "/img/gallery/gallery_(14).jpg",
     "/img/gallery/gallery_(15).jpg",
   ];
+  const journey = [
+    {
+      id: 1,
+      date: "2016",
+      description:
+        "Pertama kali dipertemukan melalui kegiatan KKN dari kampus Universitas Udayana, Bali Saat itu Putra adalah seorang mahasiswa jurusan Kimia dan Maydi merupakan mahasiswi jurusan Ilmu Politik.",
+    },
+    {
+      id: 2,
+      date: "2020",
+      description:
+        "Dalam keadaan yang lebih baik setelah memperoleh gelar Sarjana, keduanya memutuskan untuk berkenalan kembali dan memulai untuk memadu kasih agar saling mengenal lebih dalam.",
+    },
+    {
+      id: 3,
+      date: "2024",
+      description:
+        "Memperoleh keputusan yang bulat serta dukungan dari kedua orang tua, Putra dan Maydi memutuskan untuk melangkah ke jenjang berikutnya.",
+    },
+  ];
 
   const handleNextPageClick = () => {
     // Find the index of the current section (which is visible)
@@ -66,6 +90,29 @@ const MainContainer = ({
       }
     } else {
       console.log("No more sections to navigate to.");
+    }
+  };
+
+  const fetchRsvps = async () => {
+    setLoading(true); // Start loading
+    try {
+      const rsvpCollection = collection(db, "rsvp_2");
+      const rsvpQuery = query(
+        rsvpCollection,
+        orderBy("submissionDate", "desc")
+      ); // Order by submissionDate descending
+      const rsvpSnapshot = await getDocs(rsvpQuery);
+      const rsvpList = rsvpSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setRsvps(rsvpList);
+    } catch (error) {
+      console.error("Error fetching RSVPs: ", error);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000); // Match this duration with the CSS transition duration
     }
   };
 
@@ -90,17 +137,6 @@ const MainContainer = ({
       "https://www.instagram.com/novellaasri?igsh=MXZqYjFnODUwZmY2Zg==",
       "_blank"
     );
-  };
-
-  const scrollToSecondContainer = () => {
-    const secondContainer = document.querySelector(
-      ".scroll-item:nth-of-type(2)"
-    );
-    if (secondContainer) {
-      secondContainer.scrollIntoView({ behavior: "smooth" });
-    } else {
-      console.error("Second container not found");
-    }
   };
 
   const copyToClipboard = (text) => {
@@ -188,6 +224,10 @@ const MainContainer = ({
     updateHeight();
 
     return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
+  useEffect(() => {
+    fetchRsvps();
   }, []);
 
   return (
@@ -287,7 +327,7 @@ const MainContainer = ({
               MARK 10:6-9
             </h1>
           </div>
-          <p className="text-[14px] md:text-base lg:text-[15px] tracking-normal text-start">
+          <p className="text-[14px] md:text-[20px] lg:text-[20px] xl:text-[16px] tracking-normal text-start">
             &quot;From the beginning of creation, God made them male and female.
             For this reason, a man shall leave his father and mother and be
             united to his wife, and the two shall become one flesh. As a result,
@@ -305,7 +345,7 @@ const MainContainer = ({
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[2] = el)}
-          className={`absolute z-20 bottom-0 right-0 w-full h-full flex flex-col px-11 sm:px-12 lg:px-16 pb-10 md:pb-12 lg:pb-16 gap-2 md:gap-4 text-white text-start justify-end ${
+          className={`absolute z-20 bottom-0 right-0 w-full h-full flex flex-col px-11 sm:px-12 lg:px-10 pb-10 md:pb-8 gap-2 md:gap-4 text-white text-start justify-end ${
             visibilityStates[2] ? "fade-in" : "fade-out"
           }`}
         >
@@ -315,14 +355,14 @@ const MainContainer = ({
           </p>
 
           {/* Name */}
-          <h1 className="text-[32px] sm:text-[40px] md:text-[46px] lg:text-[38px] xl:text-[40px] leading-snug">
-            Putra Sihombing
+          <h1 className="text-[28px] sm:text-[28px] md:text-[30px] lg:text-[30px] xl:text-[32px] leading-snug">
+            Putra Saurdot Pangihutan Sihombing
           </h1>
 
           {/* Line + Label */}
           <div className="flex items-center gap-4 mt-1">
             <h4 className="text-sm sm:text-base md:text-xl lg:text-[18px] italic whitespace-nowrap">
-              Putra ke- dari Pasangan
+              Putra ke-1 dari Pasangan
             </h4>
             <div className="flex-grow border-t border-white opacity-60 ms-3" />
           </div>
@@ -330,10 +370,10 @@ const MainContainer = ({
           {/* Parent Names */}
           <div className="flex flex-col gap-1 mt-1 text-justify sm:pr-6">
             <p className="text-sm sm:text-base md:text-xl lg:text-[18px]">
-              Hendra Wijaya Sihombing, SE.
+              Nelson Sihombing
             </p>
             <p className="text-sm sm:text-base md:text-xl lg:text-[18px]">
-              Natania Dewi Sihombing, SE.
+              Tiopan Simbolon
             </p>
           </div>
 
@@ -341,7 +381,7 @@ const MainContainer = ({
           <div className="w-1/5">
             <button
               onClick={navigateToLinkInstagram1}
-              className="text-sm sm:text-base md:text-md lg:text-lg font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
+              className="text-sm sm:text-base md:text-md lg:text-md xl:text-md 2xl:text-lg font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
             >
               @putra_sihombing
             </button>
@@ -378,7 +418,7 @@ const MainContainer = ({
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[3] = el)}
-          className={`absolute z-20 bottom-0 right-0 w-full h-full flex flex-col px-11 sm:px-12 lg:px-16 pb-10 md:pb-12 lg:pb-16 gap-2 md:gap-4 text-white text-start justify-end ${
+          className={`absolute z-20 bottom-0 right-0 w-full h-full flex flex-col px-11 sm:px-12 lg:px-10 pb-10 md:pb-8 gap-2 md:gap-4 text-white text-start justify-end ${
             visibilityStates[3] ? "fade-in" : "fade-out"
           }`}
         >
@@ -388,14 +428,14 @@ const MainContainer = ({
           </p>
 
           {/* Name */}
-          <h1 className="text-[32px] sm:text-[40px] md:text-[46px] lg:text-[38px] xl:text-[40px] leading-snug">
-            Maydi
+          <h1 className="text-[28px] sm:text-[28px] md:text-[30px] lg:text-[30px] xl:text-[32px] leading-snug">
+            Maydi Zefanya Sirait
           </h1>
 
           {/* Line + Label */}
           <div className="flex items-center gap-4 mt-1">
             <h4 className="text-sm sm:text-base md:text-xl lg:text-[18px] italic whitespace-nowrap">
-              Putri ke- dari Pasangan
+              Putri tunggal dari Pasangan
             </h4>
             <div className="flex-grow border-t border-white opacity-60 ms-3" />
           </div>
@@ -403,10 +443,10 @@ const MainContainer = ({
           {/* Parent Names */}
           <div className="flex flex-col gap-1 mt-1 text-justify sm:pr-6">
             <p className="text-sm sm:text-base md:text-xl lg:text-[18px]">
-              Hendra Wijaya Sihombing, SE.
+              Manaon Damianus Sirait
             </p>
             <p className="text-sm sm:text-base md:text-xl lg:text-[18px]">
-              Natania Dewi Sihombing, SE.
+              Erna Margaretha
             </p>
           </div>
 
@@ -414,7 +454,7 @@ const MainContainer = ({
           <div className="w-1/5">
             <button
               onClick={navigateToLinkInstagram1}
-              className="text-sm sm:text-base md:text-md lg:text-lg font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
+              className="text-sm sm:text-base md:text-md lg:text-md xl:text-md 2xl:text-lg font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
             >
               @maydi
             </button>
@@ -454,22 +494,18 @@ const MainContainer = ({
           }`}
         >
           {/* Title */}
-          <h1 className="text-[28px] sm:text-[28px] md:text-[46px] lg:text-[38px] xl:text-[40px] leading-snug">
+          <h1 className="text-[24px] sm:text-[24px] md:text-[35px] lg:text-[30px] xl:text-[32px] 2xl:text-[28px] leading-snug">
             THE JOURNEY OF <br /> TWO SOULS IN LOVE
           </h1>
 
           {/* Journey Paragraph Blocks */}
-          {[1, 2, 3].map((_, idx) => (
-            <div key={idx} className="flex flex-col w-full gap-1">
-              <p className="text-base sm:text-base md:text-xl lg:text-[16px] mb-0 tracking-normal">
-                Agustus 2020
+          {journey.map((item, idx) => (
+            <div key={idx} className="flex flex-col w-full gap-1 md:gap-2">
+              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[16px] mb-0 tracking-normal">
+                {item.date}
               </p>
-              <p className="text-sm sm:text-base md:text-xl lg:text-[16px] tracking-normal text-justify">
-                From the beginning of creation, God made them male and female.
-                For this reason, a man shall leave his father and mother and be
-                united to his wife, and the two shall become one flesh. As a
-                result, they are no longer two, but one. Therefore, what God has
-                joined together, let no one separate.
+              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[16px] tracking-normal text-justify">
+                {item.description}
               </p>
             </div>
           ))}
@@ -507,7 +543,7 @@ const MainContainer = ({
             }`}
             style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
           >
-            <div className="flex flex-col items-center gap-6 sm:gap-8 lg:gap-12 max-w-screen-md text-center">
+            <div className="flex flex-col items-center gap-6 sm:gap-8 lg:gap-12 xl:gap-5 2xl:lg:gap-12 max-w-screen-md text-center">
               {/* Top Section */}
               <div className="w-full flex flex-col items-center gap-1 sm:gap-2 md:gap-4 lg:gap-2">
                 <Image
@@ -517,39 +553,39 @@ const MainContainer = ({
                   className="w-10 h-auto scale-x-125 invert"
                   alt="logo"
                 />
-                <h1 className="text-[13px] sm:text-lg md:text-2xl lg:text-xl font-joan my-3 mb-1 md:mb-0 lg:my-1 lg:mb-0">
+                <h1 className="text-[13px] sm:text-lg md:text-lg lg:text-md xl:text-sm 2xl:text-md font-joan my-3 mb-1 md:mb-0 lg:my-1 lg:mb-0">
                   SAVE OUR DATE
                 </h1>
-                <h1 className="text-[22px] sm:text-xl md:text-[38px] lg:text-2xl">
+                <h1 className="text-[22px] sm:text-xl md:text-[38px] lg:text-2xl xl:text-xl 2xl:text-2xl">
                   SABTU
                 </h1>
-                <h1 className="text-[22px] sm:text-xl md:text-[38px] lg:text-2xl">
+                <h1 className="text-[22px] sm:text-xl md:text-[38px] lg:text-2xl xl:text-xl 2xl:text-2xl">
                   21 JUNI 2025
                 </h1>
               </div>
 
               {/* Ceremony Section */}
-              <div className="w-full flex flex-col gap-1 md:gap-3">
-                <div className="flex flex-col gap-1 md:gap-3">
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl">
+              <div className="w-full flex flex-col gap-1 md:gap-3 xl:gap-3">
+                <div className="flex flex-col gap-1 md:gap-3 xl:gap-2 2xl:gap-3">
+                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
                     Pemberkatan
                   </h1>
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl">
+                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
                     12:00 - 13:00 WIB
                   </h1>
                 </div>
-                <p className="text-sm sm:text-base md:text-xl lg:text-[18px] whitespace-pre-line">
-                  Gereja Katedral Denpasar
-                  {"\n"}Jl. Tangkuban Perahu, no 12 Denpasar,
-                  {"\n"}Bali
+                <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
+                  Gereja Katolik Paroki Keluarga Kudus Cibinong
+                  {"\n"}Jl. Raya Tapos No.31, Ciriung, Kec. Cibinong,
+                  {"\n"}Bogor, Jawa Barat
                 </p>
 
                 <div className="flex w-full justify-center mt-2 md:mt-0">
                   <button
                     // onClick={toggleScrollable}
-                    className="lg:h-[2.8rem] px-3 md:px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.8rem] px-3 md:px-4 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
                   >
-                    <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg tracking-normal">
+                    <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-md xl:text-sm 2xl:text-lg tracking-normal">
                       Google Map
                     </p>
                   </button>
@@ -557,27 +593,28 @@ const MainContainer = ({
               </div>
 
               {/* Reception Section */}
-              <div className="w-full flex flex-col gap-1 md:gap-3 mt-4">
-                <div className="flex flex-col gap-1 md:gap-3">
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl">
+              <div className="w-full flex flex-col gap-1 md:gap-3 xl:gap-3">
+                <div className="flex flex-col gap-1 md:gap-3 xl:gap-2 2xl:gap-3">
+                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
                     Resepsi Pernikahan
                   </h1>
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl">
+                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
                     12:00 - 13:00 WIB
                   </h1>
                 </div>
-                <p className="text-sm sm:text-base md:text-xl lg:text-[18px] whitespace-pre-line">
-                  Gereja Katedral Denpasar
-                  {"\n"}Jl. Tangkuban Perahu, no 12 Denpasar,
-                  {"\n"}Bali
+                <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
+                  Balai Pertemuan Umum Sahala Martua
+                  {"\n"}Jl. Raya Kemang No. 112-115, RT.025 / RW.008,
+                  {"\n"}Semplak, Parakan Jaya, Kec. Kemang,
+                  {"\n"}Kabupaten Bogor, Jawa Barat
                 </p>
 
                 <div className="flex w-full justify-center mt-2 md:mt-0">
                   <button
                     // onClick={toggleScrollable}
-                    className="lg:h-[2.8rem] px-3 md:px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.8rem] px-3 md:px-4 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
                   >
-                    <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg tracking-normal">
+                    <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg tracking-normal">
                       Google Map
                     </p>
                   </button>
@@ -610,12 +647,12 @@ const MainContainer = ({
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[6] = el)}
-          className={`relative z-20 px-5 py-3 flex flex-col md:bottom-[70%] lg:bottom-14 gap-0 items-center justify-start text-[#fff] text-center marker: ${
+          className={`relative z-20 px-5 py-3 flex flex-col md:bottom-[70%] lg:bottom-14 xl:bottom-7 2xl:bottom-14 gap-0 items-center justify-start text-[#fff] text-center marker: ${
             visibilityStates[6] ? "fade-in" : "fade-out"
           }`}
         >
           <div className="flex w-full py-3 justify-center gap-5">
-            <h1 className="text-2xl md:text-[32px] lg:text-[32px] md:text-[#3A3A30] lg:text-white">
+            <h1 className="text-2xl md:text-[32px] lg:text-[28px] xl:text-[28px] 2xl:text-[32px] md:text-[#3A3A30] lg:text-white">
               MENUJU HARI SPESIAL
             </h1>
           </div>
@@ -628,7 +665,7 @@ const MainContainer = ({
               // onClick={toggleScrollable}
               className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
             >
-              <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg tracking-normal">
+              <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg tracking-normal">
                 Catat Tanggal
               </p>
             </button>
@@ -720,32 +757,48 @@ const MainContainer = ({
               visibilityStates[8] ? "fade-in" : "fade-out"
             }flex flex-col ps-lg-16 px-0 items-start justify-start text-white text-start fade-in`}
           >
-            <RsvpList2 isOpenedList={isOpenedList} />
+            <RsvpList2
+              isOpenedList={isOpenedList}
+              fetchRsvps={fetchRsvps}
+              rsvps={rsvps}
+              loading={loading}
+            />
           </div>
 
-          {!isOpenedList ? (
-            <div className="h-full flex flex-col justify-end mb-14">
-              <div className="relative z-30 w-full flex justify-center mt-4">
-                <button
-                  onClick={() => setIsOpenedList((prev) => !prev)}
-                  className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
-                >
-                  <p className="tracking-normal">Muat Lebih Banyak</p>
-                </button>
-              </div>
+          <div
+            className={`h-full flex flex-col justify-end ${
+              !isOpenedList ? " mb-14" : "mb-8"
+            }`}
+          >
+            <div className="relative z-30 w-full flex justify-center items-center gap-4 mt-4">
+              <button
+                onClick={
+                  !isOpenedList
+                    ? () => setIsOpenedList((prev) => !prev)
+                    : handleNextPageClick
+                }
+                className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+              >
+                <p className="tracking-normal">
+                  {!isOpenedList ? "Muat Lebih Banyak" : "Halaman Selanjutnya"}
+                </p>
+              </button>
+
+              <button
+                onClick={fetchRsvps}
+                className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#5A5A50] text-white hover:bg-[#2e2e25] transition"
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="flex justify-center items-center h-full">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  </div>
+                ) : (
+                  <p className="tracking-normal">Refresh</p>
+                )}
+              </button>
             </div>
-          ) : (
-            <div className="h-full flex flex-col justify-end mb-8">
-              <div className="relative z-30 w-full flex justify-center mt-4">
-                <button
-                  onClick={handleNextPageClick}
-                  className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
-                >
-                  <p className="tracking-normal">Halaman Selanjutnya</p>
-                </button>
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -762,10 +815,10 @@ const MainContainer = ({
           }`}
         >
           <div className="flex flex-col w-full py-3 justify-center gap-5 md:gap-7">
-            <h1 className="text-[28px] md:text-3xl lg:text-[30px]">
+            <h1 className="text-[28px] md:text-3xl lg:text-[30px] xl:text-[32px]">
               DRESS CODE
             </h1>
-            <p className="text-sm sm:text-base md:text-xl lg:text-[18px] text-center tracking-wider">
+            <p className="text-sm sm:text-base md:text-xl lg:text-[18px] xl:text-[15px] 2xl:text-[18px] text-center tracking-wider">
               Kami mengundang para tamu untuk berkenan mengenakan warna-warna
               berikut pada hari istimewa kami.
             </p>
@@ -810,7 +863,7 @@ const MainContainer = ({
               <h1 className="text-[28px] md:text-4xl lg:text-[32px]">
                 Hadiah Pernikahan
               </h1>
-              <p className="text-sm sm:text-base md:text-xl lg:text-[18px] leading-relaxed tracking-normal">
+              <p className="text-sm sm:text-base md:text-xl lg:text-[18px] xl:text-[15px] 2xl:text-[18px]leading-relaxed tracking-normal">
                 Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
                 tanda cinta kepada kedua mempelai, Anda dapat memberikan melalui
                 nomor rekening berikut:
@@ -818,15 +871,15 @@ const MainContainer = ({
             </div>
 
             <BankAccountCard
-              name="Putra Sihombing"
+              name="Putra S P Sihombing"
               bankName="Bank BCA"
-              accountNumber="000867671"
+              accountNumber="7720429831"
               copyToClipboard={copyToClipboard}
             />
             <BankAccountCard
-              name="Sherly Siahaan"
+              name="Maydi Zefanya Sirait"
               bankName="Bank BCA"
-              accountNumber="000867671"
+              accountNumber="6485284129"
               copyToClipboard={copyToClipboard}
             />
           </div>
@@ -868,7 +921,7 @@ const MainContainer = ({
             <h1 className="text-[20px] md:text-[40px] md:text-5xl lg:text-[32px]">
               PERAYAAN PRE-WEDDING KAMI
             </h1>
-            <p className="text-[14px] md:text-base lg:[16px] tracking-widest">
+            <p className="text-[14px] md:text-base lg:[16px] xl:text-[15px] 2xl:text-[16px] tracking-widest">
               PUTRA & MAYDI
             </p>
           </div>
