@@ -10,14 +10,11 @@ import DressCodeColorGuide2 from "../dresscodeColorGuide2";
 import BankAccountCard from "../bankAccountCard";
 
 const MainContainer = ({
-  playstatus,
-  togglePlayPause,
   isScrollable,
-  setIsScrollable,
+  coverHeight
 }) => {
   const [isOpenedList, setIsOpenedList] = useState(false);
   const [visibilityStates, setVisibilityStates] = useState([]);
-  const [coverHeight, setCoverHeight] = useState("100vh");
   const [copySuccess, setCopySuccess] = useState("");
   const contentRefs = useRef([]);
   const lastScrollY = useRef(0); // Track last scroll position
@@ -170,24 +167,6 @@ const MainContainer = ({
     return () => {
       window.removeEventListener("scroll", handleScroll); // Cleanup event listener
     };
-  }, []);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      const viewportHeight = window.innerHeight;
-
-      const headerHeight = document.querySelector("header")?.offsetHeight || 0;
-      const footerHeight = document.querySelector("footer")?.offsetHeight || 0;
-
-      const availableHeight = viewportHeight - headerHeight - footerHeight;
-
-      setCoverHeight(`${availableHeight}px`);
-    };
-
-    window.addEventListener("resize", updateHeight);
-    updateHeight();
-
-    return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
   return (
