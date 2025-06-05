@@ -12,13 +12,14 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const MainContainer = ({
   isScrollable,
-  coverHeight
+  coverHeight,
+  setCoverHeight
 }) => {
   const [isOpenedList, setIsOpenedList] = useState(false);
   const [visibilityStates, setVisibilityStates] = useState([]);
   const [copySuccess, setCopySuccess] = useState("");
   const contentRefs = useRef([]);
-  const lastScrollY = useRef(0); // Track last scroll position
+  const lastScrollY = useRef(0);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const router = useRouter();
   const [rsvps, setRsvps] = useState([]);

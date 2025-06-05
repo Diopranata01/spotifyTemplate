@@ -247,6 +247,7 @@ export default function WeddingInvitationPutra() {
       <MainContainer
         isScrollable={isScrollable}
         coverHeight={coverHeight}
+        setCoverHeight={setCoverHeight}
       />
 
       {/* Sound Component */}
