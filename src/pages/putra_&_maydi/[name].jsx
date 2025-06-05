@@ -2,12 +2,13 @@
 import WeddingInvitation from "@/components/WeddingInvitation";
 import RedirectPageNotFound from "@/components/RedirectPageNotFound";
 import { findGuestByName, getAllGuests } from "../../../lib/api/guest";
+import WeddingInvitationPutra from "@/components/WeddingInvitationPutra";
 
 export default function Invitation({ guest, isInvited }) {
   return (
     <div>
       {isInvited ? (
-        <WeddingInvitation />
+        <WeddingInvitationPutra />
       ) : (
         <>
           <RedirectPageNotFound />
@@ -19,7 +20,7 @@ export default function Invitation({ guest, isInvited }) {
 
 
 export async function getStaticPaths() {
-  const guests = await getAllGuests();
+  const guests = await getAllGuests("putra");
 
   const paths = guests.map((guest) => ({
     params: { name: guest.name.toLowerCase() },
@@ -32,7 +33,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const guest = await findGuestByName(params.name);
+  const guest = await findGuestByName(params.name, "putra");
   const isInvited = !!guest;
 
   return {
