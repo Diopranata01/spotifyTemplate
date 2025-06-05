@@ -12,9 +12,7 @@ export default function WeddingInvitationPutra() {
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
   const coverHeight = "100vh";
-  const basePath = (
-    process.env.NEXT_PUBLIC_IMAGE_PUTRA_BASE_PATH || "img/"
-  ).replace(/\/+$/, "");
+  const basePath = "/img_putra";
 
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
