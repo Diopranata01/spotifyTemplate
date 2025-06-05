@@ -57,22 +57,3 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-
-
-// export async function getStaticProps({ params }) {
-//   const guestCollection = collection(db, "guest_list_2");
-//   const guestQuery = query(guestCollection);
-//   const guestSnapshot = await getDocs(guestQuery);
-
-//   // Check if the guest is invited
-//   const guests = guestSnapshot.docs.map((doc) => doc.data());
-//   const guest = guests.find((g) => g.name.toLowerCase() === params.name);
-//   const isInvited = !!guest;
-
-//   return {
-//     props: {
-//       guest: isInvited ? guest : null,
-//       isInvited,
-//     },
-//   };
-// }

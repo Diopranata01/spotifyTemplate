@@ -7,6 +7,8 @@
   --foreground: #171717;
   --font-geist-sans: "Geist Sans", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
+  --h1-font: "Luxurious Script", cursive;
+  --p-font: "Lora", cursive;
 }
 
 @font-face {
@@ -48,6 +50,26 @@
   font-weight: normal; /* Adjust as needed */
 }
 
+@font-face {
+  font-family: "Geraldine";
+  src: url("../../public/fonts/invitation_putra/Geraldine\ -\ DEMO\ Ver.\ Regular.ttf") format("truetype");
+  font-weight: normal; /* Adjust as needed */
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('../../public/fonts/invitation_putra/InstrumentSans-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Joan';
+  src: url('../../public/fonts/invitation_putra/Joan-Regular.ttf') format('truetype-variations');
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -73,16 +95,16 @@ body {
   overflow: hidden; /* Prevent scrolling within the container */
 }
 
+/* Fonts */
 h4,
 h5,
 h6,
 p {
-  /* font-family: "Luxurious Script"; */
-  font-family: "Lora";
+  font-family: var(--p-font);
 }
 
 h1 {
-  font-family: "Luxurious Script";
+  font-family: var(--h1-font);
 }
 
 h2,
@@ -101,6 +123,22 @@ h3 {
 .font-italiana {
   font-family: "Italiana";
 }
+
+.font-roboto {
+  font-family: "Roboto";
+}
+
+.font-joan {
+  font-family: "Joan";
+}
+
+/* For a specific page */
+.page-other {
+  --h1-font: "Geraldine", serif;
+  --p-font: "Instrument Sans", serif;
+}
+
+/*  */
 
 .fade-in {
   opacity: 1;
