@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion"; // Import motion from framer-motion
-import Sound from "react-sound"; // Import Sound from react-sound
 import { getImageUrl } from "../../../lib/api/guest";
 import Box from "@mui/material/Box";
 import CircularProgressWithLabel from "../loader/CircularProgressWithLabel";
@@ -10,7 +8,6 @@ export default function WeddingInvitationPutra() {
   const [isScrollable, setIsScrollable] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [bgPosition, setBgPosition] = useState("center");
-  const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
   const coverHeight = "100vh";
   const basePath = (
     process.env.NEXT_PUBLIC_IMAGE_PUTRA_BASE_PATH || "img/"
@@ -28,11 +25,6 @@ export default function WeddingInvitationPutra() {
       setTimeout(() => {
         setIsVisible(false);
       }, 1000); // Match this duration with the CSS transition duration
-    }
-
-    // Check play status and play if not playing
-    if (playStatus !== "PLAYING") {
-      togglePlayPause(); // Start playing the audio
     }
   };
 
@@ -92,11 +84,6 @@ export default function WeddingInvitationPutra() {
     window.addEventListener("resize", updateBgPos);
     return () => window.removeEventListener("resize", updateBgPos);
   }, []);
-
-  // Function to toggle play/pause
-  const togglePlayPause = () => {
-    setPlayStatus(Sound.status.PLAYING);
-  };
 
   return (
     <div className="fixed h-screen w-full flex page-other">
@@ -231,22 +218,8 @@ export default function WeddingInvitationPutra() {
 
       {/* 1/3 Container - Main Content*/}
       <MainContainer
-        playStatus={playStatus}
-        togglePlayPause={togglePlayPause}
         isScrollable={isScrollable}
         setIsScrollable={setIsScrollable}
-      />
-
-      {/* Sound Component */}
-      <Sound
-        url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
-        playStatus={playStatus}
-        onFinishedPlaying={() => {
-          setPlayStatus(Sound.status.STOPPED); // Stop the current playback
-          setTimeout(() => {
-            setPlayStatus(Sound.status.PLAYING); // Start playing again after a short delay
-          }, 100); // Optional delay to ensure smooth looping
-        }}
       />
     </div>
   );
