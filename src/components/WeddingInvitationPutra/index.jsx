@@ -22,15 +22,13 @@ export default function WeddingInvitationPutra() {
     setIsScrollable((prev) => !prev);
 
     if (!isScrollable) {
-      // Set a timeout to hide the cover page after the scroll duration
       setTimeout(() => {
         setIsVisible(false);
-      }, 1000); // Match this duration with the CSS transition duration
+      }, 1000);
     }
 
-    // Check play status and play if not playing
     if (playStatus !== "PLAYING") {
-      togglePlayPause(); // Start playing the audio
+      togglePlayPause();
     }
   };
 
@@ -256,10 +254,10 @@ export default function WeddingInvitationPutra() {
         url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
         playStatus={playStatus}
         onFinishedPlaying={() => {
-          setPlayStatus(Sound.status.STOPPED); // Stop the current playback
+          setPlayStatus(Sound.status.STOPPED);
           setTimeout(() => {
-            setPlayStatus(Sound.status.PLAYING); // Start playing again after a short delay
-          }, 100); // Optional delay to ensure smooth looping
+            setPlayStatus(Sound.status.PLAYING);
+          }, 100); 
         }}
       />
     </div>
