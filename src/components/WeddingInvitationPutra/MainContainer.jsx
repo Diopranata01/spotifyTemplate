@@ -11,14 +11,11 @@ import { db } from "../../../lib/firebase";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
 const MainContainer = ({
-  playstatus,
-  togglePlayPause,
   isScrollable,
-  setIsScrollable,
+  coverHeight
 }) => {
   const [isOpenedList, setIsOpenedList] = useState(false);
   const [visibilityStates, setVisibilityStates] = useState([]);
-  const [coverHeight, setCoverHeight] = useState("100vh");
   const [copySuccess, setCopySuccess] = useState("");
   const contentRefs = useRef([]);
   const lastScrollY = useRef(0); // Track last scroll position

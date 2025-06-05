@@ -11,7 +11,7 @@ export default function WeddingInvitationPutra() {
   const [isVisible, setIsVisible] = useState(false);
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
-  const coverHeight = "100vh";
+  const [coverHeight, setCoverHeight] = useState("100vh");
   const basePath = "/img_putra";
 
   const [imageUrl, setImageUrl] = useState("");
@@ -87,6 +87,24 @@ export default function WeddingInvitationPutra() {
     updateBgPos();
     window.addEventListener("resize", updateBgPos);
     return () => window.removeEventListener("resize", updateBgPos);
+  }, []);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      const viewportHeight = window.innerHeight;
+
+      const headerHeight = document.querySelector("header")?.offsetHeight || 0;
+      const footerHeight = document.querySelector("footer")?.offsetHeight || 0;
+
+      const availableHeight = viewportHeight - headerHeight - footerHeight;
+
+      setCoverHeight(`${availableHeight}px`);
+    };
+
+    window.addEventListener("resize", updateHeight);
+    updateHeight();
+
+    return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
   // Function to toggle play/pause
@@ -227,10 +245,8 @@ export default function WeddingInvitationPutra() {
 
       {/* 1/3 Container - Main Content*/}
       <MainContainer
-        playStatus={playStatus}
-        togglePlayPause={togglePlayPause}
         isScrollable={isScrollable}
-        setIsScrollable={setIsScrollable}
+        coverHeight={coverHeight}
       />
 
       {/* Sound Component */}
