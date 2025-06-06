@@ -217,7 +217,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           alt="Putra Cover"
           fill
           sizes="100vw"
-          className="object-cover object-[60%_center] sm:object-[65%_center] md:object-[70%_center] xl:object-[90%_center]"
+          className="object-cover transition-transform duration-700 ease-in-out object-[60%_center] sm:object-[65%_center] md:object-[70%_center] xl:object-[90%_center]"
         />
 
         {/* Title Container */}
@@ -587,7 +587,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                 </div>
                 <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
                   Balai Pertemuan Umum Sahala Martua
-                  {"\n"}Jl. Raya Kemang No. 112-115, Kec. Kemang, 
+                  {"\n"}Jl. Raya Kemang No. 112-115, Kec. Kemang,
                   {"\n"}Bogor, Jawa Barat
                 </p>
 
@@ -709,6 +709,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
             <Image
               src="/img/bang_putra/putra_9.webp"
               alt="Putra 9"
+              sizes="(max-width: 768px) 130vw, 100vw" // Scale hint for mobile
               fill
               style={{
                 objectFit: "cover",
@@ -906,6 +907,8 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               src="/img/bang_putra/putra_12.webp"
               alt="Putra 12"
               fill
+              quality={100}
+              sizes="(max-width: 768px) 150vw, (max-width: 1024px) 120vw, 100vw"
               style={{
                 objectFit: "cover",
                 objectPosition: "40% center",
@@ -944,7 +947,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                     Gallery
                   </h1>
                   <h1
-                    className={`text-[45px] md:text-base lg:text-[40px] xl:text-[32px] tracking-normal mb-1`}
+                    className={`text-[28px] md:text-base lg:text-[40px] xl:text-[32px] tracking-normal mb-1`}
                   >
                     Putra & Maydi
                   </h1>
@@ -952,7 +955,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                 <div className="hide-scrollbar overflow-y-auto h-full">
                   {" "}
                   {/* Set a max height for scrolling */}
-                  <ImageGallery photosGallery={photosGallery} name="Putra & Maydi" />
+                  <ImageGallery
+                    photosGallery={photosGallery}
+                    name="Putra & Maydi"
+                  />
                 </div>
               </div>
             </div>
