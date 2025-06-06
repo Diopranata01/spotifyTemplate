@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "font-awesome/css/font-awesome.min.css"; // Import Font Awesome
 import Image from "next/image";
 
-const ImageGallery = ({ photosGallery }) => {
+const ImageGallery = ({ photosGallery, name }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false); // Loading state
@@ -73,7 +73,7 @@ const ImageGallery = ({ photosGallery }) => {
           isModalOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         style={{
-          pointerEvents: isModalOpen ? "auto" : "none", // Prevent interactions when hidden
+          pointerEvents: isModalOpen ? "auto" : "none",
         }}
       >
         <div
@@ -85,8 +85,10 @@ const ImageGallery = ({ photosGallery }) => {
             className="absolute right-5 text-gray-500 hover:text-gray-800 text-[45px]"
             onClick={closeModal}
           >
-            &times; {/* Close button */}
+            &times;
           </button>
+
+          {/* Image area */}
           <div className="flex h-[70vh] w-[90vw] md:w-auto rounded-t-lg justify-center items-center overflow-auto hide-scrollbar">
             {isLoading ? (
               <div className="absolute flex items-center justify-center w-full h-full">
@@ -102,31 +104,28 @@ const ImageGallery = ({ photosGallery }) => {
               />
             )}
           </div>
-          <div className="flex justify-evenly my-4">
+
+          {/* Title with arrows — Always shown, even while loading */}
+          <div className="flex items-center justify-center gap-6 my-6 px-6">
             <button
               className="text-gray-500 hover:text-gray-800"
               onClick={prevImage}
-              disabled={photosGallery.length <= 1} // Disable if there's only one image
+              disabled={photosGallery.length <= 1}
             >
-              <i className="fa fa-chevron-left fa-lg" />{" "}
-              {/* Previous button with Font Awesome icon */}
+              <i className="fa fa-chevron-left fa-lg" />
             </button>
+
+            <h1 className="text-[26px] md:text-base lg:text-[32px] tracking-wider text-center">
+              {name ? name : "Rangga & Novella"}
+            </h1>
+
             <button
               className="text-gray-500 hover:text-gray-800"
               onClick={nextImage}
-              disabled={photosGallery.length <= 1} // Disable if there's only one image
+              disabled={photosGallery.length <= 1}
             >
-              <i className="fa fa-chevron-right fa-lg" />{" "}
-              {/* Next button with Font Awesome icon */}
+              <i className="fa fa-chevron-right fa-lg" />
             </button>
-          </div>
-          <div className="my-4">
-            <h1
-              className={`text-[30px] md:text-base lg:text-[40px] tracking-wider mb-3`}
-            >
-              Rangga & Novella
-            </h1>
-            <p className="text-gray-600">15 Februari 2025</p>
           </div>
         </div>
       </div>

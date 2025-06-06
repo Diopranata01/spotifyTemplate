@@ -1,34 +1,6 @@
 import { useEffect, useState } from "react";
-import { db } from "../../lib/firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
-const RsvpList2 = ({ isOpenedList }) => {
-  
-  const [rsvps, setRsvps] = useState([]);
-  const [loading, setLoading] = useState(false); // Loading state
-
-    const fetchRsvps = async () => {
-      setLoading(true); // Start loading
-      try {
-        const rsvpCollection = collection(db, "rsvp_2");
-        const rsvpQuery = query(
-          rsvpCollection,
-          orderBy("submissionDate", "desc")
-        ); // Order by submissionDate descending
-        const rsvpSnapshot = await getDocs(rsvpQuery);
-        const rsvpList = rsvpSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setRsvps(rsvpList);
-      } catch (error) {
-        console.error("Error fetching RSVPs: ", error);
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 5000); // Match this duration with the CSS transition duration
-      }
-    };
+const RsvpList2 = ({ isOpenedList, fetchRsvps, rsvps, loading }) => {
 
   useEffect(() => {
     fetchRsvps();
@@ -64,8 +36,8 @@ const RsvpList2 = ({ isOpenedList }) => {
                     : "text-end w-[300px] pe-1 me-0"
                 }`}
               >
-                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[16px]">{rsvp.formName}</p>
-                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[16px] italic pb-3">{rsvp.message}</p>
+                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px]">{rsvp.formName}</p>
+                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px] italic pb-3">{rsvp.message}</p>
                 <p className="text-sm sm:text-sm md:text-lg lg:text-[10px]">
                   {rsvp.submissionDate
                     ? new Intl.DateTimeFormat("en-US", {

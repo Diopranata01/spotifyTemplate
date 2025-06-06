@@ -14,7 +14,7 @@ const BankAccountCard = ({ name, bankName, accountNumber, copyToClipboard }) => 
         </div>
 
         <button
-          onClick={copyToClipboard}
+          onClick={() => copyToClipboard(accountNumber)}
           className="flex-shrink-0 hover:text-gray-300 transition-colors"
           title="Copy account number"
         >
