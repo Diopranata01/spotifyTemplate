@@ -7,6 +7,7 @@ import CircularProgressWithLabel from "../loader/CircularProgressWithLabel";
 import MainContainer from "./MainContainer";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function WeddingInvitationPutra() {
   const [isScrollable, setIsScrollable] = useState(false);
@@ -14,7 +15,10 @@ export default function WeddingInvitationPutra() {
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
   const [coverHeight, setCoverHeight] = useState("100vh");
+  const [formName, setFormName] = useState("");
   const basePath = "/img_putra";
+  const router = useRouter();
+  const { name } = router.query; // Assuming your dynamic route is [slug]
 
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,6 +51,13 @@ export default function WeddingInvitationPutra() {
     }, [breakpoint]);
 
     return isMobile;
+  };
+
+  const toUpperCaseEachWord = (str) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
   };
 
   const isMobile = useIsMobile();
@@ -141,6 +152,12 @@ export default function WeddingInvitationPutra() {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  useEffect(() => {
+    if (name) {
+      setFormName(toUpperCaseEachWord(name));
+    }
+  }, [name]);
+
   // Function to toggle play/pause
   const togglePlayPause = () => {
     setPlayStatus(Sound.status.PLAYING);
@@ -229,7 +246,7 @@ export default function WeddingInvitationPutra() {
                                   className={`text-lg md:text-base lg:text-[25px] text-center tracking-normal 
                               mb-2 mr-lg-[6.8rem]`}
                                 >
-                                  Test
+                                  {formName && formName}
                                 </p>
 
                                 <div className="w-full">

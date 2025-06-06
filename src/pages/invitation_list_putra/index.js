@@ -242,6 +242,7 @@ export default function Home() {
                           )}
                           <Link
                             href={`/putra_&_maydi/${guest.name.toLowerCase()}`}
+                            target="_blank"
                             className="text-blue-500 hover:underline ml-2"
                           >
                             View Invitation
