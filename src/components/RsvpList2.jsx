@@ -32,13 +32,13 @@ const RsvpList2 = ({ isOpenedList, fetchRsvps, rsvps, loading }) => {
               <div
                 className={`p-4 py-2 m-2 bg-transparent text-[white] rounded-lg max-w-md ${
                   index % 2 === 0
-                    ? "text-start w-[300px] ps-1 ms-0"
-                    : "text-end w-[300px] pe-1 me-0"
+                    ? "text-start w-[300px] xl:w-[500px] ps-1 ms-0"
+                    : "text-end w-[300px] xl:w-[500px] pe-1 me-0"
                 }`}
               >
                 <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px]">{rsvp.formName}</p>
-                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px] italic pb-3">{rsvp.message}</p>
-                <p className="text-sm sm:text-sm md:text-lg lg:text-[10px]">
+                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px] italic pb-3 xl:leading-6">{rsvp.message}</p>
+                <p className="text-sm sm:text-sm md:text-lg lg:text-[10px] xl:text-[12px] 2xl:text-[14px]">
                   {rsvp.submissionDate
                     ? new Intl.DateTimeFormat("en-US", {
                         day: "2-digit",

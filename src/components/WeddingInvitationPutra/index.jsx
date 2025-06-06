@@ -36,6 +36,21 @@ export default function WeddingInvitationPutra() {
     }
   };
 
+  const useIsMobile = (breakpoint = 768) => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const checkMobile = () => setIsMobile(window.innerWidth < breakpoint);
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }, [breakpoint]);
+
+    return isMobile;
+  };
+
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     let interval;
 
@@ -251,7 +266,7 @@ export default function WeddingInvitationPutra() {
                 )}
               </div>
             </div>
-            
+
             <div className="absolute inset-0 w-full h-full">
               <Image
                 src={imageUrl}
@@ -265,7 +280,9 @@ export default function WeddingInvitationPutra() {
                   objectPosition: bgPosition,
                   transform: isScrollable ? "scale(1.2)" : "scale(1)",
                 }}
-                className="transition-transform duration-700 ease-in-out"
+                className={`transition-transform duration-700 ease-in-out ${
+                  isScrollable && isMobile ? "opacity-0" : "opacity-100"
+                }`}
               />
             </div>
           </>

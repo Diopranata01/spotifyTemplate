@@ -116,19 +116,19 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
   };
 
   const navigateToLink2 = () => {
-    window.open("https://maps.app.goo.gl/wWBCJLMvGSSyfYV49", "_blank");
+    window.open("https://maps.app.goo.gl/9BjNHxSAqKVRwBix5", "_blank");
   };
 
   const navigateToLinkInstagram1 = () => {
     window.open(
-      "https://www.instagram.com/ranggadipranaa?igsh=dm00bXM0emg3YTc=",
+      "https://www.instagram.com/dotskii?igsh=MWJ2dHIwaThzc28xNw==",
       "_blank"
     );
   };
 
   const navigateToLinkInstagram2 = () => {
     window.open(
-      "https://www.instagram.com/novellaasri?igsh=MXZqYjFnODUwZmY2Zg==",
+      "https://www.instagram.com/fransiscamaydi?igsh=MWI1cjFzZjlpcHEzMw==",
       "_blank"
     );
   };
@@ -216,6 +216,8 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           src="/img/bang_putra/putra_2.webp"
           alt="Putra Cover"
           fill
+          priority
+          quality={100}
           sizes="100vw"
           className="object-cover transition-transform duration-700 ease-in-out object-[60%_center] sm:object-[65%_center] md:object-[70%_center] xl:object-[90%_center]"
         />
@@ -362,7 +364,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               onClick={navigateToLinkInstagram1}
               className="text-sm sm:text-base md:text-md lg:text-md xl:text-md 2xl:text-lg font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
             >
-              @putra_sihombing
+              @dotskii
             </button>
           </div>
         </div>
@@ -432,10 +434,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           {/* Button */}
           <div className="w-1/5">
             <button
-              onClick={navigateToLinkInstagram1}
+              onClick={navigateToLinkInstagram2}
               className="text-sm sm:text-base md:text-md lg:text-md xl:text-md 2xl:text-lg font-lora mt-1 pb-1 px-3 py-[2px] rounded-3xl bg-[#E9E1D2] text-black hover:bg-gray-600 hover:text-white transition"
             >
-              @maydi
+              @fransiscamaydi
             </button>
           </div>
         </div>
@@ -486,7 +488,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-0 tracking-normal">
                 {item.date}
               </p>
-              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] tracking-normal text-justify">
+              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] tracking-normal text-justify leading-7">
                 {item.description}
               </p>
             </div>
@@ -551,10 +553,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               <div className="w-full flex flex-col gap-1 md:gap-3 xl:gap-3">
                 <div className="flex flex-col gap-1 md:gap-3 xl:gap-2 2xl:gap-3">
                   <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
-                    Pemberkatan
+                    Pemberkatan Gereja
                   </h1>
                   <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
-                    12:00 - 13:00 WIB
+                    08:00 - 10:00 WIB
                   </h1>
                 </div>
                 <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
@@ -565,10 +567,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
 
                 <div className="flex w-full justify-center mt-2 md:mt-0">
                   <button
-                    // onClick={toggleScrollable}
-                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.8rem] px-3 md:px-4 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+                    onClick={navigateToLink1}
+                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.3rem] px-3 md:px-4 xl:px-3 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
                   >
-                    <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-md xl:text-sm 2xl:text-lg tracking-normal">
+                    <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-sm 2xl:text-md tracking-normal">
                       Google Map
                     </p>
                   </button>
@@ -582,7 +584,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                     Resepsi Adat
                   </h1>
                   <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
-                    12:00 - 13:00 WIB
+                    12:00 - 17:00 WIB
                   </h1>
                 </div>
                 <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
@@ -593,10 +595,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
 
                 <div className="flex w-full justify-center mt-2 md:mt-0">
                   <button
-                    // onClick={toggleScrollable}
-                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.8rem] px-3 md:px-4 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+                    onClick={navigateToLink2}
+                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.3rem] px-3 md:px-4 xl:px-3 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
                   >
-                    <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg tracking-normal">
+                    <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-sm 2xl:text-md tracking-normal">
                       Google Map
                     </p>
                   </button>
