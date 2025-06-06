@@ -7,6 +7,7 @@ import CircularProgressWithLabel from "../loader/CircularProgressWithLabel";
 import MainContainer from "./MainContainer";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function WeddingInvitationPutra() {
   const [isScrollable, setIsScrollable] = useState(false);
@@ -14,7 +15,10 @@ export default function WeddingInvitationPutra() {
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
   const [coverHeight, setCoverHeight] = useState("100vh");
+  const [formName, setFormName] = useState("");
   const basePath = "/img_putra";
+  const router = useRouter();
+  const { name } = router.query; // Assuming your dynamic route is [slug]
 
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
@@ -35,6 +39,28 @@ export default function WeddingInvitationPutra() {
       togglePlayPause(); // Start playing the audio
     }
   };
+
+  const useIsMobile = (breakpoint = 768) => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const checkMobile = () => setIsMobile(window.innerWidth < breakpoint);
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }, [breakpoint]);
+
+    return isMobile;
+  };
+
+  const toUpperCaseEachWord = (str) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     let interval;
@@ -126,6 +152,12 @@ export default function WeddingInvitationPutra() {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  useEffect(() => {
+    if (name) {
+      setFormName(toUpperCaseEachWord(name));
+    }
+  }, [name]);
+
   // Function to toggle play/pause
   const togglePlayPause = () => {
     setPlayStatus(Sound.status.PLAYING);
@@ -146,8 +178,7 @@ export default function WeddingInvitationPutra() {
 
         {/* Loader */}
         {loading || !imageUrl ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-white lg:bg-transparent">
-            <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
             <Box className="z-10">
               <CircularProgressWithLabel value={progress} color="inherit" />
             </Box>
@@ -215,7 +246,7 @@ export default function WeddingInvitationPutra() {
                                   className={`text-lg md:text-base lg:text-[25px] text-center tracking-normal 
                               mb-2 mr-lg-[6.8rem]`}
                                 >
-                                  Test
+                                  {formName && formName}
                                 </p>
 
                                 <div className="w-full">
@@ -251,7 +282,7 @@ export default function WeddingInvitationPutra() {
                 )}
               </div>
             </div>
-            
+
             <div className="absolute inset-0 w-full h-full">
               <Image
                 src={imageUrl}
@@ -265,7 +296,9 @@ export default function WeddingInvitationPutra() {
                   objectPosition: bgPosition,
                   transform: isScrollable ? "scale(1.2)" : "scale(1)",
                 }}
-                className="transition-transform duration-700 ease-in-out"
+                className={`transition-transform duration-700 ease-in-out ${
+                  isScrollable && isMobile ? "opacity-0" : "opacity-100"
+                }`}
               />
             </div>
           </>
@@ -277,7 +310,7 @@ export default function WeddingInvitationPutra() {
 
       {/* Sound Component */}
       <Sound
-        url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
+        url="/music/Teddy_Adhitya_-_Just_You_(Official_Lyric_Video).mp3"
         playStatus={playStatus}
         onFinishedPlaying={() => {
           setPlayStatus(Sound.status.STOPPED); // Stop the current playback

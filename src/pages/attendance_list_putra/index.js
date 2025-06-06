@@ -167,7 +167,7 @@ const AttendanceListPutra = () => {
       </div>
 
       <button
-        className="text-black p-2 rounded-lg bg-gray-300 hover:bg-gray-600 hover:text-white relative"
+        className="text-white p-2 rounded-lg bg-green-500 hover:bg-green-600 hover:text-white relative"
         onClick={handleDownload}
         disabled={loading}
       >
