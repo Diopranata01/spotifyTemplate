@@ -163,9 +163,7 @@ export default function Home() {
 
     const dataToExport = guests.map((guest) => ({
       Name: guest.name,
-      Link: `${
-        process.env.NEXT_PUBLIC_BASE_URL
-      }/putra_&_maydi/${guest.name.toLowerCase()}`,
+      Link: `${baseUrl}/putra_&_maydi/${guest.name.toLowerCase()}`,
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(dataToExport);
