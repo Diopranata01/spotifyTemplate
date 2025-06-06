@@ -161,8 +161,7 @@ export default function WeddingInvitationPutra() {
 
         {/* Loader */}
         {loading || !imageUrl ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-white lg:bg-transparent">
-            <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
             <Box className="z-10">
               <CircularProgressWithLabel value={progress} color="inherit" />
             </Box>
@@ -294,7 +293,7 @@ export default function WeddingInvitationPutra() {
 
       {/* Sound Component */}
       <Sound
-        url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
+        url="/music/Teddy_Adhitya_-_Just_You_(Official_Lyric_Video).mp3"
         playStatus={playStatus}
         onFinishedPlaying={() => {
           setPlayStatus(Sound.status.STOPPED); // Stop the current playback

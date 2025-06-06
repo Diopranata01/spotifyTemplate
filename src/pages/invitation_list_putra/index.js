@@ -21,6 +21,8 @@ export default function Home() {
   const [editName, setEditName] = useState("");
   const [newGuestName, setNewGuestName] = useState("");
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
   // Fetch guest data from Firestore
   const fetchGuests = async () => {
     setLoading(true); // Set loading to true when fetching starts
@@ -161,7 +163,9 @@ export default function Home() {
 
     const dataToExport = guests.map((guest) => ({
       Name: guest.name,
-      Link: `https://yourdomain.com/putra_&_maydi/${guest.name.toLowerCase()}`,
+      Link: `${
+        process.env.NEXT_PUBLIC_BASE_URL
+      }/putra_&_maydi/${guest.name.toLowerCase()}`,
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(dataToExport);

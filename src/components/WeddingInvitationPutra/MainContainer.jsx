@@ -218,7 +218,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           fill
           priority
           quality={100}
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 58.333vw, 66.667vw"
           className="object-cover transition-transform duration-700 ease-in-out object-[60%_center] sm:object-[65%_center] md:object-[70%_center] xl:object-[90%_center]"
         />
 
@@ -292,7 +292,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           src="/img/bang_putra/putra_3.webp"
           alt="Putra 3 Background"
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 58.333vw, 66.667vw"
           className="object-cover object-[60%_center] sm:object-[65%_center] md:object-[70%_center] xl:object-[10%_center]"
         />
 
@@ -308,7 +308,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               MARK 10:6-9
             </h1>
           </div>
-          <p className="text-[14px] md:text-[20px] lg:text-[20px] xl:text-[18px] tracking-normal text-start">
+          <p className="text-[14px] md:text-[20px] lg:text-[20px] xl:text-[15px] tracking-normal text-start">
             &quot;From the beginning of creation, God made them male and female.
             For this reason, a man shall leave his father and mother and be
             united to his wife, and the two shall become one flesh. As a result,
@@ -386,7 +386,6 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
             alt="Putra 4 Background"
             fill
             className="object-cover object-[55%_center]"
-            sizes="100vw"
           />
         </div>
       </div>
@@ -457,14 +456,14 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
             alt="Putra 5 Background"
             fill
             className="object-cover object-[55%_center]"
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 58.333vw, 66.667vw"
           />
         </div>
       </div>
 
       {/* Content 5 */}
       <div
-        className="p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-start sm:justify-center relative right-container-photo-config scroll-item"
+        className="p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center sm:justify-center relative right-container-photo-config scroll-item"
         style={{ height: coverHeight }}
       >
         {/* Title Container */}
@@ -488,7 +487,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-0 tracking-normal">
                 {item.date}
               </p>
-              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] tracking-normal text-justify leading-7">
+              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] tracking-normal text-justify 2xl:leading-7">
                 {item.description}
               </p>
             </div>
