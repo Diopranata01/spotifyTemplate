@@ -36,8 +36,8 @@ const RsvpList2 = ({ isOpenedList, fetchRsvps, rsvps, loading }) => {
                     : "text-end w-[300px] pe-1 me-0"
                 }`}
               >
-                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[16px]">{rsvp.formName}</p>
-                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[16px] italic pb-3">{rsvp.message}</p>
+                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px]">{rsvp.formName}</p>
+                <p className="text-sm sm:text-base md:text-xl lg:text-[16px] xl:text-[15px] 2xl:text-[18px] italic pb-3">{rsvp.message}</p>
                 <p className="text-sm sm:text-sm md:text-lg lg:text-[10px]">
                   {rsvp.submissionDate
                     ? new Intl.DateTimeFormat("en-US", {
