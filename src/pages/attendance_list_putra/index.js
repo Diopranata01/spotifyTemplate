@@ -50,11 +50,6 @@ const AttendanceListPutra = () => {
     }, 2000);
   };
 
-  // Filter guests based on the selected session
-//   const filteredGuests = guests.filter((guest) => {
-//     return guest.receptionPath && guest.receptionPath.includes(selectedSession);
-//   });
-
   // Calculate total attendance for filtered guests
   const totalAttendance = guests.reduce((total, guest) => {
     return total + (guest.attendance ? guest.guestCount : 0);
