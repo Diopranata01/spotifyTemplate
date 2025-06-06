@@ -22,7 +22,7 @@ export default function Home() {
   const [newGuestName, setNewGuestName] = useState("");
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const prodUrl = 'https://idprojectt.vercel.app'
+  const prodUrl = "https://idprojectt.vercel.app";
 
   // Fetch guest data from Firestore
   const fetchGuests = async () => {
@@ -164,7 +164,9 @@ export default function Home() {
 
     const dataToExport = guests.map((guest) => ({
       Name: guest.name,
-      Link: `${prodUrl}/putra_&_maydi/${guest.name.toLowerCase()}`,
+      Link: `${prodUrl}/putra_&_maydi/${encodeURIComponent(
+        guest.name.toLowerCase()
+      )}`,
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(dataToExport);
