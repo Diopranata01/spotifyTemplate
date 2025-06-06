@@ -11,7 +11,7 @@ export default function WeddingInvitationPutra() {
   const [isVisible, setIsVisible] = useState(false);
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
-  const [coverHeight, setCoverHeight] = useState("100vh");
+  const coverHeight = "100vh";
   const basePath = "/img_putra";
 
   const [imageUrl, setImageUrl] = useState("");
@@ -22,14 +22,16 @@ export default function WeddingInvitationPutra() {
     setIsScrollable((prev) => !prev);
 
     if (!isScrollable) {
+      // Set a timeout to hide the cover page after the scroll duration
       setTimeout(() => {
         setIsVisible(false);
-      }, 1000);
+      }, 1000); // Match this duration with the CSS transition duration
     }
 
-    if (playStatus !== "PLAYING") {
-      togglePlayPause();
-    }
+    // Check play status and play if not playing
+    // if (playStatus !== "PLAYING") {
+    //   togglePlayPause(); // Start playing the audio
+    // }
   };
 
   useEffect(() => {
@@ -89,28 +91,10 @@ export default function WeddingInvitationPutra() {
     return () => window.removeEventListener("resize", updateBgPos);
   }, []);
 
-  useEffect(() => {
-    const updateHeight = () => {
-      const viewportHeight = window.innerHeight;
-
-      const headerHeight = document.querySelector("header")?.offsetHeight || 0;
-      const footerHeight = document.querySelector("footer")?.offsetHeight || 0;
-
-      const availableHeight = viewportHeight - headerHeight - footerHeight;
-
-      setCoverHeight(`${availableHeight}px`);
-    };
-
-    window.addEventListener("resize", updateHeight);
-    updateHeight();
-
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
-
   // Function to toggle play/pause
-  const togglePlayPause = () => {
-    setPlayStatus(Sound.status.PLAYING);
-  };
+  // const togglePlayPause = () => {
+  //   setPlayStatus(Sound.status.PLAYING);
+  // };
 
   return (
     <div className="fixed h-screen w-full flex page-other">
@@ -246,21 +230,20 @@ export default function WeddingInvitationPutra() {
       {/* 1/3 Container - Main Content*/}
       <MainContainer
         isScrollable={isScrollable}
-        coverHeight={coverHeight}
-        setCoverHeight={setCoverHeight}
+        setIsScrollable={setIsScrollable}
       />
 
       {/* Sound Component */}
-      <Sound
+      {/* <Sound
         url="/music/Robin_Thicke_The_Sweetest_Love.mp3"
         playStatus={playStatus}
         onFinishedPlaying={() => {
-          setPlayStatus(Sound.status.STOPPED);
+          setPlayStatus(Sound.status.STOPPED); // Stop the current playback
           setTimeout(() => {
-            setPlayStatus(Sound.status.PLAYING);
-          }, 100); 
+            setPlayStatus(Sound.status.PLAYING); // Start playing again after a short delay
+          }, 100); // Optional delay to ensure smooth looping
         }}
-      />
+      /> */}
     </div>
   );
 }

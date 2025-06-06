@@ -1,6 +1,34 @@
 import { useEffect, useState } from "react";
+import { db } from "../../lib/firebase";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 
-const RsvpList2 = ({ isOpenedList, fetchRsvps, rsvps, loading }) => {
+const RsvpList2 = ({ isOpenedList }) => {
+  
+  const [rsvps, setRsvps] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state
+
+    const fetchRsvps = async () => {
+      setLoading(true); // Start loading
+      try {
+        const rsvpCollection = collection(db, "rsvp_2");
+        const rsvpQuery = query(
+          rsvpCollection,
+          orderBy("submissionDate", "desc")
+        ); // Order by submissionDate descending
+        const rsvpSnapshot = await getDocs(rsvpQuery);
+        const rsvpList = rsvpSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setRsvps(rsvpList);
+      } catch (error) {
+        console.error("Error fetching RSVPs: ", error);
+      } finally {
+        setTimeout(() => {
+          setLoading(false);
+        }, 5000); // Match this duration with the CSS transition duration
+      }
+    };
 
   useEffect(() => {
     fetchRsvps();
