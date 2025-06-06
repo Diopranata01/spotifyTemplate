@@ -22,7 +22,7 @@ export default function Home() {
   const [newGuestName, setNewGuestName] = useState("");
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const prodUrl = 'https://idprojectt.vercel.app/'
+  const prodUrl = 'https://idprojectt.vercel.app'
 
   // Fetch guest data from Firestore
   const fetchGuests = async () => {
