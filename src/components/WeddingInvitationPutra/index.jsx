@@ -133,7 +133,7 @@ export default function WeddingInvitationPutra() {
 
   return (
     <div className="fixed h-screen w-full flex page-other">
-      <Toaster/>
+      <Toaster />
 
       {/* 2/3 Container - Fixed */}
       <div
@@ -251,17 +251,19 @@ export default function WeddingInvitationPutra() {
                 )}
               </div>
             </div>
-
-            <div className="absolute inset-0">
+            
+            <div className="absolute inset-0 w-full h-full">
               <Image
                 src={imageUrl}
                 alt="Background"
                 fill
                 priority
+                quality={100}
+                sizes="(max-width: 768px) 150vw, (max-width: 1024px) 120vw, 100vw"
                 style={{
                   objectFit: "cover",
                   objectPosition: bgPosition,
-                  transform: isScrollable ? "scale(1.2)" : undefined,
+                  transform: isScrollable ? "scale(1.2)" : "scale(1)",
                 }}
                 className="transition-transform duration-700 ease-in-out"
               />
@@ -271,10 +273,7 @@ export default function WeddingInvitationPutra() {
       </div>
 
       {/* 1/3 Container - Main Content*/}
-      <MainContainer
-        isScrollable={isScrollable}
-        coverHeight={coverHeight}
-      />
+      <MainContainer isScrollable={isScrollable} coverHeight={coverHeight} />
 
       {/* Sound Component */}
       <Sound
