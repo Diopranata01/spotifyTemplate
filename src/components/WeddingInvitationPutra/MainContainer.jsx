@@ -112,7 +112,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
 
   // Function to open Google Maps
   const navigateToLink1 = () => {
-    window.open("https://maps.app.goo.gl/kB5ShMszJ8nuDxQw5", "_blank");
+    window.open("https://maps.app.goo.gl/aLuUZE1pe3Wy4wSF8", "_blank");
   };
 
   const navigateToLink2 = () => {
@@ -131,6 +131,39 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
       "https://www.instagram.com/fransiscamaydi?igsh=MWI1cjFzZjlpcHEzMw==",
       "_blank"
     );
+  };
+
+  const downloadICS = () => {
+    const title = "Acara Pernikahan Putra & Maydi";
+    const description = "Undangan pernikahan Putra & Maydi.";
+    const location = "Gereja Katolik Keluarga Kudus, Cibinong";
+    const startDate = "20250621T090000Z"; // UTC
+    const endDate = "20250621T110000Z";
+
+    const icsContent = `
+  BEGIN:VCALENDAR
+  VERSION:2.0
+  BEGIN:VEVENT
+  SUMMARY:${title}
+  DESCRIPTION:${description}
+  LOCATION:${location}
+  DTSTART:${startDate}
+  DTEND:${endDate}
+  END:VEVENT
+  END:VCALENDAR
+    `.trim();
+
+    const blob = new Blob([icsContent], {
+      type: "text/calendar;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "putra_maydi_wedding.ics";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const copyToClipboard = (text) => {
@@ -646,7 +679,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
 
           <div className="flex w-full justify-center">
             <button
-              // onClick={toggleScrollable}
+              onClick={downloadICS}
               className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
             >
               <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg tracking-normal">
