@@ -202,8 +202,8 @@ export default function WeddingInvitationPutra() {
 
                     {/* Right - Date */}
                     <div className="text-right text-sm md:text-base tracking-[1.5px]">
-                      <p>SATURDAY</p>
-                      <p>21 AUGUST 2024</p>
+                      <p>SABTU</p>
+                      <p>21 JUNI 2024</p>
                     </div>
                   </div>
                 ) : (
