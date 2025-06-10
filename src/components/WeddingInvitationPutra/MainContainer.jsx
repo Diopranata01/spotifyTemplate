@@ -21,7 +21,6 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
   const router = useRouter();
   const [rsvps, setRsvps] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state
-  const { name } = router.query; // Assuming your dynamic route is [slug]
 
   const photos = [
     "/img/final_image/slide_photo_1.jpg",
@@ -137,33 +136,41 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
     const title = "Acara Pernikahan Putra & Maydi";
     const description = "Undangan pernikahan Putra & Maydi.";
     const location = "Gereja Katolik Keluarga Kudus, Cibinong";
-    const startDate = "20250621T090000Z"; // UTC
-    const endDate = "20250621T110000Z";
+    const startDate = "20250621T090000Z"; // Start time in UTC
+    const endDate = "20250621T110000Z"; // End time in UTC
 
-    const icsContent = `
-  BEGIN:VCALENDAR
-  VERSION:2.0
-  BEGIN:VEVENT
-  SUMMARY:${title}
-  DESCRIPTION:${description}
-  LOCATION:${location}
-  DTSTART:${startDate}
-  DTEND:${endDate}
-  END:VEVENT
-  END:VCALENDAR
-    `.trim();
+    const uid = `putra-maydi-${Date.now()}@wedding.com`;
+    const dtstamp =
+      new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const icsContent =
+      `BEGIN:VCALENDAR\r\n` +
+      `VERSION:2.0\r\n` +
+      `PRODID:-//PutraMaydi//Wedding//ID\r\n` +
+      `BEGIN:VEVENT\r\n` +
+      `UID:${uid}\r\n` +
+      `DTSTAMP:${dtstamp}\r\n` +
+      `DTSTART:${startDate}\r\n` +
+      `DTEND:${endDate}\r\n` +
+      `SUMMARY:${title}\r\n` +
+      `DESCRIPTION:${description}\r\n` +
+      `LOCATION:${location}\r\n` +
+      `STATUS:CONFIRMED\r\n` +
+      `END:VEVENT\r\n` +
+      `END:VCALENDAR`;
 
     const blob = new Blob([icsContent], {
       type: "text/calendar;charset=utf-8",
     });
-    const url = URL.createObjectURL(blob);
 
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
     link.download = "putra_maydi_wedding.ics";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const copyToClipboard = (text) => {
@@ -232,10 +239,12 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
 
   return (
     <div
-      className={`w-full z-20 h-screen lg:w-5/12 xl:w-1/3 hide-scrollbar right-0 bottom-0 ${
-        isScrollable ? "scroll-container fixed" : "overflow-hidden fixed hidden"
+      className={`w-full z-20 h-screen lg:w-5/12 xl:w-1/3 hide-scrollbar right-0 bottom-0 scroll-container fixed transition-opacity duration-700 ease-in-out ${
+        isScrollable
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
       }`}
-      style={{ height: coverHeight }} // Set dynamic height
+      style={{ height: coverHeight }}
     >
       {/* Content 1 */}
       <div
