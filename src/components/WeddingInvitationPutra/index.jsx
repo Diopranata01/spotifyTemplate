@@ -171,7 +171,7 @@ export default function WeddingInvitationPutra() {
       <div
         className={`flex ${
           isScrollable ? "lg:w-7/12 xl:w-8/12" : "w-full"
-        } p-8 justify-center fixed left-container`}
+        } transition-all duration-700 ease-in-out p-8 justify-center fixed left-container`}
       >
         {/* Black overlay */}
         <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
@@ -228,7 +228,7 @@ export default function WeddingInvitationPutra() {
                       className={`relative flex flex-col items-center mb-10 md:mb-20`}
                     >
                       <div
-                        className={`relative z-20 flex-col gap-4 items-center justify-center text-white text-center transition-opacity duration-700 ease-in-out ${
+                        className={`relative z-20 flex-col gap-4 items-center justify-center text-white text-center transition-opacity duration-1000 ease-in-out ${
                           isScrollable
                             ? "opacity-0 pointer-events-none"
                             : "opacity-100"
