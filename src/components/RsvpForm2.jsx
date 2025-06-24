@@ -101,18 +101,18 @@ const RsvpForm2 = () => {
   return (
     <>
       <div
-        className={`flex flex-col w-full px-10 ${
+        className={`flex flex-col w-full items-center md:items-start px-10 ${
           canAttend === "yes" ? "pb-2" : "py-10"
         }`}
       >
         <h1 className="text-2xl md:text-[32px] lg:text-[32px] mb-2 md:mb-5 lg:mb-5">
           RSVP Form
         </h1>
-        <p className="mb-4 text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] text">
+        <p className="mb-4 text-sm xl:text-[15px] 2xl:text-[18px] leading-normal text-center md:text-start">
           Diharapkan kepada para tamu undangan untuk mengisi form kehadiran
           dibawah ini
         </p>
-        <p className="mb-3 text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] lg:mb-5">
+        <p className="mb-3 text-sm xl:text-[15px] 2xl:text-[18px] lg:mb-5">
           *undangan berlaku untuk 2 orang*
         </p>
 
@@ -133,10 +133,10 @@ const RsvpForm2 = () => {
           <p className="text-red-500 mb-4">{error}</p> // Error message
         )}
 
-        <form onSubmit={handleSubmit} className="w-full max-w-lg">
+        <form onSubmit={handleSubmit} className="w-full max-w-lg flex flex-col gap-2">
           <div className="mb-4">
             <p
-              className="block text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-2"
+              className="block text-sm xl:text-[15px] 2xl:text-[18px] mb-2 mt-4"
               htmlFor="name"
             >
               Nama Anda:
@@ -148,7 +148,7 @@ const RsvpForm2 = () => {
               required
               value={formName}
               onChange={(e) => setFormName(e.target.value)}
-              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px]"
+              className="w-full p-2 rounded text-white text-sm xl:text-[15px] 2xl:text-[18px]"
               style={{ backgroundColor: "rgba(58, 58, 48, 0.69)" }}
               placeholder="Masukkan nama Anda"
             />
@@ -156,7 +156,7 @@ const RsvpForm2 = () => {
 
           <div className="mb-4">
             <p
-              className="block text-sm sm:text-base md:text-xl lg:text-[18px] mb-2"
+              className="block text-sm xl:text-[15px] 2xl:text-[18px] mb-2"
               htmlFor="attendance"
             >
               Konfirmasi Kehadiran:
@@ -177,7 +177,7 @@ const RsvpForm2 = () => {
                   setGuestCount(1);
                 }
               }}
-              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px]"
+              className="w-full p-2 rounded text-white text-sm xl:text-[15px] 2xl:text-[18px]"
               style={{ backgroundColor: "rgba(58, 58, 48, 0.69)" }}
             >
               <option value="">Pilih opsi</option>
@@ -192,7 +192,7 @@ const RsvpForm2 = () => {
             <>
               <div className="mb-4">
                 <p
-                  className="block text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-2"
+                  className="block text-sm xl:text-[15px] 2xl:text-[18px] mb-2"
                   htmlFor="guestCount"
                 >
                   Jumlah Tamu yang Hadir:
@@ -238,7 +238,7 @@ const RsvpForm2 = () => {
 
           <div className="mb-4 margin-form">
             <p
-              className="block text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-2"
+              className="block text-sm xl:text-[15px] 2xl:text-[18px] mb-2"
               htmlFor="message"
             >
               Doa & Ucapan:
@@ -250,7 +250,7 @@ const RsvpForm2 = () => {
               required
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-2 rounded text-white text-sm sm:text-base md:text-xl lg:text-[15px] xl:text-[15px] 2xl:text-[18px]"
+              className="w-full p-2 rounded text-white text-sm xl:text-[15px] 2xl:text-[18px]"
               style={{ backgroundColor: "rgba(58, 58, 48, 0.69)" }}
               placeholder="Masukkan doa dan ucapan Anda"
             />
@@ -258,9 +258,9 @@ const RsvpForm2 = () => {
 
           <button
             type="submit"
-            className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+            className="lg:h-[2.4rem] xl:h-[2.6rem] w-full md:w-3/12 px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
           >
-            <p className="tracking-[1.5px] text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg">
+            <p className="tracking-[1.5px] text-sm xl:text-[15px] 2xl:text-[18px]">
               {loading ? (
                 <>
                   <span className="loader"></span> {/* Spinner */}

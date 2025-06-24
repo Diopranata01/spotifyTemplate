@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 
 export default function WeddingInvitationPutra() {
-  const [isScrollable, setIsScrollable] = useState(false);
+  const [isScrollable, setIsScrollable] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
@@ -203,7 +203,7 @@ export default function WeddingInvitationPutra() {
                     {/* Right - Date */}
                     <div className="text-right text-sm md:text-base tracking-[1.5px]">
                       <p>SABTU</p>
-                      <p>21 JUNI 2024</p>
+                      <p>21 JUNI 2025</p>
                     </div>
                   </div>
                 ) : (
