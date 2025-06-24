@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
 
 export default function WeddingInvitationPutra() {
-  const [isScrollable, setIsScrollable] = useState(true);
+  const [isScrollable, setIsScrollable] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [bgPosition, setBgPosition] = useState("center");
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
