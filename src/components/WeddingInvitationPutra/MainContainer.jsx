@@ -516,7 +516,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           }`}
         >
           {/* Title */}
-          <h1 className="text-[24px] sm:text-[24px] md:text-[35px] lg:text-[30px] xl:text-[32px] 2xl:text-[28px] leading-snug">
+          <h1 className="text-[28px] md:text-2xl lg:text-[28px]">
             THE JOURNEY OF <br /> TWO SOULS IN LOVE
           </h1>
 
@@ -526,10 +526,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
               key={idx}
               className="flex flex-col w-full gap-1 md:gap-2 xl:gap-4"
             >
-              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] mb-0 tracking-normal">
+              <p className="text-sm xl:text-[15px] 2xl:text-[18px] mb-0 tracking-normal leading-relaxed">
                 {item.date}
               </p>
-              <p className="text-sm md:text-[20px] lg:text-[15px] xl:text-[15px] 2xl:text-[18px] tracking-normal text-justify 2xl:leading-7">
+              <p className="text-sm xl:text-[15px] 2xl:text-[18px] tracking-normal text-justify 2xl:leading-7">
                 {item.description}
               </p>
             </div>
@@ -569,7 +569,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
             }`}
             style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
           >
-            <div className="flex flex-col items-center gap-6 sm:gap-8 lg:gap-12 xl:gap-5 2xl:lg:gap-12 max-w-screen-md text-center">
+            <div className="flex flex-col items-center gap-6  md:gap-8 lg:gap-9 max-w-screen-md text-center">
               {/* Top Section */}
               <div className="w-full flex flex-col items-center gap-1 sm:gap-2 md:gap-4 lg:gap-2">
                 <Image
@@ -579,28 +579,28 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                   className="w-10 h-auto scale-x-125 invert"
                   alt="logo"
                 />
-                <h1 className="text-[13px] sm:text-lg md:text-lg lg:text-md xl:text-sm 2xl:text-md font-joan my-3 mb-1 md:mb-0 lg:my-1 lg:mb-0">
+                <h1 className="text-[13px] sm:text-lg xl:text-sm 2xl:text-md font-joan my-3 mb-1 md:mb-0">
                   SAVE OUR DATE
                 </h1>
-                <h1 className="text-[22px] sm:text-xl md:text-[38px] lg:text-2xl xl:text-xl 2xl:text-2xl">
+                <h1 className="text-[22px] sm:text-2xl">
                   SABTU
                 </h1>
-                <h1 className="text-[22px] sm:text-xl md:text-[38px] lg:text-2xl xl:text-xl 2xl:text-2xl">
+                <h1 className="text-[22px] sm:text-2xl">
                   21 JUNI 2025
                 </h1>
               </div>
 
               {/* Ceremony Section */}
               <div className="w-full flex flex-col gap-1 md:gap-3 xl:gap-3">
-                <div className="flex flex-col gap-1 md:gap-3 xl:gap-2 2xl:gap-3">
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
+                <div className="flex flex-col gap-1 xl:gap-2 2xl:gap-3">
+                  <h1 className="text-[22px] sm:text-xl md:text-2xl">
                     Pemberkatan Gereja
                   </h1>
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
+                  <h1 className="text-[22px] sm:text-xl xl:text-1xl">
                     08:00 - 10:00 WIB
                   </h1>
                 </div>
-                <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
+                <p className="text-sm sm:text-base lg:text-[15px] whitespace-pre-line">
                   Gereja Katolik Paroki Keluarga Kudus Cibinong
                   {"\n"}Jl. Raya Tapos No.31, Ciriung, Kec. Cibinong,
                   {"\n"}Bogor, Jawa Barat
@@ -609,7 +609,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                 <div className="flex w-full justify-center mt-2 md:mt-0">
                   <button
                     onClick={navigateToLink1}
-                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.3rem] px-3 md:px-4 xl:px-3 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.3rem] mt-1 2xl:mt-2 px-3 md:px-4 xl:px-3 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
                   >
                     <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-sm 2xl:text-md tracking-normal">
                       Google Map
@@ -620,15 +620,15 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
 
               {/* Reception Section */}
               <div className="w-full flex flex-col gap-1 md:gap-3 xl:gap-3">
-                <div className="flex flex-col gap-1 md:gap-3 xl:gap-2 2xl:gap-3">
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
+                <div className="flex flex-col gap-1 xl:gap-2 2xl:gap-3">
+                  <h1 className="text-[22px] sm:text-xl md:text-2xl">
                     Resepsi Adat
                   </h1>
-                  <h1 className="text-[22px] sm:text-xl md:text-3xl lg:text-2xl xl:text-xl 2xl:text-2xl">
+                  <h1 className="text-[22px] sm:text-xl xl:text-1xl">
                     12:00 - 17:00 WIB
                   </h1>
                 </div>
-                <p className="text-sm sm:text-base md:text-[18px] lg:text-[15px] xl:text-[13px] 2xl:text-[15px] whitespace-pre-line">
+                <p className="text-sm sm:text-base lg:text-[15px] whitespace-pre-line">
                   Balai Pertemuan Umum Sahala Martua
                   {"\n"}Jl. Raya Kemang No. 112-115, Kec. Kemang,
                   {"\n"}Bogor, Jawa Barat
@@ -637,9 +637,9 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
                 <div className="flex w-full justify-center mt-2 md:mt-0">
                   <button
                     onClick={navigateToLink2}
-                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.3rem] px-3 md:px-4 xl:px-3 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+                    className="lg:h-[2.8rem] xl:h-[2rem] 2xl:h-[2.3rem] mt-1 2xl:mt-2 px-3 md:px-4 xl:px-3 py-2 xl:py-0 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
                   >
-                    <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-sm 2xl:text-md tracking-normal">
+                    <p className="text-[14px] sm:text-[17px] md:text-[18px] lg:text-sm 2xl:text-md  tracking-normal">
                       Google Map
                     </p>
                   </button>
@@ -678,7 +678,7 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           }`}
         >
           <div className="flex w-full py-3 justify-center gap-5">
-            <h1 className="text-2xl md:text-[32px] lg:text-[28px] xl:text-[28px] 2xl:text-[32px] md:text-[#3A3A30] lg:text-white">
+            <h1 className="text-[28px] md:text-2xl lg:text-[28px] md:text-[#3A3A30] lg:text-white">
               MENUJU HARI SPESIAL
             </h1>
           </div>
@@ -689,9 +689,9 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           <div className="flex w-full justify-center">
             <button
               onClick={downloadICS}
-              className="lg:h-[2.4rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
+              className="lg:h-[2.4rem] xl:h-[2.6rem] px-4 py-2 rounded-md font-italiana bg-[#3A3A30] text-[#fff] hover:bg-[#171712] hover:text-white transition"
             >
-              <p className="text-[14px] md:text-[18px] sm:text-[17px] lg:text-lg xl:text-sm 2xl:text-lg tracking-normal">
+              <p className="text-sm xl:text-[15px] 2xl:text-[18px] tracking-normal">
                 Catat Tanggal
               </p>
             </button>
@@ -732,12 +732,12 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           className={`relative w-full h-full`} // Make sure the container is relative
         >
           <div
-            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16items-center justify-center text-white text-center ${
+            className={`absolute z-20 right-0 top-0 w-full h-full flex flex-col gap-4 ps-lg-16 items-center justify-center text-white text-center ${
               visibilityStates[7] ? "fade-in" : "fade-out"
             }`}
           >
             <div
-              className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-0 ps-lg-16 px-5 items-start justify-center text-white text-start fade-in h-full`}
+              className={`absolute z-20 right-0 top-0 w-full flex flex-col gap-0 ps-lg-16 px-5 items-center justify-center text-white text-start fade-in h-full`}
             >
               <RsvpForm2 />
             </div>
@@ -858,10 +858,10 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
           }`}
         >
           <div className="flex flex-col w-full py-3 justify-center gap-5 md:gap-7">
-            <h1 className="text-[28px] md:text-3xl lg:text-[30px] xl:text-[32px]">
+            <h1 className="text-[28px] md:text-2xl lg:text-[28px]">
               DRESS CODE
             </h1>
-            <p className="text-sm sm:text-base md:text-xl lg:text-[18px] xl:text-[15px] 2xl:text-[18px] text-center tracking-wider">
+            <p className="text-sm xl:text-[15px] 2xl:text-[18px] text-center tracking-wider leading-normal">
               Kami mengundang para tamu untuk berkenan mengenakan warna-warna
               berikut pada hari istimewa kami.
             </p>
@@ -903,16 +903,16 @@ const MainContainer = ({ isScrollable, coverHeight }) => {
         {/* Title Container */}
         <div
           ref={(el) => (contentRefs.current[10] = el)}
-          className={`relative w-full z-20 px-4 sm:px-6 py-4 flex flex-col gap-6 items-center lg:items-start justify-start text-white ${
+          className={`relative w-full z-20 px-4 sm:px-6 py-4 flex flex-col gap-6 items-center lg:items-start justify-center lg:justify-start text-white ${
             visibilityStates[10] ? "fade-in" : "fade-out"
           }`}
         >
-          <div className="flex flex-col w-full gap-6 max-w-3xl sm:items-center ">
-            <div className="w-full flex flex-col gap-6 text-center md:text-start">
-              <h1 className="text-[28px] md:text-4xl lg:text-[32px]">
+          <div className="flex flex-col w-full gap-6 max-w-3xl items-center ">
+            <div className="w-full flex flex-col gap-6 text-center lg:text-start">
+              <h1 className="text-[28px] md:text-2xl lg:text-[28px]">
                 Hadiah Pernikahan
               </h1>
-              <p className="text-sm sm:text-base md:text-xl lg:text-[18px] xl:text-[15px] 2xl:text-[18px] leading-relaxed tracking-normal">
+              <p className="text-sm xl:text-[15px] 2xl:text-[18px] leading-relaxed tracking-normal">
                 Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
                 tanda cinta kepada kedua mempelai, Anda dapat memberikan melalui
                 nomor rekening berikut:
