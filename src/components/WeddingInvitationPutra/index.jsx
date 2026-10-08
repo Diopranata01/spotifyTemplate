@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Import motion from framer-motion
 import Sound from "react-sound"; // Import Sound from react-sound
-import { getImageUrl } from "../../../lib/api/guest";
-import Box from "@mui/material/Box";
-import CircularProgressWithLabel from "../loader/CircularProgressWithLabel";
 import MainContainer from "./MainContainer";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
@@ -16,13 +13,10 @@ export default function WeddingInvitationPutra() {
   const [playStatus, setPlayStatus] = useState(Sound.status.STOPPED);
   const [coverHeight, setCoverHeight] = useState("100vh");
   const [formName, setFormName] = useState("");
-  const basePath = "/img_putra";
   const router = useRouter();
   const { name } = router.query; // Assuming your dynamic route is [slug]
 
-  const [imageUrl, setImageUrl] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const imageUrl = "/img/bang_putra/putra_1.webp";
 
   const toggleScrollable = () => {
     setIsScrollable((prev) => !prev);
@@ -61,50 +55,6 @@ export default function WeddingInvitationPutra() {
   };
 
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    let interval;
-
-    async function fetchImage() {
-      const startTime = Date.now();
-
-      try {
-        setLoading(true);
-        setProgress(0);
-
-        interval = setInterval(() => {
-          setProgress((prev) => {
-            if (prev >= 100) {
-              clearInterval(interval);
-              return 100;
-            }
-            return prev + 5;
-          });
-        }, 150);
-
-        const url = await getImageUrl(`${basePath}/putra_1.webp`);
-
-        const elapsed = Date.now() - startTime;
-        const minDelay = 6000; // minimum 2 seconds
-        const remaining = minDelay - elapsed;
-
-        setTimeout(
-          () => {
-            clearInterval(interval);
-            setImageUrl(url);
-            setLoading(false);
-          },
-          remaining > 0 ? remaining : 0
-        );
-      } catch (err) {
-        console.error("Image load error:", err);
-      }
-    }
-
-    fetchImage();
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const updateBgPos = () => {
@@ -176,15 +126,7 @@ export default function WeddingInvitationPutra() {
         {/* Black overlay */}
         <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
 
-        {/* Loader */}
-        {loading || !imageUrl ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-            <Box className="z-10">
-              <CircularProgressWithLabel value={progress} color="inherit" />
-            </Box>
-          </div>
-        ) : (
-          <>
+        <>
             <div className="relative z-10 h-full w-full">
               <div
                 className={`flex-col items-center justify-between md:justify-end md:gap-[10rem] relative overflow-hidden right-container-photo-config-cover duration-1000 ease-in scroll-item-cover opacity-100 h-full flex p-8`}
@@ -301,8 +243,7 @@ export default function WeddingInvitationPutra() {
                 }`}
               />
             </div>
-          </>
-        )}
+        </>
       </div>
 
       {/* 1/3 Container - Main Content*/}

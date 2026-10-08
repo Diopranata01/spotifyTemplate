@@ -216,7 +216,7 @@ export default function Home() {
                             </button>
                           )}
                           <Link
-                            href={`/invitation/${guest.name.toLowerCase()}`}
+                            href={`/invitation/${encodeURIComponent(guest.name.toLowerCase())}`}
                             className="text-blue-500 hover:underline ml-2"
                           >
                             View Invitation
