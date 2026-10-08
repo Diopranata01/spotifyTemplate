@@ -242,7 +242,7 @@ export default function Home() {
                             </button>
                           )}
                           <Link
-                            href={`/putra_&_maydi/${guest.name.toLowerCase()}`}
+                            href={`/putra_&_maydi/${encodeURIComponent(guest.name.toLowerCase())}`}
                             target="_blank"
                             className="text-blue-500 hover:underline ml-2"
                           >

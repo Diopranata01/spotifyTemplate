@@ -281,7 +281,7 @@ h3 {
 }
 
 .main-photo {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/new-auth-3d448.appspot.com/o/img%2Fadat%2Fmain_photo.jpg?alt=media&token=cafcdd4a-f74c-4385-8e97-963baf405f89");
+  background-image: url("/img/adat/main_photo.jpg");
   background-size: 120% auto; /* Cover the entire container */
   background-position: 90% 22%; /* Shift the image 20% to the left */
   height: 100vh; /* Set the height to full viewport height */
